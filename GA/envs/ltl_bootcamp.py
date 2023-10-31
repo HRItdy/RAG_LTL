@@ -14,6 +14,7 @@ from . import ltl_sampler as ls
 from . import ltl2tree as lt
 
 from random import randint
+from pathlib import Path
 
 class LTLBootcamp(gym.Env):
     """
@@ -27,6 +28,7 @@ class LTLBootcamp(gym.Env):
         samplenum = 50,     # number of ltl tasks should be sampled
         alphabet=['a', 'b', 'c', 'd', 'e', 'f'],  #alphabet for ltl sampler
         rel = [" ", "s", "p", "l", "r", "p_", "l_", "r_"], #relationships for LTL tasks
+        regen = True,      # control whether to load task from txt
     ):
 
         self.timeout = timeout
@@ -38,21 +40,33 @@ class LTLBootcamp(gym.Env):
 
         # Sample LTL tasks and convert to format like ['A', ['G', ['N', 'b']], ['E', 'r']]
         # Begin to generate LTL tasks...
-        ltls = ls.ltl_sampler(self.alphabet, n_samples=samplenum)
-        tasks = set()
-        self.tasks = []
-        for ltl in ltls:
-            for formula in ltl:
-                if formula is not None:
-                    ltl_tree = lt.ltl2tree(formula, self.alphabet)
-                    ltl_str = lt.ltl_tree_str(ltl_tree)
-                    if ltl_str not in tasks:
-                        ltl_list = lt.unroll_tree(ltl_tree)
-                        tasks.add(ltl_str)
-                        self.tasks.append(ltl_list)
+        task_file = Path("tasks.txt")
+        if not regen and task_file.is_file():
+            #TODO: reload from txt
+            pass
+        else:
+            ltls = ls.ltl_sampler(self.alphabet, n_samples=samplenum)
+            tasks = set()
+            self.tasks = []
+            for ltl in ltls:
+                for formula in ltl:
+                    if formula is not None:
+                        ltl_tree = lt.ltl2tree(formula, self.alphabet)
+                        ltl_str = lt.ltl_tree_str(ltl_tree)
+                        if ltl_str not in tasks:
+                            ltl_list = lt.unroll_tree(ltl_tree)
+                            tasks.add(ltl_str)
+                            self.tasks.append(ltl_list)
 
-        self.tasks.sort(key=lambda x: (len(x)))
-        
+            self.tasks.sort(key=lambda x: (len(x)))
+            # record to txt file
+            with open(task_file, 'w') as f:
+                for task in tasks:
+                    f.write(task)
+                    f.write('\n')
+            print("Write completed")
+            f.close()
+
 
         # Actions are discrete integer values
         # self.action_space = spaces.Discrete(len(' rgb'))

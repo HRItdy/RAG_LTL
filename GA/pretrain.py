@@ -110,11 +110,11 @@ class CustomActorCriticPolicy(ActorCriticPolicy):
 
 
 
-env = LTLBootcamp()
+env = LTLBootcamp(samplenum=600)
 model = PPO(CustomActorCriticPolicy, env, verbose=1, device=DEVICE)
 
 # Training
-model.learn(int(2e6))
+model.learn(int(5e6))
 
 # Evaluation
 mean_rew, std_rew = evaluate_policy(model.policy, Monitor(env),

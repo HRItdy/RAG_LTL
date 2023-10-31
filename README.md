@@ -28,3 +28,7 @@ python pretrain.py
 ## References
 - Vaezipoor, Pashootan, Li, Andrew, Icarte, Rodrigo Toro, and McIlraith, Sheila (2021). “LTL2Action:Generalizing LTL Instructions for Multi-Task RL”. In:International Conference on MachineLearning (ICML)
 - Icarte, Rodrigo Toro, Klassen, Toryn Q., Valenzano, Richard Anthony, and McIlraith, Sheila A.(2018). “Teaching Multiple Tasks to an RL Agent using LTL.” In:International Conferenceon Autonomous Agents and Multiagent. Systems (AAMAS), (pp. 452–461)
+
+## TODO
+- Write code to evaluate the similarity among ltl tasks and evaluate the learnt embedding model.
+- Construct the LLM model using langchain.

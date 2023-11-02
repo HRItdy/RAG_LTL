@@ -32,3 +32,7 @@ python pretrain.py
 ## TODO
 - Write code to evaluate the similarity among ltl tasks and evaluate the learnt embedding model.
 - Construct the LLM model using langchain.
+- - 1. Construct the model to generate similar ltl tasks and corresponding behaviors, and save them into possbible errors-revised task pairs.
+- - 2. Construct the embedding and use the retrieved content to construct the prompt.
+- - 3. Construct groundtruth dataset.
+- - 4. How to build up robotic experiments to evaluate?

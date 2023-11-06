@@ -73,10 +73,6 @@ class GA(nn.Module):
         
         return torch.tanh(r) # non-linear activation function
 
-
-
-
-
 def build_relations(formula, max_len=10):
     ''' Function to construct the skew-symmetric relation matrix. '''
 
@@ -118,4 +114,3 @@ def build_relations(formula, max_len=10):
 
     # return the properly filled relation matrix of formula
     return mat
-

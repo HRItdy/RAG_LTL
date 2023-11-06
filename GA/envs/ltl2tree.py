@@ -105,7 +105,6 @@ def ltl_tree_str(ltl_tree):
         out = ltl_tree.value
     return out
 
-
 def ltl_tree_with_annotation_str(ltl_tree, idx=0, ancestors=None, anno_maps=None):
     if ancestors is None:
         ancestors = []

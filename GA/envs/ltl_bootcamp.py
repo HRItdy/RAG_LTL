@@ -41,6 +41,7 @@ class LTLBootcamp(gym.Env):
         # Sample LTL tasks and convert to format like ['A', ['G', ['N', 'b']], ['E', 'r']]
         # Begin to generate LTL tasks...
         task_file = Path("tasks.txt")
+        normal_task_file = Path("normal_task.txt")
         if not regen and task_file.is_file():
             #TODO: reload from txt
             pass
@@ -48,6 +49,7 @@ class LTLBootcamp(gym.Env):
             ltls = ls.ltl_sampler(self.alphabet, n_samples=samplenum)
             tasks = set()
             self.tasks = []
+            self.normal_tasks = []
             for ltl in ltls:
                 for formula in ltl:
                     if formula is not None:
@@ -57,16 +59,20 @@ class LTLBootcamp(gym.Env):
                             ltl_list = lt.unroll_tree(ltl_tree)
                             tasks.add(ltl_str)
                             self.tasks.append(ltl_list)
+                            self.normal_tasks.append(formula)
 
             self.tasks.sort(key=lambda x: (len(x)))
             # record to txt file
-            with open(task_file, 'w') as f:
+            with open(task_file, 'w') as f,\
+                 open(normal_task_file, 'w') as n_f:
                 for task in tasks:
                     f.write(task)
                     f.write('\n')
-            print("Write completed")
-            f.close()
-
+                for n_task in self.normal_tasks:
+                    n_f.write(n_task)
+                    n_f.write('\n')
+            print("Write tasks completed")
+            f.close(), n_f.close()
 
         # Actions are discrete integer values
         # self.action_space = spaces.Discrete(len(' rgb'))

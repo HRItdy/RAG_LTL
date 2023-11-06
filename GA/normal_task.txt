@@ -1,0 +1,896 @@
+a
+b
+c
+d
+e
+f
+G e
+E a
+X f
+N d
+G d
+G b
+N e
+G a
+N b
+G f
+E f
+N f
+E e
+E d
+G c
+E c
+X a
+X b
+N c
+N a
+X e
+E b
+X d
+X c
+c A e
+e O c
+d U a
+N G b
+G N b
+e A b
+X X c
+E N c
+d U c
+a U c
+e A d
+e A c
+X G b
+X N b
+N X c
+N N d
+e U a
+b U a
+E N b
+d A b
+G E b
+G G b
+E N e
+E N d
+E X b
+X G e
+f O e
+N E f
+G G d
+a U d
+d U d
+e O f
+c O f
+X N d
+X N a
+N E c
+G E c
+N X a
+N N f
+N X f
+G N d
+N X b
+N G e
+N X d
+e O b
+e O e
+X N f
+d U e
+d O e
+N N c
+d U f
+E G b
+X G a
+N G d
+G N c
+f U a
+f U f
+f U d
+c A f
+c U a
+X X e
+N E d
+G G e
+G X d
+G X e
+X E e
+N E e
+G N f
+c U d
+b U c
+c U e
+E N a
+b A N a
+d A N a
+N X X d
+N G X e
+a U G d
+a U G b
+N c U b
+N c U f
+N e O c
+d O c
+e O X a
+G N N f
+N a A b
+N e A b
+N d O c
+N d U c
+b O E f
+a O E f
+N c U c
+c U N b
+b O E b
+N e O b
+G e O b
+G e U b
+N E N e
+N G N e
+G N N d
+e A N e
+G X N f
+b A X b
+b A X c
+N d O f
+N b O f
+E b O f
+X a U f
+N d O a
+N f U f
+N b O b
+b U b
+d A N f
+d O N b
+E G X c
+N N X c
+E e O c
+G a U d
+X a U e
+d U N c
+E a U a
+N a U a
+E N N a
+E N G a
+c U X f
+N N E e
+e U N d
+G E N b
+X G N G f
+( N E a )
+f U ( c )
+f A ( c )
+N e O N f
+N e U N f
+E X ( a )
+( a ) U f
+( c A a )
+( c U b )
+E G a U b
+G N ( e )
+( N N a )
+E N ( f )
+( N N b )
+E X c U c
+N E ( b )
+E ( X e )
+N E f O c
+N E f U a
+X N ( e )
+N N ( e )
+N ( G c )
+( b ) O e
+N c A E d
+N c A N d
+N N d U a
+e U f U d
+G ( E a )
+X a U N a
+X a U G a
+X E ( d )
+N e U N a
+N e U E a
+f U G N b
+c U G N b
+G E d U c
+G E b U c
+G d O N d
+G c O N d
+N G a O d
+X N a O d
+N a U G e
+N b O X c
+E d U X c
+N c U X c
+N N d O e
+N N d O a
+d U ( b )
+c U N G c
+c O N G f
+E N b A f
+N X a U c
+( G N a )
+G e A G e
+E e A G f
+X G b U b
+E N b U b
+( c O d )
+( b O d )
+E E ( c )
+X E ( c )
+N ( X N a )
+N ( X N f )
+d O ( N f )
+a O ( N f )
+N N ( N d )
+a U N ( e )
+N N c A N c
+N N G a U a
+N ( a U e )
+N ( a U c )
+b U N d U b
+N N c O E a
+N E c O E a
+G X G a O c
+G X E a O c
+E a U b O a
+N a U d A a
+( N b ) U b
+X N N ( a )
+( b ) O X a
+( b ) O X b
+f A ( E c )
+N G X d A e
+N G X d U e
+N ( f A e )
+N ( f A a )
+E d O ( c )
+( E a ) U b
+G X ( E b )
+G N ( E d )
+( e ) A G a
+( N b U e )
+( N a A d )
+E ( f A f )
+E ( f A c )
+X ( G N b )
+( E c ) A c
+G ( d ) A e
+N ( d ) A c
+N N c U N e
+N N c U d
+N X ( N b )
+N E ( N b )
+( d U E c )
+( d U N e )
+e O N ( e )
+E d U e O f
+E d U b O f
+G ( e ) O d
+G ( c ) O d
+( X b U d )
+( G b U d )
+G ( G N f )
+( X a U d )
+N ( G G b )
+N ( N G b )
+E c O d U c
+E c U d U c
+E G d U X b
+E G d U N b
+E ( e ) O e
+G ( e ) O e
+E N E f U e
+a O e U G e
+f O b U G b
+( N G e A f )
+N b A f A N f
+N a A f A N f
+N e U c U G a
+N e U c O G c
+X N e U N N d
+E ( a U E f )
+N ( a U G f )
+( e ) A f U d
+( E X b U b )
+( E N a U a )
+( N X d O f )
+( N G e U f )
+( G E a O a )
+G d U G G N d
+G d U G N d
+N ( N d ) O d
+( X E d A d )
+( X E d O d )
+E N ( a ) O f
+N N ( c ) O f
+( X G b U d )
+( X N b U d )
+e U N X c O f
+e U G N c U f
+f A X G e U e
+e U X G e U e
+X N e U ( d )
+E N e U ( d )
+( X E f A f )
+( X E f U f )
+( N e ) U E d
+( E e ) U E d
+N X N N d O b
+N X N d O c
+X d O N ( e )
+X d O N ( d )
+( a ) U N N e
+N G ( f ) O b
+N G ( e ) O b
+N b U X ( f )
+b U X ( f )
+( G N a O f )
+( X c ) A E a
+( X c ) A E c
+( e ) U ( f )
+X e O d U N e
+X e O d U N a
+e U N e A X e
+a U N e O X e
+a A G G c A d
+c U X N b O c
+( N E b U a )
+( N X b U a )
+E E f O N N c
+N E f O N c
+( c ) U f O b
+d O N a A E b
+f O N a A E b
+N e U N b A b
+E e U N a O f
+( d O e ) A E a
+( N c O b ) U f
+( N c O d ) U f
+( X f O ( f ) )
+G G X ( ( e ) )
+N E E ( ( e ) )
+( c A G ( a ) )
+( e O N ( b ) )
+G G ( N c O c )
+G G ( N e O c )
+( c ) A N G N a
+( a ) A N G a
+E X ( b U N d )
+E X ( a U N d )
+X N N N c O N e
+X ( X N c U f )
+G ( E c U f )
+( d A ( N d ) )
+N N X ( c ) O a
+N N X ( c ) U a
+X E G ( ( d ) )
+X N X ( ( d ) )
+( ( b O N f ) )
+( ( b O N c ) )
+( a A G ( a ) )
+( a A G ( e ) )
+N G a U E ( a )
+N X e U E ( e )
+( E b ) A f U a
+N E G N c A N b
+N E G c A N c
+( c U f ) O X b
+N ( ( c ) O a )
+G ( ( c ) O a )
+N f U ( ( c ) )
+N c U ( ( a ) )
+( c U e U N a )
+( c O e U N f )
+( N E ( G c ) )
+G G a A X N N d
+G N a A X N N d
+d U N b O ( d )
+( b A G E N c )
+( b U G E N c )
+N G d O ( N c )
+X G d O ( N c )
+( E X ( N b ) )
+( E N ( N b ) )
+E X G c A b O e
+N X G c U b O d
+f U ( N a ) U d
+f U ( a ) A d
+N ( E X d U f )
+( E X d U f )
+( G N N b O d )
+( G N b O d )
+f O ( X e O b )
+G ( ( d A b ) )
+N ( ( e A b ) )
+G ( N c ) A G e
+G ( N c ) O G e
+N ( f O ( e ) )
+N ( f O ( f ) )
+N E d O N ( a )
+N X a O G ( a )
+E E c O N ( f )
+E N c O N ( f )
+( ( a U X c ) )
+( X b A ( f ) )
+( X f U ( f ) )
+E X c A N N G d
+N X c A N N G d
+( f U N G N e )
+( f U N G e )
+( X e O G N f )
+( G f O G N f )
+N ( X N ( c ) )
+E N ( d ) U N e
+( f ) A N ( f )
+N c U X X e U e
+N e U X X e U a
+N E ( d A N e )
+( N N a U X f )
+( N N b U X f )
+c U N N f U e U a
+d O N f U a U a
+N N ( e ) A b A c
+N ( d ) A e A c
+( N d A G N N f )
+( G d A N N N f )
+E ( X b ) U E N a
+N ( X b ) U E N a
+N G ( b ) U ( c )
+N G ( c ) U ( a )
+X X ( N ( N c ) )
+X G ( N ( N e ) )
+G N b A f A e O f
+G N c U f A e O f
+E N ( b U a O e )
+E b U E ( ( f ) )
+X b U N ( ( f ) )
+b U N ( ( N a ) )
+c U N ( ( a ) )
+( N N N X f U d )
+( N N G X f A d )
+( b O f U ( c ) )
+( X b ) O ( G c )
+( X b ) O ( G f )
+( G N ( e O f ) )
+( G ( e O f ) )
+E N ( N d ) O N b
+X ( N b O G G e )
+E ( N b O N G e )
+( ( X f ) O E e )
+( ( G f ) O E e )
+( ( N X b ) ) O d
+N e A b A c O N b
+N f A b A c O N e
+N G ( f U f ) U c
+N G ( f U a ) U e
+G b A G ( a A d )
+G b O G ( a O d )
+N G f O ( e O a )
+N G f A ( e U a )
+X a O d O ( N c )
+X b U b A ( N c )
+( d U G N b A f )
+( e U E N f U b )
+N ( e ) O E ( c )
+( N X E N f U b )
+( N X G N f U b )
+( G N a U a U a )
+N G ( a O f U b )
+c O f U N N a A f
+c O f U N N a U f
+f U E N ( f ) A c
+f U E X ( f ) A c
+G N G X e O X d U c
+G N N X e O X c U b
+X N d U c U X ( e )
+X N d O c U N ( e )
+N ( X X d U b ) U e
+N ( X X d U b ) U c
+f O G ( b ) U ( d )
+f O G ( b ) U ( f )
+( G N G N f U X f )
+( N N G f U X f )
+X ( N f ) U E G N d
+X ( N f ) U E N b
+f U E ( N a O X a )
+f U E ( N b O N a )
+( ( d ) A N N N d )
+( ( c ) A N E N c )
+E ( c U N E b ) U a
+G ( c U N N b ) U b
+N b U ( G G d U a )
+N b A ( N G d U e )
+E b U X ( E f ) A a
+N b U X ( N f ) A a
+N a A N G ( a ) O c
+G a A N E ( e ) O c
+E N a U c A G N X a
+E N e U e A G N X a
+X f O ( ( b ) ) U e
+X f O ( ( b ) ) U c
+a U ( e ) O N ( b )
+a U ( a ) O ( c )
+N X e A N e A ( a )
+N N ( N b O G G d )
+N ( N b A G G f )
+X X c A N c A b U a
+N X f A X c A b U e
+E ( E N f A f A e )
+X ( N f O f A a )
+E ( X N ( ( e ) ) )
+X ( X N ( ( b ) ) )
+( ( E b ) U d U e )
+( ( N b ) U d U e )
+( X d A a U ( c ) )
+( X d O f U ( c ) )
+N X ( E b O ( d ) )
+( ( ( X f A d ) ) )
+( ( ( N b A c ) ) )
+c U N ( c ) A ( c )
+a U N ( c ) A ( c )
+( G G c U E c U c )
+( G G c U E c O c )
+N ( ( e ) U ( e ) )
+N ( ( a ) A ( e ) )
+( ( f ) U ( X b ) )
+( ( f ) U ( G a ) )
+N E ( N a O ( c ) )
+N E ( N a A ( c ) )
+E X f A G ( a ) U a
+N N f A G ( a ) U a
+G ( N ( N b ) ) U d
+b U E ( f ) O e O b
+b U E ( c ) U e A b
+N ( b U N e A N c )
+N ( b U N e A c )
+( E N a U N c A e )
+( E N a U N a A e )
+N a A b O d U d A f
+X d O X c A ( N e )
+X e O X d U ( N e )
+N f A f U ( ( c ) )
+N ( E G e U a A d )
+( E G e U f A d )
+G N a U N ( c ) A c
+G N a U N ( c ) A e
+( G N a O d ) O N d
+( G N c O b ) U N b
+E N e A a U N ( b )
+b U E N ( E f O e )
+b U N N ( E a U e )
+N f U N ( G b ) A G c
+N f U N ( N e ) A G f
+X ( E c ) O ( f ) U d
+N ( E d ) O ( c ) O e
+( e O N ( X e ) A d )
+( e O ( X f ) A f )
+E X X ( N f U N X a )
+E X E ( N f U N N a )
+a A ( ( X N ( c ) ) )
+a A ( ( X N ( e ) ) )
+N b O N X ( N b U d )
+X b O N X ( N b U d )
+( N ( d ) A e U N a )
+( G ( d ) A e U a )
+N E ( e O X ( N c ) )
+N E ( e O X ( N e ) )
+a A N ( N f O e ) O f
+a O N ( E c U e ) U c
+X ( N ( ( X X c ) ) )
+X ( N ( ( X N c ) ) )
+G E a A ( a ) U ( b )
+E N a A ( a ) U ( b )
+G c U E d A d A ( a )
+G c U N d A d O ( a )
+E ( X G ( N a ) U b )
+N ( X G ( E a ) U b )
+( N a A ( G c U f ) )
+( N a A ( N c U f ) )
+E d U a U ( ( N f ) )
+E d U d U ( ( N f ) )
+N E f O G c O X ( b )
+N E f U G e O X ( b )
+( E b U N b U a O d )
+( E b U b U a O d )
+N E N ( ( b ) ) U N d
+N E N ( ( b ) ) U G d
+( ( c U a O b A a ) )
+( ( c U a O d A a ) )
+( ( X N d ) O a O b )
+( ( X N d ) U d U b )
+d U X X E e U ( N f )
+d U X X G e O ( N f )
+a O ( G a A G E N f )
+a A ( G a A G E N f )
+N b U ( N N d A N b )
+N b A ( G N d O N b )
+( ( G f U a ) ) A G a
+( ( G e U d ) ) A G a
+E N ( ( b U c A e ) )
+N N ( ( b U c A a ) )
+E ( X d U d A f U a )
+G ( N f U d A f U a )
+X ( N ( b O f A c ) )
+N ( N ( b O c O c ) )
+G c O N ( E N e U a )
+G c A N ( N N e U a )
+N ( f U e U f ) A X e
+N ( c U e U f ) O N e
+N G c U c U f O ( c )
+N X a U d U f O ( c )
+E X d O c U ( N X b )
+E N d O c A ( N E c )
+( b U e U N ( N f ) )
+( f U e U ( N f ) )
+E d A ( b ) U G b U e
+E d A ( b ) U G b O e
+( G N N d O f ) A N c
+( G N N d O c ) A N c
+G f O ( N d U N N b )
+G f O ( N d U N b )
+G E ( d ) U N X d A d
+N E ( d ) U N X d O c
+X ( X G X f A e O b )
+X ( N G E f O e U b )
+N e O ( X d U ( a ) )
+( ( N d U E a O d ) )
+( ( N f U E a O b ) )
+( E a A a O b O E d )
+( E a A a O b U N d )
+N X d A ( ( c ) ) U b
+N X c A ( ( c ) ) U b
+N G N b A E ( c ) U b
+N N b O X ( c ) U b
+N N ( c U N ( E b ) )
+E N ( c U N ( E b ) )
+G N E E a U ( b O b )
+( a U N E f ) A ( b )
+( a U X E f ) A ( b )
+N a A N G c U b O ( e )
+N a A N G c U d O ( e )
+c U ( G E ( c A N d ) )
+c U ( N E ( e O d ) )
+( E d O ( b ) U N N e )
+( E d U ( b ) U N E e )
+( N N d A e U f A N f )
+( N d U e U b A N f )
+e O ( N f ) A X a O N f
+e O ( c ) U X a O N f
+N G E N d U b U ( N f )
+N G E N d A b U ( f )
+b U ( ( c ) ) U N d O b
+a U ( ( c ) ) A N f O b
+( a U N X c O a A N a )
+( c A N X f O c U N a )
+e U N G N N E c O ( e )
+e U N G G N E a O ( d )
+N N ( X f O d A b U d )
+N G ( N f O b A a U d )
+E ( N c ) U ( N f ) O f
+E ( N c ) U ( N f ) O a
+( N X d A N E a U N f )
+( N X d A N E a U f )
+( G ( f ) O b A a ) A a
+( G ( f ) O b A a ) U a
+d U G b O ( ( a ) ) U b
+d A G b U ( ( c ) ) U b
+N ( a ) O G N ( c ) A d
+N ( a ) O G G ( c ) U d
+G X N a O N ( X f ) U e
+X X N d O X ( N f ) U b
+G X ( N a O ( ( d ) ) )
+G X ( N f O ( ( f ) ) )
+( X G b U E ( f ) O d )
+( X N b U N ( f ) O a )
+a O ( N G b ) U X c O d
+a O ( N G c ) U X c A d
+N ( d O N G b U f O f )
+E ( e O G N c U ( f ) )
+E ( f O E N c U ( f ) )
+N ( G f O ( b ) U N f )
+d A N ( E N f A b ) U e
+d A ( E N f A a ) U b
+( G N ( f ) A N e U c )
+( X d A G E c U c A d )
+( X d U G E c O c U d )
+N ( d U f A d U X X b )
+N ( d U f O d U X X b )
+X b A G X a U G G ( c )
+N b A N X a U N G ( c )
+( ( N N E E b ) ) U N d
+X E ( X d A G E ( c ) )
+X N ( X d A N E ( d ) )
+e O ( N ( E N b ) ) U b
+e O ( N ( G N b ) ) U b
+E N ( e ) O ( N e O e )
+E N ( c ) O ( N e U e )
+X ( G ( f ) ) U ( G d )
+X ( G ( f ) ) U ( N d )
+E E a A ( ( ( d ) ) U a )
+N E a U ( ( ( d ) ) U a )
+( G N X a A c A ( N f ) )
+( G N X d A d U ( N f ) )
+G ( N a ) O ( f ) U ( b )
+G ( N a ) U ( f ) U ( b )
+( N E a O N c U f U N b )
+( N E b O N c U f U b )
+N G N ( f O ( E a ) A d )
+N G N ( f O ( E a ) U b )
+N b A ( N N e ) U N c O a
+N b A ( N d ) U N c A a
+( d ) A ( f U f A ( e ) )
+( d ) U ( f O f A ( e ) )
+( ( ( X c A d U G d ) ) )
+( N X a A N c A E a A c )
+( N X e U c A N a U c )
+G N N e O ( d ) O G ( e )
+G N N f O ( d ) A E ( e )
+N ( N e U ( ( a ) ) O b )
+( N e U ( ( a ) ) A d )
+X G b O ( N N ( d ) U f )
+N G b O ( N N ( d ) U f )
+N X ( b O c O ( d ) A a )
+N N ( b U c O ( d ) A a )
+G X ( ( c U G c O E d ) )
+E N ( ( b U E c A E d ) )
+( ( X ( a ) U c O E c ) )
+( ( N ( a ) U d O E a ) )
+E G ( ( ( a ) ) ) O X N b
+E G ( ( ( a ) ) ) U X N b
+( ( N ( G X f ) A E e ) )
+( ( N ( G X f ) U N e ) )
+( a ) A N N ( d ) U b A d
+N E ( X N a ) A G X a A c
+N G ( X a ) A G X a U c
+N ( a ) O ( G e ) A e U f
+G ( a ) O ( N e ) A a U f
+N ( ( E N d A G d A b ) )
+N ( ( E N d U G d A b ) )
+X G ( e ) A ( N N b ) U e
+N N ( e ) A ( N N b ) U e
+E ( ( N f U c O c ) ) O c
+E ( ( N f U c U f ) ) O c
+( ( a O d ) U a ) A c U b
+( ( a O d ) U a ) A c U d
+E ( d ) U N d O E ( N d )
+G ( d ) U N d O N ( X d )
+G ( d ) O ( N N E a ) A a
+G ( d ) O ( N G N a ) U a
+( ( G N N G c ) ) O ( e )
+( ( E N N G c ) ) O ( b )
+X ( a O ( G E N f U d ) )
+X ( b O ( E N N f U d ) )
+N ( ( N G E e A N f ) ) O c
+N ( ( N G E e U N f ) ) O c
+N f O X ( ( X N a ) U N d )
+N f O X ( ( X N a ) U d )
+X N N ( b ) U d U b U ( a )
+X N N ( b ) U d U e U ( a )
+( N ( b U c ) U c A N X d )
+( N ( b U c ) U c A N E d )
+X ( ( X N d ) U a ) A c U b
+X ( ( X f ) U a ) A b O b
+N ( d ) A N ( X a ) A ( c )
+( d ) A ( N a ) U ( c )
+E G e O X X ( N e U ( d ) )
+E N e A X X ( N f U ( d ) )
+N ( G N G ( c ) O N d U b )
+N ( G N G ( c ) O c U c )
+( X c O d U N ( N a ) A a )
+( X e O e U N ( E a ) U f )
+X N ( ( ( b ) A E f ) ) O c
+X N ( ( ( e ) A E f ) ) O c
+N ( c ) A ( N X N N e O f )
+N ( c ) U ( N X N N b O f )
+N ( G c O e ) U N a U ( e )
+N ( N c A e ) U N a U ( e )
+a U ( ( X f ) O f O ( c ) )
+a U ( ( E f ) O f O ( c ) )
+( E d ) U d A G ( X ( f ) )
+( E e ) O d A N ( X ( f ) )
+N G N N N f U ( d ) O ( a )
+N G N N E f U ( d ) O ( a )
+( E X c U ( c ) O G d ) O a
+( E X c U ( c ) U G c ) O a
+G ( ( ( e ) ) O ( ( c ) ) )
+G ( ( ( e ) ) U ( ( c ) ) )
+( ( N G ( N b U b ) A a ) )
+( d A a ) U N ( d U a ) U b
+( d A a ) U ( d O d ) U b
+E N b U G ( N X a U ( a ) )
+E b U X ( N N a U ( b ) )
+E a U G N ( ( c ) ) U f O c
+E b U N N ( ( c ) ) U f A c
+X e O N f U N ( N f ) U E f
+X e O e U ( N c ) U E f
+E N ( X N N X ( N c ) ) U d
+E X ( X N N X ( N e ) ) U c
+( ( ( f U c ) ) ) O N f U e
+( ( ( f U c ) ) ) O f U e
+N G b O X E E ( c ) U ( e )
+N N b A N E E ( c ) U ( e )
+a O ( ( ( G N N e ) A f ) )
+a O ( ( ( G X N e ) O b ) )
+G ( e ) U N E ( G b ) A N e
+G ( c ) U N E ( G b ) A X e
+E E ( c ) U d A ( E N ( e ) )
+N E ( c ) U d A ( E X ( e ) )
+f U E G N ( G ( a ) ) A b O c
+f U N G ( G ( a ) ) U b O d
+( G b ) U E ( a A G ( N b ) )
+G ( ( d ) A G a ) U ( G E e )
+E d U N N ( E a ) O ( c ) O f
+G d O N ( N d ) U ( c ) A f
+( c O E ( c ) U E ( b ) ) U f
+( c A E ( c ) U E ( b ) ) U f
+X E ( ( d U f ) ) U N N ( f )
+X E ( ( d U a ) ) O N G ( f )
+( G N X N ( c ) A ( b ) ) U a
+( N E X N ( c ) A ( b ) ) U f
+( N ( G d ) ) U ( c ) U c O a
+( N ( G d ) ) A ( c ) U a O d
+N N ( G d ) U f O b U ( N e )
+G N ( G c ) U f U b A ( e )
+( ( N ( N N e U G a ) U c ) )
+( ( E ( N N e U G a ) A c ) )
+( ( X b O a A ( N c ) A e ) )
+( ( N c O a U ( N b ) A b ) )
+E E ( G N ( a ) A c U ( d ) )
+X E ( G N ( a ) A d U ( d ) )
+G ( N ( ( G c A f U G b ) ) )
+G ( N ( ( G f A c U G b ) ) )
+X N ( E N ( b ) ) U e A E N b
+N ( G ( b ) ) U e A E N b
+f A N N ( a ) A b A e U ( e )
+f A N ( a ) U b A e U ( e )
+N ( N E e ) A N ( f ) U b U a
+N ( N E e ) U ( f ) U b U d
+( X N ( d ) U ( ( f ) O N e ) )
+( X N ( d ) O ( ( f ) O e ) )
+N N ( d ) A E ( ( N c O N a ) )
+X N ( f ) A E ( ( N c O G a ) )
+E N ( G ( N a A d ) ) U N ( a )
+E ( N ( N c A d ) ) U N ( f )
+G N ( f U f ) U ( c ) O X ( c )
+G N ( f A f ) U ( c ) O X ( b )
+( X ( a A e ) A e ) A N ( N d )
+( E ( a A e ) A e ) O N ( N d )
+( G G ( ( X e ) ) O E N f O f )
+( G N ( ( X d ) ) A X N f U f )
+X N X ( N N c ) A N ( E ( c ) )
+X N X ( N c ) O N ( E ( e ) )
+X N N d O X N ( ( e ) ) O ( e )
+E N N b O X N ( ( f ) ) O ( b )
+( ( N E G c ) U G c A N ( e ) )
+( ( N E N c ) U G c A N ( e ) )
+N ( ( a ) ) O N ( b ) U c O G c
+N G X ( N G ( c ) U ( d O e ) )
+N E X ( N G ( c ) A ( d O e ) )
+( ( G f U e ) O ( N f O N a ) )
+( ( G e A e ) O ( N f O N a ) )
+a A E ( ( X N G e ) ) A ( N b )
+a A X ( ( X N N e ) ) U ( N b )
+G N ( b ) A ( e ) U ( ( c ) ) O c
+N E e O N f U ( ( X a ) ) O ( d )
+N E e O f U ( ( X a ) ) O ( d )
+c A N N ( e U ( N X ( e ) U b ) )
+b A N ( e U ( N X ( e ) U b ) )
+G ( a ) A e A N ( c ) U ( ( c ) )
+E ( a ) A e A N ( c ) U ( ( c ) )
+E G ( ( ( ( e ) A e ) ) U a U f )
+N G ( ( ( ( f ) A e ) ) U a U f )
+E ( ( ( ( e O N c U c ) ) ) U a )
+N ( ( f A ( N ( c O d ) ) ) ) U f
+N ( ( f A ( N ( c U d ) ) ) ) U d
+( N E E ( d ) ) U N ( a ) A e A N f
+( N E E ( c ) ) U ( a ) A b O c
+N f O G ( X N ( ( a O N b U f ) ) )
+f O G ( X ( ( a O b U e ) ) )
+E ( N E e ) A ( N d ) A ( ( N c ) )
+E ( N E e ) A ( d ) U ( ( N c ) )
+N ( ( c ) U G ( N a ) ) A E N X ( e )
+( ( c ) U N ( a ) ) A E N N ( f )
+N N a A ( e ) A N b U E ( ( ( c ) ) )
+N N a A ( e ) A b U E ( ( ( e ) ) )
+( c ) U ( ( X N ( f ) O N ( c ) U c ) )
+( c ) U ( ( N ( c ) O N ( b ) U c ) )

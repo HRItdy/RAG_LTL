@@ -1,7 +1,6 @@
 {
   "a": {
-    "expected behavior is {a} should always be true.": "G(a)",
-    
+    "expected behavior is {a} should always be true.": "G(a)"
   },
   "G b": {
     "expected behavior is {b} should be true all the time. Such specification omits {b}.": "F b",

@@ -3,7 +3,7 @@ digraph {
 	0 [root=true]
 	1 [shape=doublecircle]
 	fake -> 0 [style=bold]
-	0 -> 1 [label="a & ~b"]
 	1 -> 1 [label=True]
 	0 -> 0 [label="b | ~a"]
+	0 -> 1 [label="a & ~b"]
 }

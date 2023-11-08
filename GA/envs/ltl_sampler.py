@@ -83,7 +83,6 @@ def ltl_sampler(alphabets,
 
 
 if __name__ == '__main__':
-    #ltl_formula = '( G F ( ( C_workbench U workbench ) & ( C_gem U gem ) ) )'
     # parse ltl formula to cfg tree and then convert to an expression tree
     alphabets = ['a', 'b', 'c', 'd', 'e', 'f']
     # cfg_tree = parse_ltl(ltl_formula, alphabets)

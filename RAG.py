@@ -44,14 +44,11 @@ DEVICE = "cuda" if th.cuda.is_available() else "cpu"
 ## Step 1: Evaluate the generated task 
 # ltl2ba, generate the policy sketch
 import networkx as nx
-import pydot
-
-
 from flloat.parser.ltlf import LTLfParser
 
 # parse the formula
 parser = LTLfParser()
-formula = "F (a & !b)"
+formula = "F (a & !(b))"
 parsed_formula = parser(formula)
 
 # # evaluate over finite traces
@@ -80,12 +77,11 @@ dfa = parsed_formula.to_automaton()
 graph = dfa.to_graphviz()
 graph.render("./my-automaton") 
 
-
-
-graphs = pydot.graph_from_dot_data(dfa)
-graph = graphs[0]
-G = nx.Graph(nx.nx_pydot.from_pydot(graph))
-nx.draw(G)
+dotplus = pydotplus.graph_from_dot_data(graph.source)
+print(type(dotplus)) # prints <class 'pydotplus.graphviz.Dot'>
+# if graph doesn't have multiedges, use dotplus.set_strict(true)
+nx_graph = nx.nx_pydot.from_pydot(dotplus)
+nx.draw(nx_graph)
 
 policy_sketch = []
 # prompt the LLM to find the error message

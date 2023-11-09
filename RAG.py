@@ -51,7 +51,7 @@ times = 0
 ltl_model = LTL(task)
 random_walks = ltl_model.random_walk()
 violation, error_msg = check_violation(nl_task, random_walks, ltl_model)
-k = 3 # top_k
+top_k = 3 # top_k
 
 while violation and times <= 5:
     #as long as there is violation, we need to regenerate the ltl task
@@ -59,13 +59,12 @@ while violation and times <= 5:
     times += 1  
     emb = get_task_embedding(task)
     # Get the top k most similar vectors
-    top_k_indices = find_top_k_similar_tasks(emb, embedding, k)
+    top_k_indices = find_top_k_similar_tasks(emb, embedding, top_k)
     top_k_tasks = [tasks_r[i] for i in top_k_indices]   
     # Find out the top-k similar error messages within top-k tasks
-    tasks, errors, tasks_p = find_top_k_similar_error(error_msg, top_k_tasks, retrieve_dict, k) 
-    RE_PROMPT = revise_prompt(origin=task, error=error_msg, k, tasks=tasks, errors=errors, revise=tasks_p)
+    tasks, errors, tasks_p = find_top_k_similar_error(error_msg, top_k_tasks, retrieve_dict, top_k) 
+    RE_PROMPT = revise_prompt(origin=task, error=error_msg, k=top_k, tasks=tasks, errors=errors, revise=tasks_p)
     ## Step 3: Use these records as prompt to revise the generated task
-    RE_PROMPT = """ The original task is ,,,, the error message is , according to the examples like ....."""
     task = rephrase_a_sentence(nl_task, RE_PROMPT) # or a new function?
     ltl_model = LTL(task)
     random_walks = ltl_model.random_walk()

@@ -6,7 +6,7 @@ from GA.envs.ltl_bootcamp import LTLBootcamp
 from stable_baselines3 import PPO
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.evaluation import evaluate_policy
-import openai
+from ltl_utils import LTL
 import numpy as np
 from utils import *
 
@@ -32,20 +32,13 @@ for task_r in retrieve_dict.keys():
     tasks_r.append(task_r)
     
 ## Input the prompt, and the task to be generated
-GEN_PROMPT = """
-
-Think step by step, and output the task without extra explaination.
-
-
-generate the linear temporal logic of: TASK-TO-BE-REPLACED"""
-
 nl_task = input("Specify the task:\n")
+GEN_PROMPT = generate_prompt(nl_task)
 ## Get the result
 task = rephrase_a_sentence(nl_task, GEN_PROMPT)
 
 ## Step 1: Evaluate the generated task 
 # ltl2ba, generate the policy sketch
-from ltl_utils import LTL
 violation = True
 times = 0
 ltl_model = LTL(task)

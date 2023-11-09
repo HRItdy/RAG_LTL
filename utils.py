@@ -39,9 +39,7 @@ def check_violation(task_spec, random_walks, ltl_model):
         parsed_policy, truth = ltl_model.eval_parse(walk)
         if truth:
             # prompt the LLM to find whether this policy sketch can complete the task, if not, it should generate error message
-            ERR_PROMPT = """
-                        dsfasdf
-                            """
+            ERR_PROMPT = evaluate_prompt(task_spec, parsed_policy)
         def get_feedback(task_spec, prompt):
             import re
             response = openai.Completion.create(
@@ -105,11 +103,26 @@ def rephrase_a_sentence(nl_task, prompt):
     ltl = re.findall(r'\(.*?\)', output)  
     return ltl
 
-def generate_prompt():
-    prompt = """"""
-    return
+def generate_prompt(nl_task):
+    prompt = """
 
-def evaluate_prompt():
+Think step by step, and output the task without extra explaination.
+
+
+generate the linear temporal logic of: TASK-TO-BE-REPLACED""".replace('TASK-TO-BE-REPLACED', nl_task)
+    return prompt
+
+def evaluate_prompt(task_spec, policy_sketch):
+    #preprocess the policy_sketch first?
+    prompt = """This is the policy sketch corresponding to the task: """ + task_spec \
+                +"""\n Verify whether this policy satisfies the task. If not, give out the output. Examples as follows:
+                task specification:
+                policy sketch:
+                satisfy: {No}, error message:{}.
+                task specification:
+                policy sketch:
+                satisfy: {No}, error message:{}.
+                """
     pass
 
 def revise_prompt(org, error, k, **kwargs):

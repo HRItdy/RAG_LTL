@@ -34,6 +34,8 @@ class CustomNetwork(nn.Module):
         self.latent_dim_pi = last_layer_dim_pi
         self.latent_dim_vf = last_layer_dim_vf
 
+        # Store the embedding of LTL task
+        self.ltl_embedding = None
 
         # Env module
         self.image_embedder = nn.Sequential(

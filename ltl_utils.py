@@ -83,7 +83,7 @@ class LTL():
                     current_node = next_node
         return walks
 
-    def eval(self, policy_sketch, timestep=0):
+    def eval_parse(self, policy_sketch, timestep=0, mini_length = 3):
         def parse_policy(policy_sketch, mini_length=3):
             import random
             #generate more diverse policy sketches
@@ -95,7 +95,7 @@ class LTL():
                 for i in range(mini_length):
                     parsed_policy.append(random.choice(policy_sketch))
             return parsed_policy
-        parsed_policy = parse_policy(policy_sketch, 3)
+        parsed_policy = parse_policy(policy_sketch, mini_length)
         return parsed_policy, self.task.truth(parsed_policy, timestep)
 
 # # evaluate over finite traces

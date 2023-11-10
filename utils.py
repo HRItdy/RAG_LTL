@@ -60,26 +60,9 @@ def check_violation(task_spec, random_walks, ltl_model):
         parsed_policy, truth = ltl_model.eval_parse(walk)
         if truth:
             # prompt the LLM to find whether this policy sketch can complete the task, if not, it should generate error message
-            ERR_PROMPT = evaluate_prompt(task_spec, parsed_policy)
-        def get_feedback(task_spec, prompt):
-            import re
-            response = openai.Completion.create(
-                model="text-davinci-003",
-                prompt=prompt.replace("TASK-TO-BE-PLACED", parsed_policy).replace...task_spec,
-                temperature=0.7,
-                max_tokens=512,
-                top_p=1,
-                best_of=1,
-                frequency_penalty=0.1,
-                presence_penalty=0
-                )
-            output = response['choices'][0]['text']
-            # LTL task should be included in brackets
-            satisfy = re.findall(r'\{.*?\}', output)
-            message = re.findall(r'\(.*?\)', output)  
-            return satisfy, message
-        
-        satisfy, error_msg = get_feedback(task_spec, ERR_PROMPT)
+            ERR_PROMPT = evaluate_prompt(task_spec, parsed_policy) 
+            results = get_response(ERR_PROMPT)
+            satisfy, error_msg = results[0], results[1]
         if not satisfy:
             # generated task doesn't satisfy task specification, need to be revised, just return
             break

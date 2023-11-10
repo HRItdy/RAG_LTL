@@ -35,7 +35,7 @@ for task_r in retrieve_dict.keys():
 nl_task = input("Specify the task:\n")
 GEN_PROMPT = generate_prompt(nl_task)
 ## Get the result
-task = rephrase_a_sentence(nl_task, GEN_PROMPT)
+task = get_response(nl_task, GEN_PROMPT)[0]
 
 ## Step 1: Evaluate the generated task 
 # ltl2ba, generate the policy sketch
@@ -58,7 +58,7 @@ while violation and times <= 5:
     tasks, errors, tasks_p = find_top_k_similar_error(error_msg, top_k_tasks, retrieve_dict, top_k) 
     RE_PROMPT = revise_prompt(origin=task, error=error_msg, k=top_k, tasks=tasks, errors=errors, revise=tasks_p)
     ## Step 3: Use these records as prompt to revise the generated task
-    task = rephrase_a_sentence(nl_task, RE_PROMPT) # or a new function?
+    task = get_response(RE_PROMPT)[0]
     ltl_model = LTL(task)
     random_walks = ltl_model.random_walk()
     violation, error_msg = check_violation(nl_task, random_walks)

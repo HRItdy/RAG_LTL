@@ -2,6 +2,28 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 import openai
 
+def get_text_embedding(text_to_embed):
+	# Embed a line of text
+	response = openai.Embedding.create(
+    	model= "text-embedding-ada-002",
+    	input=[text_to_embed]
+	)
+	# Extract the AI output embedding as a list of floats
+	embedding = response["data"][0]["embedding"]
+	return embedding
+
+def get_task_embedding(task_to_embed, env, model):
+    env.task = task_to_embed
+    activation = {}
+    def get_activation(name):
+        def hook(model, input, output):
+            activation[name] = output.detach()
+        return hook
+    model.policy.mlp_extractor.ga.register_forward_hook(get_activation('ga'))
+    output = model(env.gen_obs())  # is it correct? check the pretrain whats the input of the forward function, and which part is ltl
+    embedding = activation['ga']
+    return embedding
+
 def find_top_k_similar_error(error_msg, top_k_tasks, retrieve_dict, k):
     error_emb = get_text_embedding(error_msg)
     ori_tasks = []
@@ -21,8 +43,7 @@ def find_top_k_similar_error(error_msg, top_k_tasks, retrieve_dict, k):
     error_msgs = [errors[i] for i in top_k_indices]
     revised_task = [revised_tasks[i] for i in top_k_indices]
     return tasks, error_msgs, revised_task
-
-      
+ 
 def find_top_k_similar_tasks(emb, emb_list, k):
     # Convert vectors to NumPy arrays
     emb = np.array([emb])
@@ -64,33 +85,37 @@ def check_violation(task_spec, random_walks, ltl_model):
             break
     return satisfy, error_msg
 
-def get_text_embedding(text_to_embed):
-	# Embed a line of text
-	response = openai.Embedding.create(
-    	model= "text-embedding-ada-002",
-    	input=[text_to_embed]
-	)
-	# Extract the AI output embedding as a list of floats
-	embedding = response["data"][0]["embedding"]
-	return embedding
+def generate_prompt(nl_task):
+    prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task in () and without extra explaination".replace('TASK-TO-BE-REPLACED', nl_task)
+    return prompt
 
-def get_task_embedding(task_to_embed, env, model):
-    env.task = task_to_embed
-    activation = {}
-    def get_activation(name):
-        def hook(model, input, output):
-            activation[name] = output.detach()
-        return hook
-    model.policy.mlp_extractor.ga.register_forward_hook(get_activation('ga'))
-    output = model(env.gen_obs())  # is it correct? check the pretrain whats the input of the forward function, and which part is ltl
-    embedding = activation['ga']
-    return embedding
+def evaluate_prompt(task_spec, policy_sketch):
+    #preprocess the policy_sketch first?
+    policy_sketch = ",".join(step for step in policy_sketch)
+    prompt = """Analyze whether the policy sketch satisfies the task. If not, give out the output. 
+                Example:
+                task specification: \{c\} should always be true, or \{a\} and \{b\} be true, but subsequently \{c\} should be true.
+                policy sketch: 'a & b', 'a & b & c', 'a & b'
+                output: satisfy: (No), error message:('a & b' after 'a & b & c'. According to the LTL task, once c becomes true, it should always remain true. However, the policy returns to a state where c's truth is not guaranteed. This violates the requirement that "subsequently c should be true" after its initial truth.)
+                Now the task specification is:""" + task_spec + "\n" + """policy sketch :""" + policy_sketch + """. Give the output following the format in the example without extra explaination.
+                output:"""
+    return prompt
 
-def rephrase_a_sentence(nl_task, prompt):
+def revise_prompt(org, error, k, **kwargs):
+    prompt = "The original task is: " + org + "\n" \
+             +"Detected error message: " + error + "\n" \
+             +"Given the following examples, please give out the revised task in {} without extra explaination: \n" \
+             +"".join(["Original task is: "+kwargs['tasks'][i]+ ", error message is: "+kwargs['errors'][i] +", \
+                       the revised task is: "+kwargs['revise'][i]+"." for i in k]) + "\n" \
+             +"Output:\n"
+    return prompt    
+
+def get_response(prompt):
+    #assert prompt_response in ['generate', 'evaluate', 'revise'], "Unknown prompt type!"
     import re
     response = openai.Completion.create(
         model="text-davinci-003",
-        prompt=prompt.replace("TASK-TO-BE-PLACED", nl_task),
+        prompt=prompt,
         temperature=0.7,
         max_tokens=512,
         top_p=1,
@@ -99,38 +124,7 @@ def rephrase_a_sentence(nl_task, prompt):
         presence_penalty=0
         )
     output = response['choices'][0]['text']
-    # LTL task should be included in brackets
-    ltl = re.findall(r'\(.*?\)', output)  
-    return ltl
+    results = re.findall(r'\(.*?\)', output)  
+    results = [result.lstrip('(').rstrip(')') for result in results]
+    return results
 
-def generate_prompt(nl_task):
-    prompt = """
-
-Think step by step, and output the task without extra explaination.
-
-
-generate the linear temporal logic of: TASK-TO-BE-REPLACED""".replace('TASK-TO-BE-REPLACED', nl_task)
-    return prompt
-
-def evaluate_prompt(task_spec, policy_sketch):
-    #preprocess the policy_sketch first?
-    prompt = """This is the policy sketch corresponding to the task: """ + task_spec \
-                +"""\n Verify whether this policy satisfies the task. If not, give out the output. Examples as follows:
-                task specification:
-                policy sketch:
-                satisfy: {No}, error message:{}.
-                task specification:
-                policy sketch:
-                satisfy: {No}, error message:{}.
-                """
-    pass
-
-def revise_prompt(org, error, k, **kwargs):
-    prompt = "The original task is: " + org + "\n" \
-             +"Detect error message: " + error + "\n" \
-             +"Given the following examples, please give out the revised task without extra explaination: \n" \
-             +"".join(["Original task is: "+kwargs['tasks'][i]+ ", error message is: "+kwargs['errors'][i] +", \
-                       the revised task is: "+kwargs['revise'][i]+"." for i in k]) + "\n" \
-             +"Output:\n"
-    return prompt    
-    

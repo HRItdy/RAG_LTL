@@ -1,27 +1,15 @@
 {
   "a": {
-    "{a} should always be true.": "G(a)",
-    "{a} should eventually be true.": "E(a)",
-    "{a} should be true in the next timestep.": "X(a)",
-    "{a} should not be true.": "N(a)",
-    "Eventually, {a} should always be true.": "E(G(a))",
-    "{a} should be true frequently": "G(E(a))",
-    "In the next timestep, {a} should start being always true.": "X(G(a))",
-    "{a} should never be true.": "G(N(a))",
-    "Eventually, {a} should not be true.": "E(N(a))",
-    "In the next timestep, {a} should eventually become true.":"X(E(a))"
+    "expected behavior is {a} should always be true.": "G(a)",
+    "expected behavior is {a} should eventually be true.": "F(a)",
+    "expected behavior is {a} should 
   },
-  "G(b)": {
-    "Eventually, {b} should always be true.": "E(G(b))",
-    "In the next timestep, {b} should start being always true.": "X(G(b))",
-    "{b} should never be true.": "G(N(b))",
-    "{b} should not always be true.": "N(G(b))",
-    "always, {b} should be true, or when {b} is not true, in the next timestep {b} should start being always true.": "G(b O X(b))",
-    "{b} should be true frequently.": "G(E(b))",
-    "{b} should eventually be true.": "F(b)"
-  },
-  "G(b A b)": {
-    "{b} should always be true.": "G(b)"
+  "G b": {
+    "expected behavior is {b} should be true all the time. Such specification omits {b}.": "F b",
+    "expected behavior is {b} should be true at least once. Such specification omits {b}.": "F b U b",
+    "expected behavior is {b} should be true continuously. Such specification omits {b}.": "F G b",
+    "expected behavior is {b} should be true all the time, but {b} can be false at first. Such specification omits {b}.": "F (G b U b)",
+    "expected behavior is {b} should be true all the time, but {b} should not be true at first. Such specification omits {b}.": "F (G b U (X b))"
   },
   "E d": {
     "expected behavior is {d} should be true eventually. Such specification omits {d}.": "F(d)",

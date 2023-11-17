@@ -69,7 +69,7 @@ def check_violation(task_spec, random_walks, ltl_model):
     return satisfy, error_msg
 
 def generate_prompt(nl_task):
-    prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task in () and without extra explaination".replace('TASK-TO-BE-REPLACED', nl_task)
+    prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task in () and without extra explanation".replace('TASK-TO-BE-REPLACED', nl_task)
     return prompt
 
 def evaluate_prompt(task_spec, policy_sketch):
@@ -80,14 +80,14 @@ def evaluate_prompt(task_spec, policy_sketch):
                 task specification: \{c\} should always be true, or \{a\} and \{b\} be true, but subsequently \{c\} should be true.
                 policy sketch: 'a & b', 'a & b & c', 'a & b'
                 output: satisfy: (No), error message:('a & b' after 'a & b & c'. According to the LTL task, once c becomes true, it should always remain true. However, the policy returns to a state where c's truth is not guaranteed. This violates the requirement that "subsequently c should be true" after its initial truth.)
-                Now the task specification is:""" + task_spec + "\n" + """policy sketch :""" + policy_sketch + """. Give the output following the format in the example without extra explaination.
+                Now the task specification is:""" + task_spec + "\n" + """policy sketch :""" + policy_sketch + """. Give the output following the format in the example without extra explanation.
                 output:"""
     return prompt
 
 def revise_prompt(org, error, k, **kwargs):
     prompt = "The original task is: " + org + "\n" \
              +"Detected error message: " + error + "\n" \
-             +"Given the following examples, please give out the revised task in {} without extra explaination: \n" \
+             +"Given the following examples, please give out the revised task in {} without extra explanation: \n" \
              +"".join(["Original task is: "+kwargs['tasks'][i]+ ", error message is: "+kwargs['errors'][i] +", \
                        the revised task is: "+kwargs['revise'][i]+"." for i in k]) + "\n" \
              +"Output:\n"

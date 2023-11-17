@@ -1,0 +1,36 @@
+Given a linear temporal logic task {ltlt}, randomly substitute, add or delete the operators to generate 5 similar tasks with corresponding behaviors. The following is an example, the subsequent output should have the same output format without other explaination.
+
+Task: 
+F(a U (b A X c))
+
+Output:
+
+Task: a U (b A X (c))
+Behavior: {a} should be true until {b} becomes true. After {b} becomes true {a} can be false, but when {b} becomes true, {c} should be true in the next timestep.
+
+Task: F(a U (b A c))
+Behavior: make {b} and {c} be true simultanously, the value of {a} is not concerned.
+
+Task: F(a U (b A F(c)))
+Behavior: make {b} and {c} be true sequentially and don't need to be adjacent, the value of {a} is not concerned.
+
+Task: F(a A F(b A F(c)))
+Behavior: make {a}, {b} and {c} be true sequentially and don't need to be adjacent.
+
+Task: F(a A b A c)
+Behavior: {a}, {b} and {c} finally be true simultanously.
+
+Task: F(a O b O c)
+Behavior: more than one atomic proposition in {{a}, {b}, {c}} should be true eventually.
+
+Task: F(a U (b O X(c)))
+Behavior: {b} shoule be true, or {b} should not be true first, and then {b} or {c} should be true, the value of {a} is not concerned.
+
+Task: F(a U (b A G(c)))
+Behavior: {b} and {c} should be true simultanously, and then {c} should always be true, the value of {a} is not concerned
+
+Task: F(a U (b U c))
+Behavior: finally {c} should be true, the value of {a} and {b} are not concerned. 
+
+Task: G(a U (b U c))
+Behavior: {c} should always be true, or {a} and {b} be true, but subsequently {c} should be true.

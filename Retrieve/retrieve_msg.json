@@ -5899,6 +5899,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {a}, {b} and {c} finally be true simultanously.": "G N (b A c A a)",
     "expected behavior is more than one atomic proposition in {{a}, {b}, {c}} should be true.": "G N (b O c O a)",
     "expected behavior is finally {a} should be true, no matter what the values of {b} and {c} are.": "G N (b U c U a)"
+    Revised Task: G N b A (c U a)
+    Behavior: {b} should always be false and {c} should be true until {a} becomes true.
+
+    Revised Task: G(b A c U a)
+    Behavior: {b} and {c} should be true until {a} becomes true, and this should always be the case.
+
+    Revised Task: G N (b O c U a)
+    Behavior: Either {b} or {c} should always be false until {a} becomes true.
+
+    Revised Task: G N b A G(c U a)
+    Behavior: {b} should always be false and {c} should always be true until {a} becomes true.
+
+    Revised Task: G N (b U c U a)
+    Behavior: Always, either {b} becomes true or, failing that, {c} becomes true until {a} becomes true.
+
+    Revised Task: G N b A c A a
+    Behavior: Always, {b} should be false and both {c} and {a} should be true simultaneously.
+
+    Revised Task: G N b A X(c U a)
+    Behavior: {b} should always be false and in the next time step, {c} should be true until {a} becomes true.
+
+    Revised Task: G N E(b A c U a)
+    Behavior: Always, it should eventually be the case that {b} is false, and {c} is true until {a} becomes true.
+
+    Revised Task: G N b A E(c U a)
+    Behavior: {b} should always be false, and eventually, {c} should be true until {a} becomes true.
+
+    Revised Task: N G(b A c U a)
+    Behavior: It is not always the case that {b} and {c} are true until {a} becomes true.
   },
   "( N N a O d )": {
     "expected behavior is {a} should be true first and then {d} should be true. Such specification omits {d}.": "( N N a O (d))",
@@ -5910,6 +5939,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {a} and {d} should be true simultanously, and then {d} should always be true.": "( N N (a A G(d)))",
     "expected behavior is finally {d} should be true, no matter what the value of {a} is.": "( N N (a U c))",
     "expected behavior is {d} should always be true, or {a} be true, but subsequently {d} should be true.": "G(N N (a U d))"
+    Revised Task: (N N a A d)
+    Behavior: Both {a} and {d} should not be true.
+
+    Revised Task: (N a O N d)
+    Behavior: Either {a} should not be true, or {d} should not be true.
+
+    Revised Task: (N N a U d)
+    Behavior: {a} should not be true until {d} is true.
+
+    Revised Task: (N N a O X d)
+    Behavior: Either {a} should not be true, or {d} should not be true in the next time step.
+
+    Revised Task: (N E a O d)
+    Behavior: Either {a} should eventually not be true, or {d} should be true.
+
+    Revised Task: (N N a O G d)
+    Behavior: Either {a} should not be true, or {d} should always be true.
+
+    Revised Task: (a O N d)
+    Behavior: Either {a} should be true, or {d} should not be true.
+
+    Revised Task: (E N a O d)
+    Behavior: Either {a} should eventually not be true, or {d} should be true.
+
+    Revised Task: (N N a O E d)
+    Behavior: Either {a} should not be true, or {d} should eventually be true.
+
+    Revised Task: (N a U N d)
+    Behavior: {a} should not be true until {d} is not true.
   },
   "G X N X c U d": {
     "expected behavior is {d} should be true no matter what the values of {c} are.": "G F(c U d)",
@@ -5917,20 +5975,78 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is either {c} or {d} should be true.": "G X N c O d",
     "expected behavior is {c} should be true first, and then {d} should always be true.": "G X c A G d",
     "expected behavior is {d} should be true no matter what the values of {c} are, and then {c} should always be true.": "G F(c A G d)"
+    Revised Task: G X (c U d)
+    Behavior: In every timestep, the next step should satisfy that {c} remains true until {d} becomes true.
+
+    Revised Task: G N X c U d
+    Behavior: Always, it is not the case that in the next timestep {c} is true, until {d} becomes true.
+
+    Revised Task: G X (N c U d)
+    Behavior: Always, the next step should satisfy that {c} is not true until {d} becomes true.
+
+    Revised Task: G X (c A d)
+    Behavior: Always, in the next timestep both {c} and {d} should be true.
+
+    Revised Task: E X N X c U d
+    Behavior: Eventually, the next step should satisfy that {c} is not true in the subsequent timestep, until {d} becomes true.
+
+    Revised Task: G X N X (c O d)
+    Behavior: Always, the next step should satisfy that in the subsequent timestep either {c} or {d} is not true.
+
+    Revised Task: G X X c U d
+    Behavior: Always, in the next of the next timestep, {c} should remain true until {d} becomes true.
+
+    Revised Task: G X N X c A d
+    Behavior: Always, the next step should satisfy that {c} is not true in the subsequent timestep and {d} should be true.
+
+    Revised Task: G X N X E(c U d)
+    Behavior: Always, the next step should satisfy that it is not the case that eventually {c} remains true until {d} becomes true.
+
+    Revised Task: G X N X c U N d
+    Behavior: Always, the next step should satisfy that {c} remains true until {d} is not true.
   },
-  "G N N X a U a": {
-    "expected behavior is {a} should always be true. Such specification omits {a}.": "G a U a",
-    "expected behavior is {a} should be true at least once. Such specification omits {a}.": "G X a U a",
-    "expected behavior is {a} should be true at least twice. Such specification omits {a}.": "G N X a U a",
-    "expected behavior is {a} should be true at least three times. Such specification omits {a}.": "G N N X a U a",
-    "expected behavior is {a} should be true at least four times. Such specification omits {a}.": "G N N N X a U a"
-  },
+  // "G N N X a U a": {
+  //   "expected behavior is {a} should always be true. Such specification omits {a}.": "G a U a",
+  //   "expected behavior is {a} should be true at least once. Such specification omits {a}.": "G X a U a",
+  //   "expected behavior is {a} should be true at least twice. Such specification omits {a}.": "G N X a U a",
+  //   "expected behavior is {a} should be true at least three times. Such specification omits {a}.": "G N N X a U a",
+  //   "expected behavior is {a} should be true at least four times. Such specification omits {a}.": "G N N N X a U a"
+  // },
   "( N ( N f ) )": {
     "expected behavior is to make {f} be eventually true. Such specification omits {f}.": "N( N(f) )",
     "expected behavior is to make {f} be always true. Such specification omits {f}.": "G(N(f))",
     "expected behavior is to make {f} be true until the next state. Such specification omits {f}.": "X(N(f))",
     "expected behavior is to make {f} at least once be true. Such specification omits {f}.": "F(N(f))",
     "expected behavior is to make {f} eventually be true but don't need to be the next state. Such specification omits {f}.": "N(X(f))"
+    Revised Task: N ( f )
+    Behavior: {f} should not be true.
+
+    Revised Task: N ( N ( N f ) )
+    Behavior: {f} should be true.
+
+    Revised Task: G ( N f )
+    Behavior: {f} should never be true.
+
+    Revised Task: E ( N f )
+    Behavior: {f} should not be true at least once.
+
+    Revised Task: N ( G f )
+    Behavior: {f} should always be true.
+
+    Revised Task: N ( X f )
+    Behavior: {f} should not be true in the next timestep.
+
+    Revised Task: N ( E f )
+    Behavior: {f} should eventually be true.
+
+    Revised Task: X ( N f )
+    Behavior: In the next timestep, {f} should not be true.
+
+    Revised Task: U ( N f )
+    Behavior: Until a certain point, {f} should not be true.
+
+    Revised Task: N ( f A N f )
+    Behavior: {f} should not be true and should not remain true.
   },
   "( e ) U E N a": {
     "expected behavior is {a} should be true. Such specification omits {a}.": "(e) U (E N a)",
@@ -5938,6 +6054,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {e} and {a} be true sequentially and don't need to be adjacent.": "(e U F(a)) U E N a",
     "expected behavior is {e}, {a} and {E N a} finally be true simultanously.": "(e A a A E N a) U E N a",
     "expected behavior is more than one atomic proposition in {{e}, {a}, {E N a}} should be true.": "(e O a O E N a) U E N a"
+    Revised Task: (e) U N a
+    Behavior: {e} should be true until {a} becomes true in the next timestep.
+
+    Revised Task: E( e U (N a))
+    Behavior: Eventually, {e} should be true until {a} becomes true in the next timestep.
+
+    Revised Task: (e) U E(a)
+    Behavior: {e} should be true until {a} eventually becomes true.
+
+    Revised Task: G( e U E a)
+    Behavior: {e} should always be true until {a} eventually becomes true.
+
+    Revised Task: E(e U a)
+    Behavior: Eventually, {e} should be true until {a} becomes true.
+
+    Revised Task: (e A E a)
+    Behavior: {e} and {a} eventually being true simultaneously.
+
+    Revised Task: E(e O a)
+    Behavior: Eventually, either {e} or {a} should be true.
+
+    Revised Task: (e) U (N E a)
+    Behavior: {e} should be true until {a} becomes true eventually in the next timestep.
+
+    Revised Task: E( e U (a O e))
+    Behavior: Eventually, {e} should be true until either {a} or {e} becomes true.
+
+    Revised Task: E(N e U a)
+    Behavior: Eventually, {e} being true in the next timestep should be true until {a} becomes true.
   },
   "( b ) A E N f": {
     "expected behavior is {b} should be true first. Such specification omits {b}.": "b A E N f",
@@ -5945,6 +6090,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {f} be true infinitely often.": "(b A E N f) G f",
     "expected behavior is to make {f} be true only once.": "b A (E N f A (E N X f))",
     "expected behavior is to make {f} be true infinitely often and also true eventually.": "(b A E N f) U (G f)"
+    Revised Task: E (b A N f)
+    Behavior: Eventually, {b} should be true and in the next timestep, {f} should not be true.
+
+    Revised Task: (b) A G N f
+    Behavior: {b} should be true and always in the next timestep, {f} should not be true.
+
+    Revised Task: E (b A G f)
+    Behavior: Eventually, {b} should be true and {f} should always be true thereafter.
+
+    Revised Task: E (b O E f)
+    Behavior: Eventually, either {b} or {f} should eventually be true.
+
+    Revised Task: (b) A X N f
+    Behavior: {b} should be true and in the next timestep, {f} should not be true.
+
+    Revised Task: G (b A N f)
+    Behavior: Always, {b} should be true and simultaneously, {f} should not be true.
+
+    Revised Task: (b) A E X f
+    Behavior: {b} should be true and eventually, {f} should be true in the next timestep.
+
+    Revised Task: E (b U N f)
+    Behavior: Eventually, {b} should be true until {f} is not true.
+
+    Revised Task: (b) U E N f
+    Behavior: {b} should be true until it is eventually the case that {f} is not true.
+
+    Revised Task: E (b A U f)
+    Behavior: Eventually, {b} should be true and {f} should be true until a certain condition is met.
   },
   "( E G f U d )": {
     "expected behavior is {f} should be true all the time. Such specification omits {f}.": "G(f U (E G d))",
@@ -5952,6 +6126,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {f} and {d} be true simultanously.": "(E G (f A d))",
     "expected behavior is to make {f} and {d} be true sequentially and don't need to be adjacent.": "(E G (f A F(d)))",
     "expected behavior is to make {f}, {d} finally be true simultanously.": "G(f A d)"
+    Revised Task: E(G f A d)
+    Behavior: Eventually, both {f} should always be true and {d} should be true simultaneously.
+
+Revised Task: E(G f O d)
+    Behavior: Eventually, either {f} should always be true or {d} should be true.
+
+Revised Task: G(E f U d)
+    Behavior: Always, it should eventually be the case that {f} is true until {d} becomes true.
+
+Revised Task: E(G f U X d)
+    Behavior: Eventually, {f} should always be true until {d} is true in the next timestep.
+
+Revised Task: E(G f U N d)
+    Behavior: Eventually, {f} should always be true until {d} is not true.
+
+Revised Task: G(f U d)
+    Behavior: Always, {f} should be true until {d} becomes true.
+
+Revised Task: E(X f U d)
+    Behavior: Eventually, {f} should be true in the next timestep until {d} becomes true.
+
+Revised Task: E(G N f U d)
+    Behavior: Eventually, it should always be the case that {f} is not true until {d} becomes true.
+
+Revised Task: E(G f U E d)
+    Behavior: Eventually, {f} should always be true until {d} eventually becomes true.
+
+Revised Task: E(f A G d)
+    Behavior: Eventually, {f} should be true and {d} should always be true.
   },
   "( E E c ) A f": {
     "expected behavior is {c} should be true only when {f} is true. Such specification omits {f}.": "( E E c ) A F(f)",
@@ -5959,6 +6162,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {c} and {f} be true sequentially and don't need to be adjacent.": "( E E c ) A F(f A c)",
     "expected behavior is {c} should always be true, or {f} should be true first and then {c} should be true.": "G(c U (f U c))",
     "expected behavior is {c} and {f} should be true simultanously, and then {f} should always be true.": "( E E c ) A F(f A G(c))"
+    Revised Task: ( E c ) A f
+    Behavior: Eventually, {c} should be true and {f} should be true.
+
+    Revised Task: ( E E (c A f) )
+    Behavior: Eventually, it is the case that eventually both {c} and {f} are true.
+
+    Revised Task: ( E N c ) A f
+    Behavior: Eventually, {c} should not be true, and {f} should be true.
+
+    Revised Task: ( E E c ) O f
+    Behavior: Either eventually, it is the case that {c} is true, or {f} is true.
+
+    Revised Task: G( E E c ) A f
+    Behavior: It is always the case that eventually, {c} will be true and {f} should be true.
+
+    Revised Task: ( E E c ) A G f
+    Behavior: Eventually, {c} should be true, and {f} should always be true.
+
+    Revised Task: ( E E c ) A X f
+    Behavior: Eventually, {c} should be true, and in the next timestep, {f} should be true.
+
+    Revised Task: ( E U c ) A f
+    Behavior: {c} should eventually be true and remain true until a certain condition is met, and {f} should be true.
+
+    Revised Task: ( E E c ) A ( E f )
+    Behavior: Eventually, {c} should be true, and eventually, {f} should also be true.
+
+    Revised Task: ( E (c O f) )
+    Behavior: Eventually, either {c} or {f} should be true.
   },
   "G c A ( G f )": {
     "expected behavior is {c} should be true first. Such specification omits {c}.": "c A (G f)",
@@ -5968,6 +6200,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is more than one atomic proposition in {{c}, {f}} should be true.": "F(c A f)",
     "expected behavior is {c} and {f} should be true sequentially and don't need to be adjacent.": "G(F(c A f))",
     "expected behavior is {f} should always be true, or {c} be true, but subsequently {f} should be true.": "G(c U f)"
+    Revised Task: G(c A G(f))
+    Behavior: Both {c} and {f} should always be true.
+
+Revised Task: G(c A f)
+    Behavior: {c} should always be true, and {f} should eventually be true.
+
+Revised Task: G(c O G(f))
+    Behavior: Either {c} is always true, or {f} is always true.
+
+Revised Task: G(c U G(f))
+    Behavior: {c} should be true until {f} is always true.
+
+Revised Task: G(c A X(f))
+    Behavior: {c} should always be true, and in the next timestep, {f} should be true.
+
+Revised Task: G(c A E(f))
+    Behavior: {c} should always be true, and {f} should eventually be true.
+
+Revised Task: G(c A (N f))
+    Behavior: {c} should always be true, and {f} should never be true.
+
+Revised Task: E(c A G(f))
+    Behavior: Eventually, {c} will be true and {f} will always be true from that point on.
+
+Revised Task: G(c A (f A g))
+    Behavior: {c} should always be true, and eventually both {f} and {g} should be true.
+
+Revised Task: G(E(c) A G(f))
+    Behavior: {c} should eventually be true, and {f} should always be true.
   },
   "N ( a U N c )": {
     "expected behavior is {a} should be true first. Such specification omits {a}.": "a U N(c)",
@@ -5975,6 +6236,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {a} and {c} should be true simultanously.": "F(a A N(c))",
     "expected behavior is {a} should not be true, and then {c} should be true.": "N(a U c)",
     "expected behavior is more than one atomic proposition in {{a}, {c}} should be true.": "F(a O N(c))"
+    Revised Task: N (a U c)
+    Behavior: In the next timestep, aa should be true until cc becomes true.
+
+Revised Task: G (a U N c)
+    Behavior: Always, aa should be true until cc is not true in the next timestep.
+
+Revised Task: N (a O N c)
+    Behavior: In the next timestep, either aa or cc not being true in the next timestep should occur.
+
+Revised Task: E (a U N c)
+    Behavior: Eventually, aa should be true until cc is not true in the next timestep.
+
+Revised Task: N (a U X c)
+    Behavior: In the next timestep, aa should be true until cc becomes true in the timestep after that.
+
+Revised Task: N (a A N c)
+    Behavior: In the next timestep, both aa should be true and cc should not be true.
+
+Revised Task: N (N a U N c)
+    Behavior: In the next timestep, aa should not be true until cc is not true in the next timestep.
+
+Revised Task: N (a U G c)
+    Behavior: In the next timestep, aa should be true until cc is always true.
+
+Revised Task: N (a U E c)
+    Behavior: In the next timestep, aa should be true until cc eventually becomes true.
+
+Revised Task: U (a U N c)
+    Behavior: aa should be true until, in the next timestep, aa should be true until cc is not true.
   },
   "( f ) O N N d": {
     "expected behavior is {f} should be true first. Such specification omits {f}.": "F(f) O N N d",
@@ -5982,6 +6272,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {f} and {d} should be true simultanously.": "F(f A d)",
     "expected behavior is {f} and {d} should be true sequentially and don't need to be adjacent.": "F(f A F(N N d))",
     "expected behavior is more than one atomic proposition in {{f}, {d}} should be true.": "F(f O d)"
+    Revised Task: (f O N d)
+    Behavior: Either {f} should be true or {d} should not be true.
+
+Revised Task: (f O N N N d)
+    Behavior: Either {f} should be true or {d} should not be true in the next next timestep.
+
+Revised Task: G(f O N d)
+    Behavior: Always either {f} should be true or {d} should not be true.
+
+Revised Task: (f O X d)
+    Behavior: Either {f} should be true or {d} should be true in the next timestep.
+
+Revised Task: (f O E d)
+    Behavior: Either {f} should be true or {d} should eventually be true.
+
+Revised Task: (f A N d)
+    Behavior: {f} and {d} should not be true simultaneously.
+
+Revised Task: (f O U d)
+    Behavior: Either {f} should be true or {d} should be true until some condition is met.
+
+Revised Task: E(f O N d)
+    Behavior: Eventually, either {f} should be true or {d} should not be true.
+
+Revised Task: (f U N d)
+    Behavior: {f} should be true until {d} is not true.
+
+Revised Task: (f O G d)
+    Behavior: Either {f} should be true or {d} should always be true.
+
+
   },
   "E N b O f U f": {
     "expected behavior is {f} should be true at least once. Such specification omits {f}.": "E N b O (f U f)",
@@ -5989,6 +6310,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {b} should always be true, or {b} should not be true first, and then {b} or {f} should be true.": "F(E N (b O (f U f)))",
     "expected behavior is finally {f} should be true, no matter what the values of {b} are.": "G(E N (b O (f U f)))",
     "expected behavior is more than one atomic proposition in {{b}, {f}} should be true.": "F(E N b O f)"
+    Revised Task: E(N b O f U f)
+    Behavior: Eventually, either {b} should not be true or {f} should be true until {f} is true.
+
+Revised Task: E(N b U f)
+    Behavior: Eventually, {b} should not be true until {f} is true.
+
+Revised Task: E(N b O G f)
+    Behavior: Eventually, either {b} should not be true or {f} should always be true.
+
+Revised Task: G(N b O f U f)
+    Behavior: Always, either {b} should not be true or {f} should be true until {f} is true.
+
+Revised Task: E(N (b A f) U f)
+    Behavior: Eventually, {b} and {f} should be simultaneously true until {f} is true.
+
+Revised Task: E(b O f U N f)
+    Behavior: Eventually, either {b} or {f} should be true until {f} is not true.
+
+Revised Task: E(N b O X(f U f))
+    Behavior: Eventually, either {b} should not be true or in the next time step, {f} should be true until {f} is true.
+
+Revised Task: E(N b O f A f)
+    Behavior: Eventually, either {b} should not be true or {f} should be simultaneously true with itself.
+
+Revised Task: E(N b O f)
+    Behavior: Eventually, either {b} should not be true or {f} should be true.
+
+Revised Task: E(N b O f U G f)
+    Behavior: Eventually, either {b} should not be true or {f} should be true until {f} is always true.
   },
   "E e A f U f": {
     "expected behavior is {e} and {f} should be true simultaneously. Such specification omits {f}.": "E e A f A f",
@@ -5996,6 +6346,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {e} and {f} should be true sequentially and don't need to be adjacent. Such specification omits {f}.": "E e A F(f)",
     "expected behavior is more than one atomic proposition in {{e},{f}} should be true. Such specification omits {f}.": "E e O f",
     "expected behavior is {e} should be true first, and then {e} or {f} should be true. Such specification omits {f}.": "E e A (f U f)"
+    Revised Task: E(e A f U f)
+    Behavior: {e} and {f} should be true until {f} is true, and eventually this condition should be met.
+
+    Revised Task: E(e O f U f)
+    Behavior: Either {e} or {f} should be true until {f} is true, and eventually this condition should be met.
+
+    Revised Task: E(e U (f A X f))
+    Behavior: {e} should be true until {f} becomes true, and once {f} becomes true, in the next timestep {f} should be true again.
+
+    Revised Task: G(e A f U f)
+    Behavior: It should always be the case that {e} and {f} are true until {f} is true.
+
+    Revised Task: E(e U (N f U f))
+    Behavior: {e} should be true until {f} is not true, and eventually, it should be the case that {f} becomes true.
+
+    Revised Task: E(e U (f O E f))
+    Behavior: {e} should be true until either {f} is true or eventually {f} becomes true.
+
+    Revised Task: E(X e U f)
+    Behavior: In the next timestep, {e} should be true until {f} is true, and eventually, this condition should be met.
+
+    Revised Task: E(e U (f A G f))
+    Behavior: {e} should be true until {f} becomes true and from then on {f} should always be true.
+
+    Revised Task: E(e A E(f U f))
+    Behavior: {e} should be true and eventually it should be the case that {f} is true until {f} becomes true.
+
+    Revised Task: E(e U (f U X f))
+    Behavior: {e} should be true until {f} becomes true, and once {f} is true, {f} should be true again in the next timestep.
   },
   "( N N a A N c )": {
     "expected behavior is {a} and {c} should be true simultanously.": "(N(a A c))",
@@ -6003,6 +6382,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {a} and {c} should be true sequentially and don't need to be adjacent.": "(NNa A FNc)",
     "expected behavior is {a} and {c} finally be true simultanously.": "(N(a A Fc))",
     "expected behavior is more than one atomic proposition in {{a}, {c}} should be true.": "(N(a O c))"
+    Revised Task: (N a A N c)
+    Behavior: Either {a} is not true or {c} is not true.
+
+    Revised Task: (N N a A c)
+    Behavior: Both {a} and {c} should be true.
+
+    Revised Task: (N N a O N c)
+    Behavior: Either {a} should not be true or {c} should not be true.
+
+    Revised Task: (N N a U N c)
+    Behavior: {a} should be false until {c} is false.
+
+    Revised Task: (N N a A G c)
+    Behavior: {a} should not be true and {c} should always be true.
+
+    Revised Task: (N E a A N c)
+    Behavior: Either {a} should eventually be true or {c} should not be true.
+
+    Revised Task: (N N a X N c)
+    Behavior: {a} should not be true and in the next timestep, {c} should not be true.
+
+    Revised Task: (N N a A E c)
+    Behavior: {a} should not be true and {c} should eventually be true.
+
+    Revised Task: (E N a A N c)
+    Behavior: Eventually, {a} should not be true and {c} should not be true.
+
+    Revised Task: (G N a A N c)
+    Behavior: Always, either {a} should not be true or {c} should not be true.
   },
   "( X N e A N b )": {
     "expected behavior is {e} should be true first, and then {b} should be true. Such specification omits {e}.": "e A (X N b)",
@@ -6010,6 +6418,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {e} and {b} be true sequentially and don't need to be adjacent.": "( X N e A F(N b) )",
     "expected behavior is to make {e}, {b} be true sequentially and don't need to be adjacent.": "F(X N e A F(N b))",
     "expected behavior is more than one atomic proposition in {{e}, {b}} should be true.": "F(X N e O N b)"
+    Revised Task: X(N e O N b)
+    Behavior: In the next time step, either {e} should not be true or {b} should not be true.
+
+    Revised Task: X(N e A G b)
+    Behavior: In the next time step, {e} should not be true and from that point on {b} should always be true.
+
+    Revised Task: G(X N e A N b)
+    Behavior: It should always be the case that in the next time step, {e} is not true and {b} is not true.
+
+    Revised Task: X(N e A E b)
+    Behavior: In the next time step, {e} should not be true and eventually, {b} should be true.
+
+    Revised Task: X(N e U N b)
+    Behavior: In the next time step, {e} should not be true until {b} is not true.
+
+    Revised Task: E(X N e A N b)
+    Behavior: Eventually, it will be the case that in the next time step, {e} is not true and {b} is not true.
+
+    Revised Task: X(N e A b)
+    Behavior: In the next time step, {e} should not be true and {b} should be true.
+
+    Revised Task: X(e A N b)
+    Behavior: In the next time step, {e} should be true and {b} should not be true.
+
+    Revised Task: X(N e O b)
+    Behavior: In the next time step, either {e} should not be true or {b} should be true.
+
+    Revised Task: G(X N e O N b)
+    Behavior: It should always be the case that in the next time step, either {e} is not true or {b} is not true.
   },
   "E E N e U ( a )": {
     "expected behavior is {e} should be true first. Such specification omits {e}.": "e U (a)",
@@ -6017,20 +6454,80 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {a} be true infinitely often.": "G(e U (a))",
     "expected behavior is to make {a} be true eventually and infinitely often.": "F(G(e U (a)))",
     "expected behavior is to make {a} be true eventually and don't need to be adjacent.": "E E N F(e U (a))"
+    Revised Task: E E N e U (a A b)
+    Behavior: The negation of {e} should be true until {a} and {b} are true simultaneously.
+
+Revised Task: E E N (e O a)
+    Behavior: Eventually, it should be the case that either {e} is not true or {a} is true.
+
+Revised Task: E E (e U a)
+    Behavior: Eventually, {e} should be true until {a} becomes true.
+
+Revised Task: E G N e U a
+    Behavior: It should always be the case that the negation of {e} is true until {a} becomes true.
+
+Revised Task: E E N X(e U a)
+    Behavior: In the next time step, it should be the case that the negation of {e} remains true until {a} becomes true.
+
+Revised Task: E E N e U X(a)
+    Behavior: The negation of {e} should be true until {a} becomes true in the next time step.
+
+Revised Task: E E N e A (a U b)
+    Behavior: The negation of {e} and the condition of {a} being true until {b} becomes true should both eventually occur.
+
+Revised Task: E E N e U G(a)
+    Behavior: Eventually, the negation of {e} should be true until {a} always becomes true.
+
+Revised Task: E E N e U (a O b)
+    Behavior: The negation of {e} should be true until either {a} or {b} becomes true.
+
+Revised Task: E E N e U E(a)
+    Behavior: The negation of {e} should be true until {a} eventually becomes true.
   },
-  "E N N a U ( a )": {
-    "expected behavior is {a} should be true. Such specification omits {a}.": "a U ( a )",
-    "expected behavior is {a} should be true first and then {a} should be true again.": "E N a U ( a )",
-    "expected behavior is {a} should be true twice in a row.": "E N N N a U ( a )",
-    "expected behavior is {a} should be true twice in a row and then {a} should be true once more.": "E N N N N a U ( a )",
-    "expected behavior is {a} should be true twice in a row and then {a} should always be true.": "G(E N N N a U ( a ))"
-  },
+  // "E N N a U ( a )": {
+  //   "expected behavior is {a} should be true. Such specification omits {a}.": "a U ( a )",
+  //   "expected behavior is {a} should be true first and then {a} should be true again.": "E N a U ( a )",
+  //   "expected behavior is {a} should be true twice in a row.": "E N N N a U ( a )",
+  //   "expected behavior is {a} should be true twice in a row and then {a} should be true once more.": "E N N N N a U ( a )",
+  //   "expected behavior is {a} should be true twice in a row and then {a} should always be true.": "G(E N N N a U ( a ))"
+  // },
   "G f U N N b A e": {
     "expected behavior is {f} should be true first, and then {b} and {e} should be true simultanously. Such specification omits {f}.": "G f U (Nb A e)",
     "expected behavior is {f} should be true first, and then {b} or {e} should be true. Such specification omits {f}.": "G f U (N b O e)",
     "expected behavior is {b} and {e} should be true simultanously. Such specification omits {b}.": "G f U (N N b A e)",
     "expected behavior is {f}, {b} and {e} should be true sequentially and don't need to be adjacent. Such specification omits {f}.": "G f A N N (b A e)",
     "expected behavior is {f}, {b} and {e} should be true simultanously. Such specification omits {f}.": "G f A N N (b O e)"
+    Revised Task: G f U (N b A e)
+    Behavior: {f} should be true until {b} is not true and {e} is true.
+
+Revised Task: G f U (N N b O e)
+    Behavior: {f} should be true until either {b} is not not true (i.e., true) or {e} is true.
+
+Revised Task: G f U (b A X e)
+    Behavior: {f} should be true until both {b} and {e} in the next timestep are true.
+
+Revised Task: G (f A N b) U e
+    Behavior: Both {f} and not {b} should always be true until {e} becomes true.
+
+Revised Task: G f U (N b A G e)
+    Behavior: {f} should be true until {b} is not true and afterwards, {e} should always be true.
+
+Revised Task: E(G f U N b) A e
+    Behavior: Eventually, it should always be the case that {f} is true until {b} is not true, and {e} should be true.
+
+Revised Task: G f O (N b A e)
+    Behavior: {f} should always be true or {b} should not be true and {e} should be true.
+
+Revised Task: G (f U b) A N e
+    Behavior: {f} should always be true until {b} is true, and {e} should not be true.
+
+Revised Task: G f U (N b A E e)
+    Behavior: {f} should be true until {b} is not true and eventually, {e} should be true.
+
+Revised Task: G (f U b) U e
+    Behavior: {f} should always be true until {b} is true, and subsequently, {e} should be true.
+
+
   },
   "( N e ) U N X b": {
     "expected behavior is {e} should always be true. Such specification omits {e}.": "(G e) U N X b",
@@ -6038,6 +6535,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {e} and {b} should be true simultanously.": "F((N e) A N X b)",
     "expected behavior is {e} and {b} should be true sequentially and don't need to be adjacent.": "F((N e) A N X F(b))",
     "expected behavior is more than one atomic proposition in {{e}, {b}} should be true.": "F(N e O N X b)"
+    Revised Task: ( N e ) U X b
+    Behavior: The negation of {e} should hold true until the next timestep when {b} becomes true.
+
+    Revised Task: G( N e ) U N X b
+    Behavior: The negation of {e} should always be true until it's followed by {b} in the next timestep.
+
+    Revised Task: ( N e ) U N G b
+    Behavior: The negation of {e} should hold true until {b} becomes true and then remains true indefinitely.
+
+    Revised Task: ( N e ) U (N b)
+    Behavior: The negation of {e} should be true until the negation of {b} becomes true.
+
+    Revised Task: E( N e ) U N X b
+    Behavior: Eventually, the negation of {e} should be true, and this state should hold until the next timestep when {b} becomes true.
+
+    Revised Task: ( N e ) U (b A N X e)
+    Behavior: The negation of {e} should hold true until {b} becomes true, at which point {e} should not be true in the next timestep.
+
+    Revised Task: ( N e ) A N X b
+    Behavior: The negation of {e} and in the next timestep {b} should both be true.
+
+    Revised Task: ( N e ) U N X (b O e)
+    Behavior: The negation of {e} should hold true until the next timestep, where either {b} or {e} should be true.
+
+    Revised Task: ( N e ) U N E b
+    Behavior: The negation of {e} should be true until {b} eventually becomes true.
+
+    Revised Task: E( N e ) U N X (b A e)
+    Behavior: Eventually, the negation of {e} should be true and should hold until the next timestep when both {b} and {e} are true.
   },
   "( d ) O X b U d": {
     "expected behavior is to make {d} and {b} be true simultanously.": "(d A b) U d",
@@ -6045,6 +6571,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {d} and {b} be true sequentially and only one of them should be true.": "(d O F(b)) U d",
     "expected behavior is to make {b} and {d} be true simultanously, and then {d} should always be true.": "(d A G(b)) U d",
     "expected behavior is finally {d} should be true, no matter what the value of {b} is.": "F(d U b)"
+    Revised Task: (d) O X (b U d)
+    Behavior: Either {d} is true, or in the next timestep, {b} should be true until {d} becomes true.
+
+    Revised Task: (d) O X (b A d)
+    Behavior: Either {d} is true, or in the next timestep, both {b} and {d} should be true simultaneously.
+
+    Revised Task: E(d) O X b U d
+    Behavior: Either eventually {d} becomes true, or in the next timestep, {b} should be true until {d} becomes true.
+
+    Revised Task: (d) O X b A d
+    Behavior: Either {d} is true, or in the next timestep, {b} and {d} must both be true.
+
+    Revised Task: G(d) O X b U d
+    Behavior: Either {d} should always be true, or in the next timestep, {b} should be true until {d} becomes true.
+
+    Revised Task: (d) O X E(b U d)
+    Behavior: Either {d} is true, or in the next timestep, it must eventually be the case that {b} is true until {d} becomes true.
+
+    Revised Task: (d) O X b U E(d)
+    Behavior: Either {d} is true, or in the next timestep, {b} should be true until it is eventually the case that {d} becomes true.
+
+    Revised Task: (d) O X G(b U d)
+    Behavior: Either {d} is true, or in the next timestep, it should always be the case that {b} is true until {d} becomes true.
+
+    Revised Task: (d) O N X b U d
+    Behavior: Either {d} is true, or in the next timestep, the negation of the condition where {b} should be true until {d} becomes true.
+
+    Revised Task: (d) O X (b U N d)
+    Behavior: Either {d} is true, or in the next timestep, {b} should be true until the negation of {d} becomes true.
   },
   "( a ) U X b U d": {
     "expected behavior is {a} should be true first, and then {b} should be true after {a}. Such specification omits {a}.": "a U X (b U d)",
@@ -6052,6 +6607,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {a} and {b} be true simultanously.": "(a A b) U X d",
     "expected behavior is to make {a}, {b} and {d} be true sequentially and don't need to be adjacent.": "F(a A F(b A F(d)))",
     "expected behavior is {a}, {b} and {d} finally be true simultanously.": "F(a A b A d)"
+    Revised Task: (a U X (b U d))
+    Behavior: {a} should be true until, in the next timestep, {b} or {d} becomes true.
+
+Revised Task: G(a U (X b U d))
+    Behavior: Always, {a} should be true until either the next timestep of {b} or {d} becomes true.
+
+Revised Task: (a A X (b U d))
+    Behavior: {a} should be true and, in the next timestep, it should remain true until {b} or {d} becomes true.
+
+Revised Task: (a U X b) A d
+    Behavior: {a} should be true until {b} becomes true in the next timestep, and {d} must be true.
+
+Revised Task: E(a U (X b A d))
+    Behavior: Eventually, {a} should be true until {b} in the next timestep and {d} are true simultaneously.
+
+Revised Task: (N a) U (X b U d)
+    Behavior: {a} should not be true until {b} in the next timestep or {d} becomes true.
+
+Revised Task: (a U b) O X d
+    Behavior: Either {a} should be true until {b} becomes true, or {d} should be true in the next timestep.
+
+Revised Task: E(a U X (N b U d))
+    Behavior: Eventually, {a} should be true until {b} is not true in the next timestep or until {d} becomes true.
+
+Revised Task: (a U X b) O G d
+    Behavior: {a} should be true until {b} becomes true in the next timestep, or {d} should always be true.
+
+Revised Task: E(a U (b U X d))
+    Behavior: Eventually, {a} should be true until {b} becomes true and subsequently {d} becomes true in the next timestep.
   },
   "( c U N c ) O f": {
     "expected behavior is {f} should be true first. Such specification omits {f}.": "f O ( c U N c )",
@@ -6059,6 +6643,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {c} should be false eventually.": "(c U N c) A f",
     "expected behavior is {f} should be true eventually, and {c} should always be false.": "G(f A (c U N c))",
     "expected behavior is {c} should be false, or {f} should be true, and then {c} should be false.": "(c U (f O N c))"
+    Revised Task: (c U N(c)) A f
+    Behavior: {c} should be true until {c} is true in the next timestep, and {f} should also be true.
+
+    Revised Task: (c O N(c)) O f
+    Behavior: Either {c} or {c} in the next timestep should be true, or {f} should be true.
+
+    Revised Task: (c U N(c)) O E(f)
+    Behavior: {c} should be true until {c} is true in the next timestep, or eventually, {f} should be true.
+
+    Revised Task: E(c U N(c))
+    Behavior: Eventually, {c} should be true until {c} is true in the next timestep.
+
+    Revised Task: (c U N(c)) U f
+    Behavior: {c} should be true until {c} is true in the next timestep, until {f} becomes true.
+
+    Revised Task: G(c U N(c)) O f
+    Behavior: It should always be the case that {c} is true until {c} is true in the next timestep, or {f} should be true.
+
+    Revised Task: (c U X(c)) O f
+    Behavior: {c} should be true until {c} is true in the subsequent timestep, or {f} should be true.
+
+    Revised Task: (c U N(f)) O f
+    Behavior: {c} should be true until {f} is true in the next timestep, or {f} should be true.
+
+    Revised Task: (c U N(c)) A G(f)
+    Behavior: {c} should be true until {c} is true in the next timestep, and {f} should always be true.
+
+    Revised Task: (c U N(c)) O N(f)
+    Behavior: {c} should be true until {c} is true in the next timestep, or {f} should not be true.
   },
   "( d A E X G d )": {
     "expected behavior is {d} should be true first. Such specification omits {d}.": "d A E X (G d)",
@@ -6066,6 +6679,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {d} be true until {d} be false.": "( d A E X (F d) )",
     "expected behavior is to make {d} be true until {d}'s next occurrence and then {d} should always be true.": "( d A E X G(d) )",
     "expected behavior is more than one atomic proposition in {{d}} should be true.": "( d O E X G d )"
+    Revised Task: (d A X G d)
+    Behavior: {d} must be true and, in the next timestep, {d} must always be true.
+
+    Revised Task: (d A E G d)
+    Behavior: {d} must be true and, eventually, {d} must always be true.
+
+    Revised Task: (d A E X d)
+    Behavior: {d} must be true and, eventually, in the next timestep, {d} must be true.
+
+    Revised Task: (d O E X G d)
+    Behavior: Either {d} is true or, eventually, in the next timestep, {d} must always be true.
+
+    Revised Task: (d U E X G d)
+    Behavior: {d} should be true until it's true that, eventually, in the next timestep, {d} must always be true.
+
+    Revised Task: (d A G E X d)
+    Behavior: {d} must be true and, always, eventually, in the next timestep, {d} must be true.
+
+    Revised Task: (d A N E X G d)
+    Behavior: {d} must be true and, not eventually, in the next timestep, {d} must always be true.
+
+    Revised Task: (d A E X N G d)
+    Behavior: {d} must be true and, eventually, in the next timestep, it must not be always true that {d}.
+
+    Revised Task: (N d A E X G d)
+    Behavior: {d} must not be true and, eventually, in the next timestep, {d} must always be true.
+
+    Revised Task: (d A E X G N d)
+    Behavior: {d} must be true and, eventually, in the next timestep, it must always be true that {d} is not true.
   },
   "( d U E N G a )": {
     "expected behavior is {d} should be true first. Such specification omits {d}.": "d U (E N G (a))",
@@ -6073,6 +6715,45 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {a} should be true until {d} is false.": "(d U E (N F(a)))",
     "expected behavior is {a} should be true while {d} is false.": "G(d U (E N (a)))",
     "expected behavior is more than one atomic proposition in {{d}, {a}} should be true.": "(d O E N G a)"
+    Revised Task: (d U E N a)
+
+    Behavior: Eventually, in the next timestep, {a} should be true, with {d} being true until this happens.
+
+Revised Task: (d U E G a)
+
+    Behavior: Eventually, {a} should always be true, with {d} being true until this occurs.
+
+Revised Task: (d U N G a)
+
+    Behavior: {d} should be true until, in the next timestep, {a} starts to always be true.
+
+Revised Task: E(d U N G a)
+
+    Behavior: Eventually, {d} should be true until, in the next timestep, {a} always becomes true.
+
+Revised Task: G(d U E N a)
+
+    Behavior: Always, {d} should be true until, eventually, in the next timestep, {a} becomes true.
+
+Revised Task: (d O E N G a)
+
+    Behavior: Either {d} is true, or eventually, in the next timestep, {a} should always be true.
+
+Revised Task: (d U E N (a O d))
+
+    Behavior: Eventually, in the next timestep, either {a} or {d} should be true, with {d} being true until this happens.
+
+Revised Task: (d U (E a A G d))
+
+    Behavior: Eventually, {a} should be true and {d} should always be true, with {d} being true until this condition is met.
+
+Revised Task: (d U (E N a A d))
+
+    Behavior: Eventually, in the next timestep, {a} should be true and {d} should be true simultaneously, with {d} being true until this occurs.
+
+Revised Task: (d A E N G a)
+
+    Behavior: {d} should be true and eventually, in the next timestep, {a} should always be true.
   },
   "d A N b U ( c )": {
     "expected behavior is to make {d} and {b} be true sequentially and don't need to be adjacent.": "F(d A F(b U (c)))",
@@ -6080,6 +6761,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {d}, {b} and {c} finally be true simultanously.": "F(d A b A c)",
     "expected behavior is more than one atomic proposition in {{d}, {b}, {c}} should be true.": "F(d O b O c)",
     "expected behavior is {d} shoule be true, or {b} should not be true first, and then {b} or {c} should be true.": "F(d U (N b O X(c)))"
+    Revised Task: d A N b U (c)
+    Behavior: {d} and not {b} should be true until {c} becomes true.
+
+Revised Task: d A N b U (X c)
+    Behavior: {d} and not {b} should be true until {c} is true in the next timestep.
+
+Revised Task: d A b U (c)
+    Behavior: {d} and {b} should be true until {c} becomes true.
+
+Revised Task: E(d A N b U c)
+    Behavior: Eventually, {d} and not {b} should be true simultaneously until {c} becomes true.
+
+Revised Task: G(d A N b U c)
+    Behavior: Always, {d} and not {b} should be true until {c} becomes true.
+
+Revised Task: d A N b U (G c)
+    Behavior: {d} and not {b} should be true until {c} always becomes true.
+
+Revised Task: d O N b U (c)
+    Behavior: Either {d} or not {b} should be true until {c} becomes true.
+
+Revised Task: d A N (b U c)
+    Behavior: {d} should be true and not {b} until {c} becomes true.
+
+Revised Task: d A (N b U c)
+    Behavior: {d} should be true and not {b} should be true until {c} becomes true.
+
+Revised Task: E(d A N b) U c
+    Behavior: Eventually, {d} and not {b} should be true until {c} becomes true.
   },
   "( X d O b U c )": {
     "expected behavior is {b} and {c} should be true simultanously.": "(X d A (b A c))",
@@ -6087,6 +6797,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {b} and {c} should be true sequentially and don't need to be adjacent.": "(X d U (b A F(c)))",
     "expected behavior is {d}, {b} and {c} finally be true simultanously.": "F(d A b A c)",
     "expected behavior is more than one atomic proposition in {{d}, {b}, {c}} should be true.": "F(d O b O c)"
+    Revised Task: G(X d O b U c)
+    Behavior: The proposition "d next, or b until c" should always hold true.
+
+Revised Task: (X d O b U E(c))
+    Behavior: Either "d" in the next step or "b" until "c" eventually becomes true.
+
+Revised Task: (X d A b U c)
+    Behavior: "d" must be true in the next step and "b" until "c" becomes true.
+
+Revised Task: (X N(d) O b U c)
+    Behavior: "d" should not be true in the next step, or "b" should be true until "c" becomes true.
+
+Revised Task: (X d O b U N(c))
+    Behavior: "d" in the next step or "b" until "c" is not true.
+
+Revised Task: (X d O b A c)
+    Behavior: "d" in the next step or "b" and "c" should be true simultaneously.
+
+Revised Task: (X d O G(b U c))
+    Behavior: "d" in the next step or "b" until "c" should always hold true.
+
+Revised Task: (X d O b U X(c))
+    Behavior: "d" in the next step or "b" until "c" in the next step.
+
+Revised Task: E(X d O b U c)
+    Behavior: Eventually, "d" in the next step or "b" until "c" must become true.
+
+Revised Task: (X d O U(b, c))
+    Behavior: "d" in the next step, or "b" should be true until "c" becomes true.
   },
   "X ( d ) U X N f": {
     "expected behavior is {d} should be true first. Such specification omits {d}.": "d U X (N f)",
@@ -6094,6 +6833,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {d} and {f} be true sequentially and don't need to be adjacent.": "F(d U (X N f))",
     "expected behavior is to make {d}, {f} finally be true simultanously.": "F(d A X N f)",
     "expected behavior is more than one atomic proposition in {{d}, {f}} should be true.": "F(d O X N f)"
+    Revised Task: X ( d U X N f )
+    Behavior: Eventually, {d} should be true until the next timestep when {f} is not true.
+
+    Revised Task: X ( d A X N f )
+    Behavior: In the next timestep, {d} should be true and in the following timestep, {f} should not be true.
+
+    Revised Task: X ( d ) U (X f)
+    Behavior: Eventually, in some future timestep, {d} should be true or, alternatively, {f} should be true in the next timestep.
+
+    Revised Task: G ( d ) U X N f
+    Behavior: {d} should always be true until the next timestep when {f} is not true.
+
+    Revised Task: X ( d O X N f )
+    Behavior: In the next timestep, either {d} should be true or in the following timestep {f} should not be true.
+
+    Revised Task: X ( E d ) U X N f
+    Behavior: Eventually, {d} should be true at some point in the future, and this condition should hold until in the next timestep {f} is not true.
+
+    Revised Task: X ( d ) U G X N f
+    Behavior: Eventually, {d} should be true, and from then on, in every subsequent timestep, {f} should not be true.
+
+    Revised Task: X ( N d ) U X N f
+    Behavior: Eventually, {d} should not be true, and this condition should hold until the next timestep when {f} is not true.
+
+    Revised Task: X ( d U N f )
+    Behavior: In the next timestep, {d} should be true until {f} is not true.
+
+    Revised Task: X ( d ) U X ( N d A N f )
+    Behavior: Eventually, {d} should be true, and subsequently, there should be a timestep where neither {d} nor {f} is true.
+
+
   },
   "G ( d ) U X N f": {
     "expected behavior is {f} should be true at the next state. Such specification omits {f}.": "G (d) U (X (N f))",
@@ -6101,6 +6871,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {d} and {f} should be true sequentially and don't need to be adjacent.": "G(d A F(N f))",
     "expected behavior is {d}, {f} and some other atomic propositions should be true simultanously.": "G(d A f O g)",
     "expected behavior is {d} should be true finally, and {f} should be true at some states.": "F(G (d) U (X (N f)))"
+    Revised Task: G( d U X N f)
+    Behavior: {d} should be true always until {f} is not true in the next timestep.
+
+Revised Task: G( d U X(f))
+    Behavior: {d} should be true always until {f} is true in the next timestep.
+
+Revised Task: G( d ) U N f
+    Behavior: {d} should always be true until {f} is not true.
+
+Revised Task: G( d ) A X N f
+    Behavior: {d} should always be true and in the next timestep, {f} should not be true.
+
+Revised Task: G( d ) U X(f A N f)
+    Behavior: {d} should always be true until the next timestep when {f} and not {f} (which is a contradiction and thus never true).
+
+Revised Task: E( d ) U X N f
+    Behavior: {d} should eventually be true until {f} is not true in the next timestep.
+
+Revised Task: G( d O X N f)
+    Behavior: Either {d} is always true or {f} is not true in the next timestep.
+
+Revised Task: G( N d ) U X N f
+    Behavior: {d} should not always be true until {f} is not true in the next timestep.
+
+Revised Task: G( d ) U G N f
+    Behavior: {d} should always be true until {f} is always not true.
+
+Revised Task: G( d ) U X E f
+    Behavior: {d} should always be true until {f} eventually becomes true in a future timestep.
+
+
   },
   "N G ( a O N d )": {
     "expected behavior is {a} should be true first, and then {d} should eventually be true. Such specification omits {a}.": "G ( a O N d )",
@@ -6108,6 +6909,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {a} should be true first, and then {d} should always be false. Such specification omits {a}.": "G ( a O G N d )",
     "expected behavior is more than one atomic proposition in {{a}, {d}} should be true.": "G ( a O ( d O N d ) )",
     "expected behavior is {a} should be true first, and then {d} should eventually be true, but don't need to be adjacent. Such specification omits {a}.": "G ( a O N F d )"
+    Revised Task: G (a O N d)
+    Behavior: Either {a} is always true, or {d} is never true.
+
+Revised Task: N G (a A N d)
+    Behavior: It is not always the case that both {a} is true and {d} is false.
+
+Revised Task: N G (a U N d)
+    Behavior: It is not always the case that {a} should be true until {d} becomes false.
+
+Revised Task: N G (E a O N d)
+    Behavior: It is not always the case that {a} should eventually be true or {d} is never true.
+
+Revised Task: N G (a O X N d)
+    Behavior: It is not always the case that either {a} is true or {d} is not true in the next timestep.
+
+Revised Task: N G (N a O N d)
+    Behavior: It is not always the case that either {a} is false or {d} is false.
+
+Revised Task: N G (a O N E d)
+    Behavior: It is not always the case that either {a} is true or {d} will eventually be false.
+
+Revised Task: N E (a O N d)
+    Behavior: It is not eventually always the case that either {a} is true or {d} is false.
+
+Revised Task: N G (N a O d)
+    Behavior: It is not always the case that either {a} is false or {d} is true.
+
+Revised Task: G (N a O N d)
+    Behavior: Always either {a} is false or {d} is never true.
   },
   "X G b O N e U e": {
     "expected behavior is {e} should be true first. Such specification omits {e}.": "e U (X G (b O N e))",
@@ -6115,6 +6945,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {b} and {e} be true sequentially and don't need to be adjacent.": "X G (b A F(N e U e))",
     "expected behavior is to make {b}, {e} and {N e} be true sequentially and don't need to be adjacent.": "X G (b A F(N e A F(e)))",
     "expected behavior is more than one atomic proposition in {{b}, {e}, {N e}} should be true.": "X G (b O N e O e)"
+    Revised Task: X (G b O N e) U e
+    Behavior: Eventually, either {e} should be true, or until that point, in the next timestep, {b} should always be true or not {e} should be true.
+
+Revised Task: X G (b O N e U e)
+    Behavior: In the next timestep, it should always be that either {b} is true or eventually {e} is true, not considering {e} in the intermediate steps.
+
+Revised Task: G b O X N e U e
+    Behavior: It should always be that {b} is true, or in the next timestep, not {e} should be true until {e} becomes true.
+
+Revised Task: X G b O U e
+    Behavior: In the next timestep, it should always be that {b} is true, or eventually, {e} should be true.
+
+Revised Task: X G (b O e) U e
+    Behavior: In the next timestep, it should always be that either {b} or {e} is true, until eventually {e} becomes true.
+
+Revised Task: X G b O N e A e
+    Behavior: In the next timestep, it should always be that {b} is true, or not {e} and {e} are both true simultaneously.
+
+Revised Task: X G b O (N e U e)
+    Behavior: In the next timestep, it should always be that {b} is true, or not {e} until {e} becomes true.
+
+Revised Task: X (b O N e U e)
+    Behavior: In the next timestep, either {b} is true or not {e} should be true until {e} becomes true.
+
+Revised Task: X G (b A N e U e)
+    Behavior: In the next timestep, it should always be that both {b} and not {e} should be true until {e} becomes true.
+
+Revised Task: X G b O N (e U e)
+    Behavior: In the next timestep, it should always be that {b} is true, or not {e} until {e} becomes true, which is a tautology as {e U e} is always true.
   },
   "N G b U d O e": {
     "expected behavior is {b}, {d} and {e} should be true simultanously.": "G(b A d A e)",
@@ -6122,6 +6981,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {d} or {e} should be true, and then {b} should be true.": "N(G((d O e) U b))",
     "expected behavior is {b}, {d} and {e} should be true sequentially.": "N(G(b U d U e))",
     "expected behavior is {b}, {d} and {e} should be true sequentially and don't need to be adjacent.": "N(G(b A F(d A F(e))))"
+    Revised Task: G(b U d O e)
+    Behavior: Either {d} or {e} should eventually be true, and this remains true as long as {b} is true.
+
+Revised Task: N G (b U d A e)
+    Behavior: {b} should be true until both {d} and {e} become true, negated globally.
+
+Revised Task: N G b U (d O X e)
+    Behavior: Globally, {b} should be true until either {d} becomes true or {e} becomes true in the next timestep.
+
+Revised Task: N G (b U E(d O e))
+    Behavior: Negated globally, {b} should be true until either {d} or {e} eventually becomes true.
+
+Revised Task: N (b U d O e)
+    Behavior: {b} should be true until either {d} or {e} becomes true, with the entire expression being negated.
+
+Revised Task: N G (b A d O e)
+    Behavior: Globally, it is required that both {b} and {d} are true, or {e} is true, negated.
+
+Revised Task: N G b U (d A e)
+    Behavior: Negated globally, {b} should be true until both {d} and {e} are true.
+
+Revised Task: N G (b U d) O e
+    Behavior: Negated globally, either {b} should be true until {d} is true, or {e} should be true.
+
+Revised Task: N G (b U d) A e
+    Behavior: It's required that either {b} should be true until {d} is true, and {e} is also true, with the entire expression negated globally.
+
+Revised Task: G N (b U d O e)
+    Behavior: Globally, the negation of {b} being true until either {d} or {e} becomes true.
   },
   "f U ( b A G d )": {
     "expected behavior is {b} and {d} should be true simultanously.": "F(b A G(d))",
@@ -6129,6 +7017,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {f}, {b} and {d} should be true simultanously.": "F(f A b A d)",
     "expected behavior is {f} and {d} should be true simultanously, or {f}, {b} and {d} should be true simultanously.": "F(f A (b A G(d)))",
     "expected behavior is to make {f} and {d} be true sequentially and don't need to be adjacent.": "F(f A G(b A d))"
+    Revised Task: f U (b A d)
+    Behavior: {f} should be true until {b} and {d} are true simultaneously.
+
+Revised Task: G(f U (b A d))
+    Behavior: {f} should always be true until {b} and {d} are true simultaneously.
+
+Revised Task: f U (b O G d)
+    Behavior: {f} should be true until either {b} is true or {d} is always true from a certain point onward.
+
+Revised Task: E(f U (b A d))
+    Behavior: Eventually, {f} should be true until {b} and {d} are true simultaneously.
+
+Revised Task: f U (E(b) A G d)
+    Behavior: {f} should be true until {b} eventually becomes true and {d} is always true.
+
+Revised Task: f U (b A X d)
+    Behavior: {f} should be true until {b} becomes true, and then {d} should be true in the next timestep.
+
+Revised Task: f U (b A N d)
+    Behavior: {f} should be true until {b} becomes true and {d} is not true.
+
+Revised Task: f U (N b A G d)
+    Behavior: {f} should be true until {b} is not true and {d} is always true.
+
+Revised Task: E(f A (b A G d))
+    Behavior: Eventually, {f} and {b} should be true simultaneously, and {d} should always be true.
+
+Revised Task: f U (b A G(N d))
+    Behavior: {f} should be true until {b} becomes true and {d} is never true again from that point onward.
   },
   "X e O c A a U b": {
     "expected behavior is {c} should be true first and {a} and {b} should be true simultanously. Such specification omits {c}.": "X e A c O (a U b)",
@@ -6136,6 +7053,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {e} and {c} should be true simultanously, and then {a} should be true.": "X (e A c) A (a U b)",
     "expected behavior is more than one atomic proposition in {{e}, {c}, {a}, {b}} should be true.": "X (e O c O a O b)",
     "expected behavior is {e}, {c}, {a} and {b} finally be true simultanously.": "F(X e A c A a A b)"
+    Revised Task: X(e O c) A a U b
+    Behavior: {e} and {c} should eventually be true at the same time, after which {a} must be true until {b} becomes true.
+
+    Revised Task: X e A c A a U b
+    Behavior: Eventually, {e} becomes true, and at the same time, {c}, {a}, and {b} should be true sequentially.
+
+    Revised Task: X e O (c A a) U b
+    Behavior: Eventually, {e} becomes true, and either {c} and {a} become true simultaneously or until {b} becomes true.
+
+    Revised Task: X e O c A a U G(b)
+    Behavior: Eventually, {e} should be true, and {c} and {a} should be true sequentially, with {b} always true from some point onwards.
+
+    Revised Task: X E(e O c) A a U b
+    Behavior: At the next step, either {e} or {c} should eventually be true, and thereafter, {a} should be true until {b} becomes true.
+
+    Revised Task: X e O c U a A b
+    Behavior: Eventually, {e} becomes true, and either {c} is true or {a} and {b} become true sequentially.
+
+    Revised Task: X e O N(c A a) U b
+    Behavior: Eventually, {e} should be true, and it is not the case that both {c} and {a} are true, until {b} becomes true.
+
+    Revised Task: G(X e O c) A a U b
+    Behavior: It is always the case that in the next step, either {e} or {c} will be true, followed by {a} being true until {b} becomes true.
+
+    Revised Task: X e O c A E(a U b)
+    Behavior: Eventually, {e} should be true, and {c} and eventually either {a} or {b} should be true.
+
+    Revised Task: X e O c A a N U b
+    Behavior: Eventually, {e} should be true, and {c} and {a} should be true until it is not the case that {b} becomes true.
   },
   "E c A X ( N f )": {
     "expected behavior is {c} should be true, and {f} should not be true. Such specification omits {f}.": "c A X (f)",
@@ -6143,6 +7089,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {c} should be true, and {f} should not be true sequentially.": "E c A X(f)",
     "expected behavior is {c} and {f} should be true sequentially and don't need to be adjacent.": "E c A F (f)",
     "expected behavior is {f} should not be true until {c} is true.": "E c U X (f)"
+    Revised Task: E(c A X(N f))
+    Behavior: {c} should be true and in the next timestep, {f} should not be true.
+
+Revised Task: E(c A G(N f))
+    Behavior: {c} should be true and subsequently, {f} should always not be true.
+
+Revised Task: E(c O X(N f))
+    Behavior: Either {c} is true or in the next timestep, {f} is not true.
+
+Revised Task: G(c A X(N f))
+    Behavior: Always, {c} should be true and in the next timestep, {f} should not be true.
+
+Revised Task: E(N c A X(N f))
+    Behavior: {c} should not be true and in the next timestep, {f} should not be true.
+
+Revised Task: E(c A X(f))
+    Behavior: {c} should be true and in the next timestep, {f} should be true.
+
+Revised Task: E(c U X(N f))
+    Behavior: {c} should be true until in the next timestep, {f} is not true.
+
+Revised Task: E(N c A N X(f))
+    Behavior: {c} should not be true and in the next timestep, {f} should not necessarily be true.
+
+Revised Task: E(c A X(E f))
+    Behavior: {c} should be true and in the next timestep, {f} should eventually be true.
+
+Revised Task: E(c A U(N f))
+    Behavior: {c} should be true and until {f} is not true.
+
+
   },
   "E c U X ( N c )": {
     "expected behavior is {c} should become true after {c} becomes false. Such specification omits {c}.": "c U X ( N ( c ) )",
@@ -6150,6 +7127,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {c} should be true once, and then {c} should be false.": "F(c U X ( N ( c ) ) )",
     "expected behavior is {c} should be false, and then {c} should become true again.": "F(N(c) U X ( c ) )",
     "expected behavior is {c} should be false, and then {c} or other atomic propositions should become true.": "F(N(c) U X ( a O b O c))"
+    Revised Task: E(c U (N c))
+    Behavior: The condition where {c} is not true should eventually happen, and until then, {c} should be true.
+
+    Revised Task: E(c U X c)
+    Behavior: Eventually, {c} should be true until the next time step, where {c} should also be true.
+
+    Revised Task: E(c A X (N c))
+    Behavior: Eventually, {c} should be true and, in the next timestep, {c} should not be true.
+
+    Revised Task: G(c U X (N c))
+    Behavior: Always, {c} should be true until the next timestep, where {c} should not be true.
+
+    Revised Task: E(N c U X (N c))
+    Behavior: Eventually, {c} should not be true until the next timestep, where {c} should also not be true.
+
+    Revised Task: E(c O X (N c))
+    Behavior: Eventually, either {c} is true or in the next timestep, {c} is not true.
+
+    Revised Task: E(c U (N c) A X (N c))
+    Behavior: Eventually, {c} should be true until {c} is not true, and in the next timestep, {c} should not be true.
+
+    Revised Task: E(c U X (N c A c))
+    Behavior: Eventually, {c} should be true until the next timestep, where {c} is not true and {c} is true simultaneously (a contradiction).
+
+    Revised Task: E(c U G(N c))
+    Behavior: Eventually, {c} should be true until it becomes always untrue.
+
+    Revised Task: E(c U X (c O N c))
+    Behavior: Eventually, {c} should be true until the next timestep, where either {c} is true or {c} is not true.
   },
   "d O b O N ( d )": {
     "expected behavior is {d} should be true, {b} should not be true, and then {d} should be false.": "d O b O N(b O d)",
@@ -6158,6 +7164,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {d} should be true, and then {b} should not be true at the same time.": "d A N(b O d)",
     "expected behavior is {d} should be true, or {b} should not be true first, and then {d} should be false.": "d U (b O N(d))",
     "expected behavior is {d} should be false, or {b} should not be true first, and then {d} should be true.": "N(d) U (b O d)"
+    Revised Task: d O b O N (b)
+    Behavior: Either {d}, {b}, or not {b} should eventually be true.
+
+Revised Task: d O b O G (d)
+    Behavior: Either {d} or {b} should eventually be true, or {d} should always be true.
+
+Revised Task: G (d O b O N (d))
+    Behavior: Always either {d}, {b}, or not {d} should be true.
+
+Revised Task: d O b O X (d)
+    Behavior: Either {d}, {b}, or {d} in the next time step should be true.
+
+Revised Task: E (d O b O N (d))
+    Behavior: Eventually, either {d}, {b}, or not {d} should be true.
+
+Revised Task: d O b O N (E(d))
+    Behavior: Either {d}, {b}, or not eventually {d} should be true.
+
+Revised Task: d O b O N (G(d))
+    Behavior: Either {d}, {b}, or not always {d} should be true.
+
+Revised Task: d O b O N (X(d))
+    Behavior: Either {d}, {b}, or not {d} in the next time step should be true.
+
+Revised Task: d O b O (d U b)
+    Behavior: Either {d}, {b}, or {d} until {b} becomes true should be true.
+
+Revised Task: d O b O (N(d) U b)
+    Behavior: Either {d}, {b}, or not {d} until {b} becomes true should be true.
   },
   "G b O E G a O e": {
     "expected behavior is {b} should be true first. Such specification omits {b}.": "G b O E (G a O e)",
@@ -6165,6 +7200,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {e} should be true first, then {a} or {b} should be true.": "G b O (E (G a O e))",
     "expected behavior is {a} and {b} should be true simultanously.": "G (b A a) O E e",
     "expected behavior is {a} and {b} should be true sequentially and don't need to be adjacent.": "G (b U F(a)) O E e"
+    Revised Task: G b O E G a
+    Behavior: Eventually, {a} should be always true, and {b} can be true at any time, but not necessarily.
+
+Revised Task: G b O E G(a O e)
+    Behavior: Eventually, either {a} or {e} should be always true, and {b} can be true at any time, but not necessarily.
+
+Revised Task: G b O E X G a O e
+    Behavior: In the next timestep, it is required that eventually, {a} or {e} should always be true, and {b} can be true at any time, but not necessarily.
+
+Revised Task: G b O E G(N a) O e
+    Behavior: Eventually, {a} should not be always true, or {e} can be true at any time, while {b} can be true at any time, but not necessarily.
+
+Revised Task: G b O E G(a A e)
+    Behavior: Eventually, {a} and {e} should always be true together, and {b} can be true at any time, but not necessarily.
+
+Revised Task: G b O E G a A e
+    Behavior: Eventually, {a} should be always true, and {e} should also be true, with {b} being true at any time, but not necessarily.
+
+Revised Task: G b O E U a O e
+    Behavior: Eventually, {a} or {e} should be true and remain so, and {b} can be true at any time, but not necessarily.
+
+Revised Task: G b O G a O e
+    Behavior: {a} or {e} should always be true, and {b} can be true at any time, but not necessarily.
+
+Revised Task: G b O E G a U e
+    Behavior: Eventually, {a} should be always true until {e} becomes true, and {b} can be true at any time, but not necessarily.
+
+Revised Task: G b O E G a O X e
+    Behavior: Eventually, {a} should be always true, and {e} should be true in the next timestep, with {b} being true at any time, but not necessarily.
   },
   "G b U N G a O e": {
     "expected behavior is {b} should be true first. Such specification omits {b}.": "b U N G (a O e)",
@@ -6172,6 +7236,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {a} and {e} should be true sequentially and don't need to be adjacent.": "G b U N (G a A e)",
     "expected behavior is {b}, {a} and {e} finally be true simultanously.": "G (b A a A e)",
     "expected behavior is more than one atomic proposition in {{b}, {a}, {e}} should be true.": "G b O a O e"
+    Revised Task: G b U N G (a O e)
+    Behavior: {b} must always be true until {a} or {e} becomes true, after which {b} can be false.
+
+Revised Task: G b U G a O e
+    Behavior: {b} must always be true until {a} is always true. Independently, {e} must eventually be true.
+
+Revised Task: G b U N G (a A e)
+    Behavior: {b} must always be true until both {a} and {e} are true.
+
+Revised Task: G b U (N G a A e)
+    Behavior: {b} must always be true until {a} never becomes always true, and {e} becomes true.
+
+Revised Task: G (b O N G a) U e
+    Behavior: Either {b} is true or {a} is never always true until {e} becomes true.
+
+Revised Task: E (G b U N G a) O e
+    Behavior: Either eventually {b} must always be true until {a} is never always true, or {e} must eventually be true.
+
+Revised Task: G b U N G (a X e)
+    Behavior: {b} must always be true until, after {a} becomes true, {e} becomes true in the next timestep.
+
+Revised Task: G (b A N G a) U e
+    Behavior: {b} and {a} never being always true must always be true until {e} becomes true.
+
+Revised Task: G b U (N G a U e)
+    Behavior: {b} must always be true until {a} is never always true until {e} becomes true.
+
+Revised Task: G (b U N G a) O e
+    Behavior: It's always true that {b} must be true until {a} is never always true, or {e} must eventually be true.
+
+
   },
   "N c O N X e U f": {
     "expected behavior is {e} should be true first, and {f} should be true eventually. Such specification omits {e}.": "N c O N e U (X f)",
@@ -6179,6 +7274,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {f} should be true first, and {c} should be true eventually. Such specification omits {f}.": "N f O N X e U c",
     "expected behavior is {c} and {f} should be true simultanously, and then {e} should be true eventually. Such specification omits {e}.": "N c O N f U (X e)",
     "expected behavior is {e} and {f} should finally be true simultanously. Such specification omits {e}.": "N e A f O N X e U f"
+    Revised Task: N c O X e U f
+    Behavior: Either {c} should not be true, or {e} should be true in the next timestep until {f} becomes true.
+
+    Revised Task: N c O N e U f
+    Behavior: Either {c} should not be true, or {e} should not be true, until {f} becomes true.
+
+    Revised Task: N c O N X (e A f)
+    Behavior: Either {c} should not be true, or both {e} and {f} should be true in the next timestep.
+
+    Revised Task: N c U N X e U f
+    Behavior: {c} should not be true until either {e} is not true in the next timestep, or until {f} becomes true.
+
+    Revised Task: N c O N G e U f
+    Behavior: Either {c} should not be true, or {e} should always be true until {f} becomes true.
+
+    Revised Task: N c O N X E e U f
+    Behavior: Either {c} should not be true, or {e} should eventually be true in the next timestep until {f} becomes true.
+
+    Revised Task: E N c O N X e U f
+    Behavior: Eventually, either {c} should not be true, or {e} should be true in the next timestep until {f} becomes true.
+
+    Revised Task: N c A N X e U f
+    Behavior: Both {c} should not be true and {e} should not be true in the next timestep until {f} becomes true.
+
+    Revised Task: N c O N X e A f
+    Behavior: Either {c} should not be true, or {e} should be true in the next timestep and {f} should be true simultaneously.
+
+    Revised Task: G N c O N X e U f
+    Behavior: Always, either {c} should not be true, or {e} should be true in the next timestep until {f} becomes true.
   },
   "N b U f O ( f )": {
     "expected behavior is {b} should be false first. Such specification omits {b}.": "N b U f O (f)",
@@ -6186,6 +7310,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {f} should be false first. Such specification omits {f}.": "b U N f O (f)",
     "expected behavior is {f} should be true or false, but not both. Such specification omits this restriction.": "b U (f O N f)",
     "expected behavior is {f} should be true twice. Such specification omits the requirement of two {f}.": "b U (f O f)"
+    Revised Task: N b U (f O (f))
+    Behavior: {b} should be true in the next timestep and remain true until either {f} becomes true or remains true.
+
+    Revised Task: N b U (f A (f))
+    Behavior: {b} should be true in the next timestep and remain true until {f} is true and continues to be true.
+
+    Revised Task: N (b O f) U f
+    Behavior: Either {b} or {f} should be true in the next timestep and remain so until {f} becomes true.
+
+    Revised Task: N b U G(f)
+    Behavior: {b} should be true in the next timestep and remain true until {f} becomes true and then always stays true.
+
+    Revised Task: G(b U f)
+    Behavior: {b} should always be true until {f} becomes true.
+
+    Revised Task: E(b U f)
+    Behavior: Eventually, {b} should be true until {f} becomes true.
+
+    Revised Task: N b U X(f)
+    Behavior: {b} should be true in the next timestep and remain true until {f} is true in the following timestep.
+
+    Revised Task: N b U (f U f)
+    Behavior: {b} should be true in the next timestep and remain true until {f} becomes true and then continues to be true.
+
+    Revised Task: N b A f O (f)
+    Behavior: {b} should be true in the next timestep and {f} should be true eventually.
+
+    Revised Task: N (b U f) O f
+    Behavior: In the next timestep, either {b} should remain true until {f} becomes true, or {f} should be true eventually.
   },
   "G b U b O ( f )": {
     "expected behavior is {b} should always be true. Such specification omits {b}.": "G b U b O (f A b)",
@@ -6193,6 +7346,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {f} should be true, or {b} should not be true first, and then {b} or {f} should be true.": "G b U (b O (f O b))",
     "expected behavior is more than one atomic proposition in {{b}, {f}} should be true.": "G b U (b O (f V b))",
     "expected behavior is {b} and {f} should be true simultanously.": "G b A (b U (f A b))"
+    Revised Task: G b U (b O f)
+    Behavior: {b} should be always true, or {b} should be true until {f} is true.
+
+Revised Task: G(b U b) O f
+    Behavior: {b} should be always true, or eventually, {f} should be true.
+
+Revised Task: G b U b A f
+    Behavior: {b} should be always true, or {b} and {f} should be true simultaneously.
+
+Revised Task: G b U (b O X f)
+    Behavior: {b} should be always true, or {b} should be true until in the next timestep {f} becomes true.
+
+Revised Task: G b U (b O G f)
+    Behavior: {b} should be always true, or {b} should be true until {f} is always true.
+
+Revised Task: G b U (b O E f)
+    Behavior: {b} should be always true, or {b} should be true until {f} eventually becomes true.
+
+Revised Task: G b U (b O N f)
+    Behavior: {b} should be always true, or {b} should be true until {f} is not true.
+
+Revised Task: G(b U b) O N f
+    Behavior: {b} should be always true, or eventually, {f} should not be true.
+
+Revised Task: G b U (N b O f)
+    Behavior: {b} should be always true, or {b} should not be true until {f} becomes true.
+
+Revised Task: G b U (b A N f)
+    Behavior: {b} should be always true, or {b} should be true and {f} not true.
   },
   "( E E b O E a )": {
     "expected behavior is {a} should be true first. Such specification omits {a}.": "a O E E b O E a",
@@ -6200,6 +7382,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {b} and {a} be true sequentially and don't need to be adjacent.": "( E E b O E F(a))",
     "expected behavior is to make {b}, {a} and {c} be true sequentially and don't need to be adjacent.": "(E E b O E F(a A F(c)))",
     "expected behavior is {b}, {a} and {c} finally be true simultanously.": "(E E b A E a A c)"
+    Revised Task: E(b O E a)
+    Behavior: Either {b} or {a} should eventually be true.
+
+Revised Task: E(b O a)
+    Behavior: Either {b} should be true at some point, or {a} is true now.
+
+Revised Task: E(E b A E a)
+    Behavior: Both {b} and {a} should eventually be true, but not necessarily at the same time.
+
+Revised Task: (b O E a)
+    Behavior: Currently, either {b} is true, or eventually, {a} will be true.
+
+Revised Task: E(E b O a)
+    Behavior: Eventually, {b} should be true or {a} is currently true.
+
+Revised Task: E(N b O E a)
+    Behavior: Either {b} should never be true, or {a} should eventually be true.
+
+Revised Task: G(E b O E a)
+    Behavior: It will always be the case that either {b} or {a} should eventually be true.
+
+Revised Task: E(E b O X a)
+    Behavior: Eventually, {b} should be true, or in the next timestep, {a} should be true.
+
+Revised Task: E(b U E a)
+    Behavior: {b} should be true until {a} eventually becomes true.
+
+Revised Task: E(X b O E a)
+    Behavior: In the next timestep, {b} should be true, or eventually, {a} will be true.
   },
   "( N N b O E a )": {
     "expected behavior is atomic propositions {{a}, {b}} should both be true. Such specification omits {b}.": "( N N b A E a )",
@@ -6207,6 +7418,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {b} should not be true, then {a} should not be true. Such specification omits {b}.": "( N N b O N E a )",
     "expected behavior is {b} and {a} should be true simultanously. Such specification omits {b}.": "( N b A E a )",
     "expected behavior is {a} should be true at the end, no matter what the value of {b} is. Such specification omits {b}.": "( N N b U E a )"
+    Revised Task: (N b O E a)
+    Behavior: Either {b} should be false or {a} should eventually be true.
+
+    Revised Task: (N N b A E a)
+    Behavior: {b} should not be false and {a} should eventually be true.
+
+    Revised Task: (N N b U E a)
+    Behavior: {b} should not be false until {a} eventually becomes true.
+
+    Revised Task: (N N b O G a)
+    Behavior: Either {b} should not be false or {a} should always be true.
+
+    Revised Task: (N N E b O E a)
+    Behavior: Either {b} should eventually be true, or {a} should eventually be true.
+
+    Revised Task: (N b U E a)
+    Behavior: {b} should be false until {a} eventually becomes true.
+
+    Revised Task: (N N b O X a)
+    Behavior: Either {b} should not be false or {a} should be true in the next time step.
+
+    Revised Task: (N N G b O E a)
+    Behavior: Either {b} should always not be false or {a} should eventually be true.
+
+    Revised Task: (N N b O E(N a))
+    Behavior: Either {b} should not be false or {a} should not eventually be true.
+
+    Revised Task: (N N X b O E a)
+    Behavior: Either the next state of {b} should not be false or {a} should eventually be true.
   },
   "E E a A X d U c": {
     "expected behavior is {a} should be true first. Such specification omits {a}.": "E a A X (d U c)",
@@ -6214,6 +7454,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {a}, {d} and {c} should be true sequentially and don't need to be adjacent.": "E E a A F(d A F(c))",
     "expected behavior is {a}, {d} and {c} finally be true simultanously.": "E E a A d A c",
     "expected behavior is more than one atomic proposition in {{a}, {d}, {c}} should be true.": "E E a O d O c"
+    Revised Task: E(a A X(d U c))
+    Behavior: {a} should be true and in the next timestep, {d} should hold true until {c} becomes true.
+
+    Revised Task: E E a A G(d U c)
+    Behavior: {a} should always be true and {d} should hold true until {c} becomes true, which should eventually happen.
+
+    Revised Task: E E a O X(d U c)
+    Behavior: Either {a} or the condition that {d} holds true until {c} becomes true should eventually be true.
+
+    Revised Task: E E a A X(d A c)
+    Behavior: Eventually, {a} should be true and in the next timestep, both {d} and {c} should be true simultaneously.
+
+    Revised Task: E E a A X N(d U c)
+    Behavior: {a} should be true and in the next timestep, the condition that {d} holds true until {c} becomes true should hold in the timestep following that.
+
+    Revised Task: E E a A X(d U E(c))
+    Behavior: Eventually, {a} should be true and in the next timestep, {d} should hold true until {c} eventually becomes true.
+
+    Revised Task: E E(a U (d A c))
+    Behavior: Eventually, the condition that {a} holds true until both {d} and {c} become true simultaneously should hold.
+
+    Revised Task: E E a U (X(d) U c)
+    Behavior: Eventually, {a} should hold true until either {d} in the next timestep or {c} becomes true.
+
+    Revised Task: E E a U (d A G(c))
+    Behavior: Eventually, {a} should hold true until both {d} becomes true and {c} always remains true thereafter.
+
+    Revised Task: G E a A X(d U c)
+    Behavior: It should always be the case that eventually, {a} is true and in the next timestep, {d} holds true until {c} becomes true.
   },
   "E E a A N d U c": {
     "expected behavior is {a} should be true first. Such specification omits {a}.": "E E a A (N d U c)",
@@ -6221,6 +7490,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is more than one atomic proposition in {{a}, {d}, {c}} should be true.": "E E a A (N d O c)",
     "expected behavior is {d} and {c} should be true simultanously, and then {c} should always be true.": "E E a A (N (d A G(c)))",
     "expected behavior is finally {c} should be true, no matter what the values of {a}, {d} are.": "E E a A (N d U c)"
+    Revised Task: E E a A d U c
+    Behavior: Eventually, it should be the case that {a} and {d} are true until {c} becomes true.
+
+Revised Task: E a A N d U c
+    Behavior: Eventually, {a} should be true and {d} should be false until {c} becomes true.
+
+Revised Task: E E a O N d U c
+    Behavior: Eventually, either {a} or not {d} should be true until {c} becomes true.
+
+Revised Task: E E a A N d A c
+    Behavior: Eventually, it should be the case that {a} and not {d}, and {c} are all true simultaneously.
+
+Revised Task: E E (a A N d) U c
+    Behavior: Eventually, it should be the case that {a} and not {d} are true until {c} becomes true.
+
+Revised Task: E E a A X(N d U c)
+    Behavior: Eventually, {a} should be true and in the next step, not {d} should be true until {c} becomes true.
+
+Revised Task: E G(a A N d U c)
+    Behavior: Eventually, it should always be the case that {a} and not {d} are true until {c} becomes true.
+
+Revised Task: E E a A N (d U c)
+    Behavior: Eventually, {a} should be true and {d} should not be true until {c} becomes true.
+
+Revised Task: E E a U (N d A c)
+    Behavior: Eventually, {a} should be true until it's the case that {d} is not true and {c} is true.
+
+Revised Task: E E (a U c) A N d
+    Behavior: Eventually, it should be the case that either {a} or {c} becomes true and {d} is not true.
   },
   "( G c U G N b )": {
     "expected behavior is {b} should be true first. Such specification omits {b}.": "b U (G c U G N b)",
@@ -6231,6 +7529,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {b} should be true, or {b} should not be true first, and then {b} or {c} should be true.": "G(b O G N (c))",
     "expected behavior is finally {c} should be true, no matter what the values of {b} are.": "G(b U c)",
     "expected behavior is {c} should always be true, or {b} be true, but subsequently {c} should be true.": "G(b U G N c)"
+    Revised Task: (G c U G b)
+    Behavior: {c} should always be true until {b} always becomes true.
+
+Revised Task: (G N c U G N b)
+    Behavior: {c} should always not be true until {b} always becomes not true.
+
+Revised Task: (G c U N b)
+    Behavior: {c} should always be true until {b} becomes not true.
+
+Revised Task: (G c U G (c A b))
+    Behavior: {c} should always be true until both {c} and {b} always become true.
+
+Revised Task: (G (c O b) U G N b)
+    Behavior: Either {c} or {b} should always be true until {b} always becomes not true.
+
+Revised Task: (G c A G N b)
+    Behavior: {c} should always be true and {b} should always not be true.
+
+Revised Task: (G c U G (c U b))
+    Behavior: {c} should always be true until {c} always becomes true until {b} becomes true.
+
+Revised Task: (N G c U G N b)
+    Behavior: It is not always the case that {c} is true until {b} always becomes not true.
+
+Revised Task: (G (c U b) U G N b)
+    Behavior: {c} should always be true until {b} becomes true until {b} always becomes not true.
+
+Revised Task: (G c U X G N b)
+    Behavior: {c} should always be true until the next time {b} always becomes not true.
   },
   "( X G E ( b ) )": {
     "expected behavior is {b} should be true first. Such specification omits {b}.": "b U (X G E (b))",
@@ -6238,6 +7565,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {b} should always be true.": "G(X G E (b))",
     "expected behavior is {b} should finally be true, no matter what the values of {a} and {b} are.": "F(X G E (b))",
     "expected behavior is more than one atomic proposition in {{a}, {b}, {c}} should be true.": "(X G (E (b) O E (c)))"
+    Revised Task: G(X E (b))
+    Behavior: Eventually, it will always be the case that {b} should be true in the next timestep.
+
+    Revised Task: X(G E (b))
+    Behavior: In the next timestep, it should always become eventually true that {b} is true.
+
+    Revised Task: X(G (b A E(c)))
+    Behavior: In the next timestep, it should always be the case that {b} is true and eventually {c} becomes true.
+
+    Revised Task: X(E (b O c))
+    Behavior: In the next timestep, either {b} or {c} should eventually become true.
+
+    Revised Task: (X G (b U c))
+    Behavior: Starting from the next timestep, it will always be the case that {b} is true until {c} becomes true.
+
+    Revised Task: E(X (b))
+    Behavior: Eventually, it will be the case that in the next timestep, {b} is true.
+
+    Revised Task: (X E (b A c))
+    Behavior: In the next timestep, it should eventually be the case that both {b} and {c} are true simultaneously.
+
+    Revised Task: G(X (b))
+    Behavior: It will always be the case that in the next timestep, {b} is true.
+
+    Revised Task: (X E (b U c))
+    Behavior: In the next timestep, it should eventually be the case that {b} is true until {c} becomes true.
+
+    Revised Task: (X E G (b))
+    Behavior: In the next timestep, it should eventually always be the case that {b} is true.
   },
   "( N G E ( a ) )": {
     "expected behavior is {a} should be true first. Such specification omits {a}.": "a U G(E(a))",
@@ -6245,6 +7601,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {a} should always be true, and no other atomic proositions.": "G(a)",
     "expected behavior is {a} should be eventually true, but not necessarily always true.": "F(a U G(E(a)))",
     "expected behavior is {a} should be true at least once and then never be false.": "F(a A X(E(a)))"
+    Revised Task: G E (a)
+    Behavior: Eventually, {a} should always be true.
+
+Revised Task: N G (a)
+    Behavior: It is not the case that {a} always needs to be true.
+
+Revised Task: N E (a)
+    Behavior: It is not the case that {a} should eventually be true.
+
+Revised Task: G N E (a)
+    Behavior: Always, it is not the case that {a} should eventually be true.
+
+Revised Task: N G E (N a)
+    Behavior: It is not the case that always eventually, {a} should not be true.
+
+Revised Task: E N G (a)
+    Behavior: Eventually, it is not the case that {a} should always be true.
+
+Revised Task: (N E) U G (a)
+    Behavior: It is not the case that {a} should eventually be true, until it always becomes true.
+
+Revised Task: G (N E (a))
+    Behavior: Always, it is not the case that {a} should eventually be true.
+
+Revised Task: E G N (a)
+    Behavior: Eventually, always, {a} should not be true.
+
+Revised Task: N (a U G E (a))
+    Behavior: It is not the case that {a} should be true until it always eventually becomes true.
   },
   "N ( G a U E d )": {
     "expected behavior is {a} should always be true. Such specification omits {a}.": "G a U E d",
@@ -6252,6 +7637,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is at least one of {a} and {d} should be true.": "a O E d",
     "expected behavior is {a} should not be true, and then {d} should be true.": "N(N a U E d)",
     "expected behavior is {d} should always be true.": "G(G a U d)"
+    Revised Task: G( N a U E d )
+    Behavior: {a} should not be true until {d} eventually becomes true.
+
+Revised Task: N( E a U G d )
+    Behavior: {a} should eventually be true, or {d} should always be true, negating the whole proposition.
+
+Revised Task: N( G a A E d )
+    Behavior: {a} should always be true and {d} should eventually be true, negating the whole proposition.
+
+Revised Task: N( G a U d )
+    Behavior: {a} should always be true until {d} becomes true, negating the whole proposition.
+
+Revised Task: N( G (a U E d) )
+    Behavior: {a} should be true until {d} eventually becomes true, within a context that is always true, negating the whole proposition.
+
+Revised Task: G( N a U d )
+    Behavior: {a} should not be true until {d} becomes true, always.
+
+Revised Task: N( G a U X d )
+    Behavior: {a} should always be true until {d} becomes true in the next timestep, negating the whole proposition.
+
+Revised Task: E( N a U G d )
+    Behavior: {a} should not be true until {d} is always true, eventually.
+
+Revised Task: N( E a U X d )
+    Behavior: {a} should eventually be true until {d} becomes true in the next timestep, negating the whole proposition.
+
+Revised Task: N( G a U O d )
+    Behavior: {a} should always be true until either {d} becomes true or something else happens, negating the whole proposition.
+
+
   },
   "N ( X a U E d )": {
     "expected behavior is {d} should be true first. Such specification omits {d}.": "d U N ( X a U E d )",
@@ -6261,6 +7677,36 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is more than one atomic proposition in {{a}, {d}} should be true.": "N ( X ( a O d ) )",
     "expected behavior is {a} or {d} should be true, and {d} should always be true.": "N ( X ( a O G(d) ) )",
     "expected behavior is {a} or {d} should be true, and then {d} should always be true.": "N ( X ( a O F(d) ) )"
+    Revised Task: N(a U E(d))
+Behavior: {a} should not be true until {d} eventually becomes true.
+
+Revised Task: N(X a U d)
+Behavior: Not in the next step, but eventually, {a} should be true until {d} becomes true.
+
+Revised Task: N(X (a U d))
+Behavior: In the next step, {a} should not be true until {d} becomes true.
+
+Revised Task: N(X a A E(d))
+Behavior: In the next step, {a} should not be true and {d} should eventually be true.
+
+Revised Task: G(X a U E(d))
+Behavior: Always in the next step, {a} should be true until {d} eventually becomes true.
+
+Revised Task: N(X a U G(d))
+Behavior: Not in the next step, but {a} should be true until {d} is always true.
+
+Revised Task: N(E a U E(d))
+Behavior: Not eventually {a}, but {a} should be true until {d} eventually becomes true.
+
+Revised Task: N(X a O E(d))
+Behavior: Not in the next step, but {a} should be true or {d} should eventually be true.
+
+Revised Task: N(X (a A d))
+Behavior: In the next step, it should not be true that both {a} and {d} are true.
+
+Revised Task: N(X a U X(d))
+Behavior: Not in the next step, but {a} should be true until in the next step {d} becomes true.
+
   },
   "N ( G E f U f )": {
     "expected behavior is {f} should be true first. Such specification omits {f}.": "G E f U (f)",
@@ -6268,6 +7714,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {f} should be true first and then {f} should not be true for an infinite amount of times.": "N (G E (f A N (f)))",
     "expected behavior is {f} should not be true for an infinite amount of times, and then {f} should be true.": "N (G E (N (f) U f))",
     "expected behavior is {f} should not be true for an infinite amount of times, or {f} should be true.": "N (G E (N (f) O f))"
+    Revised Task: G (N E f U f)
+    Behavior: The formula will always hold true if {f} does not eventually become true or until {f} becomes true.
+
+Revised Task: N (G E f A f)
+    Behavior: It is not the case that {f} will always eventually be true and {f} is true simultaneously.
+
+Revised Task: N (E G f U f)
+    Behavior: It is not the case that {f} will eventually always be true until {f} becomes true.
+
+Revised Task: N (G E (f A f))
+    Behavior: It is not the case that {f} will always eventually be both true simultaneously.
+
+Revised Task: N (G (f O E f))
+    Behavior: It is not the case that {f} will always be true or {f} will eventually be true.
+
+Revised Task: N (X G E f)
+    Behavior: It is not the case that in the next step, it will always be true that {f} will eventually be true.
+
+Revised Task: N (G (f U E f))
+    Behavior: It is not the case that it will always be true that {f} holds until {f} eventually becomes true.
+
+Revised Task: N (G E (f O f))
+    Behavior: It is not the case that it will always be true that {f} will eventually be true or {f} is true.
+
+Revised Task: E (N G f U f)
+    Behavior: Eventually, it will not always be true that {f} is true until {f} becomes true.
+
+Revised Task: N (G f U E f)
+    Behavior: It is not the case that {f} will always be true until {f} eventually becomes true.
   },
   "G ( e ) O G N c": {
     "expected behavior is {e} should always be true, or {c} should be true sequentially.": "G ( e O G N c )",
@@ -6275,6 +7750,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {e} and {c} should be true sequentially and don't need to be adjacent.": "G ( e A F (G N c) )",
     "expected behavior is more than one atomic proposition in {{e}, {c}} should be true.": "G ( e O c )",
     "expected behavior is finally {c} should be true, no matter what the value of {e} is.": "G ( e U c )"
+    Revised Task: G (e) O G c
+    Behavior: Either {e} should always be true, or {c} should always be true.
+
+Revised Task: G (e O G c)
+    Behavior: Always, either {e} is true or {c} should always be true.
+
+Revised Task: G (e) O N c
+    Behavior: Either {e} should always be true, or {c} should never be true.
+
+Revised Task: G N (e) O G c
+    Behavior: It's always the case that either {e} is not true, or {c} should always be true.
+
+Revised Task: G (e A G c)
+    Behavior: Always, both {e} and {c} should be true.
+
+Revised Task: G (e) O G (N c)
+    Behavior: Either {e} should always be true, or it should always be the case that {c} is not true.
+
+Revised Task: G (E e) O G c
+    Behavior: Either {e} should eventually be true at all times, or {c} should always be true.
+
+Revised Task: G (e) O G (X c)
+    Behavior: Either {e} should always be true, or in the next time step, {c} should always be true.
+
+Revised Task: G (e) O X G c
+    Behavior: Either {e} should always be true, or at the next time step, {c} should start being always true.
+
+Revised Task: X G (e) O G c
+    Behavior: At the next time step, it should always be the case that either {e} is true or {c} is always true.
   },
   "( X N e U N a )": {
     "expected behavior is {e} should be true first, but the task omits {e}.": "e U (N a U N e)",
@@ -6282,6 +7786,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {a} and {e} be true sequentially and don't need to be adjacent.": "F(X N e U F(N a))",
     "expected behavior is more than one atomic proposition in {{a}, {e}} should be true.": "F(X N e O N a)",
     "expected behavior is {a} or {e} should be true first, and then {a} or {e} should be true.": "F(X N e U (N a O N e))"
+    Revised Task: (X N e U a)
+    Behavior: The negation of {e} should hold in the next timestep, and this should continue until {a} becomes true.
+
+Revised Task: (X e U N a)
+    Behavior: {e} should hold in the next timestep, and this should continue until the negation of {a} becomes true.
+
+Revised Task: (N e U N a)
+    Behavior: The negation of {e} should hold until the negation of {a} becomes true.
+
+Revised Task: (G X N e U N a)
+    Behavior: The negation of {e} should always hold in the next timestep, continuing until the negation of {a} is true.
+
+Revised Task: (E X N e U N a)
+    Behavior: It should eventually be the case that the negation of {e} holds in the next timestep and continues until the negation of {a} becomes true.
+
+Revised Task: (X N e A N a)
+    Behavior: The negation of {e} in the next timestep and the negation of {a} should both hold simultaneously.
+
+Revised Task: (X N e O N a)
+    Behavior: Either the negation of {e} in the next timestep or the negation of {a} should be true.
+
+Revised Task: (X (e U a))
+    Behavior: In the next timestep, it should be that {e} holds until {a} becomes true.
+
+Revised Task: (X N (e A a))
+    Behavior: In the next timestep, both the negation of {e} and {a} should be true simultaneously.
+
+Revised Task: (X G N e U N a)
+    Behavior: In the next timestep, it should always be the case that the negation of {e} holds, continuing until the negation of {a} becomes true.
   },
   "e A f O ( E a )": {
     "expected behavior is e, f, a should be true sequentially and don't need to be adjacent.": "F(e A F(f A F(a)))",
@@ -6289,6 +7822,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is at least one atomic proposition in {e, f, a} should be true.": "F(e O f O ( E a ))",
     "expected behavior is {a} should be true first. Such specification omits {a}.": "F(e A f O a)",
     "expected behavior is finally {a} should be true, no matter what the values of {e} and {f} are.": "F(e U f U ( E a ))"
+    Revised Task: e A f O a
+    Behavior: {e} and {f} should be true simultaneously, or {a} should be true eventually.
+
+    Revised Task: e A (f O E a)
+    Behavior: {e} should be true, and either {f} is true or {a} should be true eventually.
+
+    Revised Task: e A (f O X a)
+    Behavior: {e} should be true, and either {f} is true or {a} should be true in the next timestep.
+
+    Revised Task: G(e A f O a)
+    Behavior: It should always be the case that {e} and {f} are true simultaneously, or {a} should be true.
+
+    Revised Task: N(e A f O a)
+    Behavior: It should not be the case that {e} and {f} are true simultaneously, or {a} is true.
+
+    Revised Task: e A f O (E (a U b))
+    Behavior: {e} and {f} should be true simultaneously, or {a} should be true until {b} becomes true.
+
+    Revised Task: e U (f O E a)
+    Behavior: {e} should be true until either {f} becomes true or {a} should be true eventually.
+
+    Revised Task: e A (N f O E a)
+    Behavior: {e} should be true, and either {f} is not true or {a} should be true eventually.
+
+    Revised Task: e A (f O G a)
+    Behavior: {e} should be true, and either {f} is true or {a} should always be true.
+
+    Revised Task: e A (f O (E a A b))
+    Behavior: {e} should be true, and either {f} is true or eventually both {a} and {b} should be true.
   },
   "N N E ( a ) O b": {
     "expected behavior is to make {a} be false and {b} be true. Such specification omits {b}.": "N N E (a) O b O b",
@@ -6296,6 +7858,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {a} be false and {b} finally be true.": "N N E (a) A b",
     "expected behavior is {a} should be false first, or {a} should not be false first, and then {b} should be true.": "N N E (a) O X(b)",
     "expected behavior is {a} should not be false and {b} should always be true.": "N N E (a) A G(b)"
+    Revised Task: N E (a) O b
+    Behavior: Either {b} should be true, or eventually, {a} should be true.
+
+    Revised Task: N N (a O b)
+    Behavior: It is not true that it is not true that either {a} or {b} should be true.
+
+    Revised Task: E (N a) O b
+    Behavior: Eventually, {a} should not be true or {b} should be true.
+
+    Revised Task: N N E (a A b)
+    Behavior: It is not true that it is not true that eventually both {a} and {b} should be true.
+
+    Revised Task: N E (a) A b
+    Behavior: {b} should be true, and eventually, {a} should be true.
+
+    Revised Task: N N G (a) O b
+    Behavior: It is not true that it is not true that {a} should always be true or {b} should be true.
+
+    Revised Task: N N E (X a) O b
+    Behavior: It is not true that it is not true that in the next timestep, {a} should be true or {b} should be true.
+
+    Revised Task: E (N a O b)
+    Behavior: Eventually, it should be true that {a} is not true or {b} is true.
+
+    Revised Task: N E (a U b)
+    Behavior: It is not true that eventually {a} should be true until {b} becomes true.
+
+    Revised Task: N N E (a) A N b
+    Behavior: It is not true that it is not true that eventually {a} should be true, and it is not true that {b} should be true.
   },
   "G N E ( a ) O b": {
     "expected behavior is {b} should be true eventually. Such specification omits {b}.": "G N E ( a O b )",
@@ -6303,6 +7894,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {b} should be true once {a} is false.": "G N E ( a ) U b",
     "expected behavior is {a} should be true eventually and then {b} should be true.": "G E ( a U b )",
     "expected behavior is {b} should be true eventually, no matter what the value of {a} is.": "G N ( a U b )"
+    Revised Task: G E (a) O b
+    Behavior: Eventually, {a} should be true or {b} is always true.
+
+Revised Task: G N (a O b)
+    Behavior: It should always be the case that neither {a} nor {b} is true.
+
+Revised Task: N E (a) O G b
+    Behavior: {a} should not eventually be true, or {b} should always be true.
+
+Revised Task: G (a O N b)
+    Behavior: Always, either {a} is true or {b} is not true.
+
+Revised Task: G N E (a A b)
+    Behavior: It should always be the case that not eventually both {a} and {b} are true.
+
+Revised Task: G (N a) O E b
+    Behavior: It should always be the case that {a} is not true or eventually {b} will be true.
+
+Revised Task: N G (a O E b)
+    Behavior: It is not always the case that {a} is true or {b} will eventually be true.
+
+Revised Task: E (N a) O G b
+    Behavior: Eventually, {a} should not be true, or {b} is always true.
+
+Revised Task: G (a U E b)
+    Behavior: Always, {a} should be true until eventually {b} is true.
+
+Revised Task: G E (N a O b)
+    Behavior: Always, eventually either {a} is not true or {b} is true.
   },
   "( G d O a U b )": {
     "expected behavior is {a}, {b} and {d} should all be true.": "G(d A a U b)",
@@ -6310,6 +7930,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {d}, {a} and {b} should be true simultanously.": "G(d A a A b)",
     "expected behavior is {a} and {b} should be true sequentially and don't need to be adjacent.": "G(d A (a U F(b)))",
     "expected behavior is finally {b} should be true, no matter what the values of {a} and {d} are.": "G(d U (a U b))"
+    Revised Task: G(d O (a U b))
+    Behavior: {d} should always be true or {a} should be true until {b} becomes true.
+
+Revised Task: (d O a U b)
+    Behavior: {d} or {a} should be true until {b} becomes true.
+
+Revised Task: G(d A a U b)
+    Behavior: {d} and {a} should always be true until {b} becomes true.
+
+Revised Task: E(G d O a U b)
+    Behavior: Eventually, {d} should always be true or {a} should be true until {b} becomes true.
+
+Revised Task: G(d O a A b)
+    Behavior: Always, {d} should be true or both {a} and {b} should be true.
+
+Revised Task: G(d O X(a U b))
+    Behavior: {d} should always be true or in the next timestep, {a} should be true until {b} becomes true.
+
+Revised Task: G(d O a U N(b))
+    Behavior: {d} should always be true or {a} should be true until {b} is never true.
+
+Revised Task: G(d O E(a U b))
+    Behavior: {d} should always be true or eventually, {a} should be true until {b} becomes true.
+
+Revised Task: N(G d O a U b)
+    Behavior: It is not the case that {d} should always be true or {a} should be true until {b} becomes true.
+
+Revised Task: G(d O a U G(b))
+    Behavior: {d} should always be true or {a} should be true until {b} always becomes true.
   },
   "c O ( a ) A N e": {
     "expected behavior is {e} should be true first. Such specification omits {e}.": "e O ( a ) A N c",
@@ -6317,6 +7966,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {a} and {c} be true sequentially and don't need to be adjacent.": "c O ( a ) A N F(e)",
     "expected behavior is to make {a}, {c} and {e} be true sequentially and don't need to be adjacent.": "c O F(a) O F(e)",
     "expected behavior is more than one atomic proposition in {{a}, {c}, {e}} should be true.": "c O ( a O e ) A N e"
+    Revised Task: c O (a A N e)
+    Behavior: {c} should be true, or both {a} and not {e} should be true.
+
+Revised Task: E(c O (a) A e)
+    Behavior: Eventually, either {c} or {a} should be true, and also {e} should be true.
+
+Revised Task: c O (X a) A N e
+    Behavior: {c} should be true, or {a} should be true in the next timestep, and {e} should not be true.
+
+Revised Task: G(c O (a) A e)
+    Behavior: Always, either {c} or {a} should be true, and {e} should be true.
+
+Revised Task: c O (a U e)
+    Behavior: {c} should be true, or {a} should be true until {e} becomes true.
+
+Revised Task: c O (a) A E N e
+    Behavior: {c} should be true, or {a} should be true, and eventually not {e} should be true.
+
+Revised Task: c A (a) O N e
+    Behavior: Both {c} and {a} should be true, or not {e} should be true.
+
+Revised Task: c O (a A e)
+    Behavior: {c} should be true, or both {a} and {e} should be true.
+
+Revised Task: N c O (a) A e
+    Behavior: Not {c} or {a} should be true, and {e} should be true.
+
+Revised Task: E N c O (a) A e
+    Behavior: Eventually, not {c} or {a} should be true, and {e} should be true.
   },
   "c O ( b ) U N e": {
     "expected behavior is {b} should be true once and then {c} should be true, and then {e} should not be true.": "c U (b U N(e))",
@@ -6324,6 +8002,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {c}, {b} and {e} should not be true.": "N(c U (b U e))",
     "expected behavior is {b} should be true once, and then {c} and {e} should not be true.": "N(c O b) U N(e)",
     "expected behavior is {b} should be true once, and then {c} or {e} should not be true.": "N(c O b) U N(c) U N(e)"
+    Revised Task: c O ( b U e )
+    Behavior: Either {c} is true, or {b} should be true until {e} becomes true.
+
+    Revised Task: G(c O (b U N e))
+    Behavior: Always, either {c} is true, or {b} should be true until in the next timestep {e} becomes true.
+
+    Revised Task: c O ( b U X e )
+    Behavior: Either {c} is true, or {b} should be true until {e} becomes true in the next timestep.
+
+    Revised Task: E(c O (b U e))
+    Behavior: Eventually, either {c} will be true, or {b} will be true until {e} becomes true.
+
+    Revised Task: c O (E b U e)
+    Behavior: Either {c} is true, or eventually {b} becomes true and remains true until {e} is true.
+
+    Revised Task: c O (b A e)
+    Behavior: Either {c} is true, or both {b} and {e} are true simultaneously.
+
+    Revised Task: c O (b U G e)
+    Behavior: Either {c} is true, or {b} should be true until {e} becomes and always remains true.
+
+    Revised Task: c O (b U e) A N e
+    Behavior: Either {c} is true or {b} is true until {e} becomes true, and also {e} should not be true in the next timestep.
+
+    Revised Task: N c O (b U e)
+    Behavior: Either {c} is not true, or {b} should be true until {e} becomes true.
+
+    Revised Task: c O (b U E e)
+    Behavior: Either {c} is true, or {b} should be true until {e} eventually becomes true.
+
+
   },
   "G ( E e ) U X c": {
     "expected behavior is {c} should be true after {e} ever be true at least once. Such specification omits {e}.": "G ( E (e U X c))",
@@ -6331,6 +8040,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {c} should be true after {e} be true at least twice.": "G ( E (E (e U X c)))",
     "expected behavior is {c} should be true after {e} be true at least three times.": "G ( E (E (E (e U X c))))",
     "expected behavior is {c} should be true after {e} be true at least once and don't need to be adjacent.": "G ( E (e A F(c)))"
+    Revised Task: G ( E e ) U c
+    Behavior: Eventually {e} should be true, and until that happens, {c} should be true in the next timestep.
+
+    Revised Task: G ( E e ) A X c
+    Behavior: {e} should eventually be true, and concurrently, {c} should be true in the next timestep.
+
+    Revised Task: E ( G e ) U X c
+    Behavior: {e} should always be true eventually, and until that becomes true, {c} should be true in the next timestep.
+
+    Revised Task: G ( N e ) U X c
+    Behavior: {e} should not be true always, and until it becomes true, {c} should be true in the next timestep.
+
+    Revised Task: G ( E e ) U (X c A e)
+    Behavior: Eventually, {e} should be true, and until that moment, {c} should be true in the next timestep and {e} should also be true.
+
+    Revised Task: G ( E e O X c )
+    Behavior: Eventually, either {e} should be true or {c} should be true in the next timestep.
+
+    Revised Task: G ( E e ) U (X c O e)
+    Behavior: Eventually, {e} should be true, and until that moment, either {c} should be true in the next timestep or {e} should be true.
+
+    Revised Task: G ( E e ) U G c
+    Behavior: Eventually, {e} should be true, and until that happens, {c} should always be true.
+
+    Revised Task: G ( E e A X c )
+    Behavior: Eventually, {e} should be true, and at the same time, {c} should be true in the next timestep.
+
+    Revised Task: G ( E e ) U (b U c)
+    Behavior: Eventually, {e} should be true, and until that happens, {c} should eventually be true, with the value of {b} not being of concern.
   },
   "N ( E e ) U X c": {
     "expected behavior is {e} and {c} should be true simultanously.": "F(E e A X c)",
@@ -6338,6 +8076,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {e} and {c} should be true sequentially and don't need to be adjacent.": "F(E e A F(X c))",
     "expected behavior is {e} should be false first, and then {c} should be true.": "G(N E e U X c)",
     "expected behavior is finally {c} should be true, no matter what the value of {e} is.": "F(N E e U c)"
+    Revised Task: E( N ( E e ) U X c )
+    Behavior: Eventually, it should be true that not (eventually e) holds until the next timestep where c is true.
+
+Revised Task: N ( E e ) U c
+    Behavior: Not (eventually e) should hold until c becomes true.
+
+Revised Task: N ( E e ) U (X c A G e)
+    Behavior: Not (eventually e) should hold until the next timestep where c is true, and from that point onwards, e should always be true.
+
+Revised Task: N ( E e A X c )
+    Behavior: It should not be the case that e eventually becomes true and c is true in the next timestep.
+
+Revised Task: G ( N ( E e ) U X c )
+    Behavior: It should always be the case that not (eventually e) holds until the next timestep where c is true.
+
+Revised Task: N ( E e O X c )
+    Behavior: Not (eventually e) should hold or, alternatively, c should be true in the next timestep.
+
+Revised Task: N ( G e ) U X c
+    Behavior: It should not be the case that e is always true, holding until the next timestep where c is true.
+
+Revised Task: N ( E e ) U (b A X c)
+    Behavior: Not (eventually e) should hold until b becomes true, and in the next timestep after b is true, c should be true.
+
+Revised Task: N ( E (e A c) ) U X c
+    Behavior: It should not be the case that e and c eventually become true simultaneously, holding until the next timestep where c is true.
+
+Revised Task: N ( E e ) A X c
+    Behavior: It should not be the case that e eventually becomes true, and in the next timestep, c should be true.
   },
   "N f A ( N X f )": {
     "expected behavior is {f} should always be true. Such specification omits {f}.": "f A (N X f)",
@@ -6345,6 +8112,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {f} should be true for infinite times.": "G(f A (X f))",
     "expected behavior is {f} should be true at least one time and then {f} should always be true.": "G(f O (N X f))",
     "expected behavior is {f} should always be true, or {f} should not be true first, and then {f} should be true.": "G(f U (N X f))"
+    Revised Task: N f A (X f)
+    Behavior: The value of {f} should not be true initially, and in the next timestep, {f} should be true.
+
+Revised Task: N f O (N X f)
+    Behavior: Either the value of {f} should not be true initially, or it should not be true and then be true in the next timestep.
+
+Revised Task: N f A (G N f)
+    Behavior: The value of {f} should not be true initially and should never be true afterwards.
+
+Revised Task: N f A (E N f)
+    Behavior: The value of {f} should not be true initially and should eventually not be true at some point in the future.
+
+Revised Task: E(N f A (N X f))
+    Behavior: It should eventually be the case that {f} is not true initially and then not true followed by true in the next timestep.
+
+Revised Task: G(N f A (N X f))
+    Behavior: It should always be the case that {f} is not true initially and then not true followed by true in the next timestep.
+
+Revised Task: N f A (U N f)
+    Behavior: The value of {f} should not be true initially and should continue to not be true until a specific condition is met.
+
+Revised Task: N (f A X f)
+    Behavior: The value of {f} should not be true, and in the next timestep, {f} should be true.
+
+Revised Task: N f U (N X f)
+    Behavior: The value of {f} should not be true until it is not true and then true in the next timestep.
+
+Revised Task: N f A (X N f)
+    Behavior: The value of {f} should not be true initially, and in the next timestep, {f} should not be true.
   },
   "b A N E N a O b": {
     "expected behavior is {a} should be true first. Such specification omits {a}.": "a A N E N (b O b)",
@@ -6352,6 +8148,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is to make {a} and {b} be true sequentially and don't need to be adjacent.": "F(a A F(b O b))",
     "expected behavior is to make {a} and {b} be true simultanously, but {b} should not be true again.": "F(a A N E N b)",
     "expected behavior is {a} and {b} should be true sequentially and don't need to be adjacent, but {b} should not be true again.": "F(a A F(N E N b))"
+    Revised Task: b A N E a O b
+    Behavior: {b} should always be true and either {a} should be eventually true or {b} should be true.
+
+Revised Task: b A E N a O b
+    Behavior: {b} should always be true and eventually, {a} should not be true or {b} should be true.
+
+Revised Task: b A G N a O b
+    Behavior: {b} should always be true and always, {a} should not be true or {b} should be true.
+
+Revised Task: b O N E N a O b
+    Behavior: Either {b} should be true or it should not be the case that eventually {a} should not be true or {b} should be true.
+
+Revised Task: b A N E N a A b
+    Behavior: {b} should always be true and it should not be the case that eventually {a} should not be true and {b} should be true.
+
+Revised Task: b A N E N a U b
+    Behavior: {b} should always be true and it should not be the case that eventually {a} should not be true until {b} is true.
+
+Revised Task: N b A E N a O b
+    Behavior: It should not be the case that {b} is always true and eventually {a} should not be true or {b} should be true.
+
+Revised Task: b A N E a
+    Behavior: {b} should always be true and it should not be the case that {a} should be eventually true.
+
+Revised Task: b A X N E N a O b
+    Behavior: {b} should always be true and in the next timestep, it should not be the case that eventually {a} should not be true or {b} should be true.
+
+Revised Task: b A N G N a O b
+    Behavior: {b} should always be true and it should always be the case that {a} should not be true or {b} should be true.
+
+
   },
   "e A N E a U b": {
     "expected behavior is {a} and {b} should be true simultanously.": "e A N E (a A b)",
@@ -6359,6 +8186,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {b} should not be true first, and then {b} or {c} should be true.": "e A N E (a U (b O X(e)))",
     "expected behavior is at least one of {a}, {b} should be true.": "e A N E (a O b)",
     "expected behavior is {e} should always be true, and then {a} and {b} should eventually be true.": "G(e A N E (a U b))"
+    Revised Task: e A N (E a U b)
+    Behavior: The value of {e} must always be true, and the condition {a} becoming true until {b} becomes true should not happen eventually.
+
+Revised Task: e A N E (a O b)
+    Behavior: The value of {e} must always be true, and it must never be the case that either {a} or {b} becomes true eventually.
+
+Revised Task: e A N E (a U X b)
+    Behavior: The value of {e} must always be true, and it should not occur that {a} remains true until in the next time step, {b} becomes true.
+
+Revised Task: e A (E a U b)
+    Behavior: The value of {e} must always be true, and {a} must eventually become true until {b} becomes true.
+
+Revised Task: e A E (a A b)
+    Behavior: The value of {e} must always be true, and both {a} and {b} must eventually be true simultaneously.
+
+Revised Task: e A N G (a U b)
+    Behavior: The value of {e} must always be true, and it should never be the case that {a} remains true until {b} becomes true, consistently over time.
+
+Revised Task: e O N E (a U b)
+    Behavior: Either {e} or the condition where {a} becoming true until {b} becomes true should not happen eventually.
+
+Revised Task: N e A E (a U b)
+    Behavior: The value of {e} must never be true, and {a} must eventually become true until {b} becomes true.
+
+Revised Task: e A N E (a U G b)
+    Behavior: The value of {e} must always be true, and it should not be the case that {a} remains true until {b} always remains true.
+
+Revised Task: e A E G (a U b)
+    Behavior: The value of {e} must always be true, and eventually, it must be the case that {a} remains true until {b} becomes true, consistently over time.
+
+
   },
   "( E c A f O f )": {
     "expected behavior is {c} should always be true. Such specification omits {c}.": "G(c A f O f)",
@@ -6366,6 +8224,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {f} should be true twice, and then {c} should be true. Such specification omits the necessity of {f} being true twice.": "( G f A f A c ) O ( G f A f A c )",
     "expected behavior is {c} should be true and {f} should be true twice, but with no temporal relationship between them. Such specification omits the temporal relationship between {c} and {f}.": "G(f O f) A c",
     "expected behavior is {f} should be true twice and then {c} should be true. Such specification omits the necessity of {f} being true twice.": "(G(f A f) A c) O (G(f A f) A c)"
+    Revised Task: E(c A f O f)
+    Behavior: {c} and {f} should be true eventually, or {f} should be true eventually.
+
+    Revised Task: E(c O f)
+    Behavior: Either {c} or {f} should be true eventually.
+
+    Revised Task: E(c A G(f))
+    Behavior: {c} should be true eventually, and {f} should always be true.
+
+    Revised Task: G(E c A f)
+    Behavior: It should always be the case that either {c} becomes true eventually and {f} is true, or {f} becomes true.
+
+    Revised Task: E(c A X(f))
+    Behavior: {c} should be true eventually, and in the next timestep after {c} becomes true, {f} should also be true.
+
+    Revised Task: E(c U f)
+    Behavior: {c} should be true until {f} becomes true.
+
+    Revised Task: N(E c A f)
+    Behavior: It should not be the case that {c} becomes true eventually and {f} is true.
+
+    Revised Task: E(c A f A N(f))
+    Behavior: {c} and {f} should be true eventually, and at some point, {f} should be false.
+
+    Revised Task: E(c A (f U c))
+    Behavior: {c} should be true eventually, and {f} should be true until another {c} becomes true.
+
+    Revised Task: E(N(c) A f)
+    Behavior: {c} should not be true eventually, and {f} should be true.
+
+
   },
   "E ( a U a U b )": {
     "expected behavior is {a} should be true twice. Such specification omits {a}.": "F(a U (a U b))",
@@ -6373,6 +8262,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {a} and {b} should be true simultanously.": "F(a A b)",
     "expected behavior is {a} should be true twice, and then {b} should be true.": "F(a U (a U F(b)))",
     "expected behavior is {a} should be true twice, and then {b} should be true, no matter what the value of {a} is.": "F(a U (a U b))"
+    Revised Task: E ( a U a O b )
+    Behavior: Eventually, either {a} should always be true or {b} should be true.
+
+Revised Task: G ( a U a U b )
+    Behavior: Always, {a} should be true until {b} becomes true.
+
+Revised Task: E ( a U (a A b) )
+    Behavior: Eventually, {a} should be true and continue to be true until both {a} and {b} are true simultaneously.
+
+Revised Task: E ( a U (a O X b) )
+    Behavior: Eventually, {a} should be true and continue to be true until either {a} or {b} is true in the next timestep.
+
+Revised Task: E ( a A (a U b) )
+    Behavior: {a} should be true and eventually {a} should continue to be true until {b} becomes true.
+
+Revised Task: E ( X a U b )
+    Behavior: Eventually, in the next timestep {a} should be true until {b} becomes true.
+
+Revised Task: E ( a U N b )
+    Behavior: Eventually, {a} should be true and continue to be true until {b} is not true.
+
+Revised Task: E ( a U (a U G b) )
+    Behavior: Eventually, {a} should be true and continue to be true until {b} always remains true.
+
+Revised Task: E ( a U (E a U b) )
+    Behavior: Eventually, {a} should be true and continue to be true until it's eventually the case that {a} is true until {b} becomes true.
+
+Revised Task: E ( a U (a U E b) )
+    Behavior: Eventually, {a} should be true and continue to be true until it's eventually the case that {b} becomes true.
+
+
   },
   "N E e U N N E e": {
     "expected behavior is {e} should be true first. Such specification omits {e}.": "e U N N E e",
@@ -6380,6 +8300,37 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {e} should be true consecutively. Such specification omits the requirement of consecutive {e}.": "N E e U N E e",
     "expected behavior is {e} should be true twice, and no other atomic proposition should be true. Such specification omits the requirement of no other atomic proposition.": "N (E e U N N E e)",
     "expected behavior is only one atomic proposition should be true. Such specification omits the requirement of only one atomic proposition.": "N E (e U N E e)"
+    Revised Task: N E e U E e
+    Behavior: Either {e} should always eventually be true, or it must be eventually true without the initial negation.
+
+Revised Task: E e U N E e
+    Behavior: Either {e} should eventually be true, or it should not eventually be true.
+
+Revised Task: N E e A N E e
+    Behavior: {e} should not eventually be true, and it should also not be true in the next step.
+
+Revised Task: N E (e U N e)
+    Behavior: It should not be the case that {e} eventually becomes true until {e} is not true.
+
+Revised Task: E (N e U E e)
+    Behavior: Eventually, {e} should not be true until it is eventually true.
+
+Revised Task: N E (e A N E e)
+    Behavior: It should not be the case that {e} and not {e} eventually be true.
+
+Revised Task: N E (e O N E e)
+    Behavior: It should not be the case that {e} is true or it is not eventually true.
+
+Revised Task: G (e U N N E e)
+    Behavior: Always, {e} should be true until it is not true in the next two steps or eventually true.
+
+Revised Task: N G e U N E e
+    Behavior: It should not be the case that {e} is always true, or it should not eventually be true.
+
+Revised Task: E (N e U G e)
+    Behavior: Eventually, {e} should not be true until it is always true.
+
+
   },
   "N X b U N N G e": {
     "expected behavior is {e} should be true eventually, but {b} should be true first.": "N X b U N (b U G e)",
@@ -6387,6 +8338,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {e} should eventually be true, and it should be true again after {b} is false.": "N X b U N (b U (N e))",
     "expected behavior is {b} and {e} should eventually be true simultanously.": "N X b U N (b A G e)",
     "expected behavior is {e} should always be true, or {b} should be true first, and then {e} should be true.": "N X b U N (b O G e)"
+    Revised Task: N X (b U N G e)
+    Behavior: The negation of {b} being true in the next timestep is maintained until {e} is always true in the future.
+
+    Revised Task: N X b U G e
+    Behavior: The negation of {b} being true in the next timestep is maintained until {e} is always true.
+
+    Revised Task: N X b A N N G e
+    Behavior: {b} should not be true in the next timestep and {e} should not always be true.
+
+    Revised Task: N X b O N N G e
+    Behavior: Either {b} is not true in the next timestep or {e} is not always true.
+
+    Revised Task: N X (b U N E e)
+    Behavior: The negation of {b} being true in the next timestep is maintained until eventually, {e} is true.
+
+    Revised Task: N X (b U N (N G e))
+    Behavior: The negation of {b} being true in the next timestep is maintained until it is not the case that {e} is always true.
+
+    Revised Task: N X (b U E e)
+    Behavior: The negation of {b} being true in the next timestep is maintained until eventually {e} is true.
+
+    Revised Task: N X b U N G (N e)
+    Behavior: The negation of {b} being true in the next timestep is maintained until {e} is never always true.
+
+    Revised Task: N X (b U N X e)
+    Behavior: The negation of {b} being true in the next timestep is maintained until the negation of {e} being true in the next timestep.
+
+    Revised Task: N X (b U (N G e))
+    Behavior: The negation of {b} being true in the next timestep is maintained until it is not the case that {e} is always true.
   },
   "X N f O ( X d )": {
     "expected behavior is {f} should be true always. Such specification omits {f}.": "X N f O (X d O f)",
@@ -6394,6 +8374,35 @@ Behavior: The negation of the proposition that always, the negation of the propo
     "expected behavior is {d} and {f} should be true simultanously.": "X N f O (X (d A f))",
     "expected behavior is {d} should be true first, or {f} should be true first.": "X N f O (X (d O f) U X (f O d))",
     "expected behavior is {d} and {f} should be true sequentially but not necessarily adjacent.": "X N f O (X F(d A f))"
+    Revised Task: X N (f O X d)
+    Behavior: In the next timestep, it should not be true that {f} is true or {d} is true in the subsequent timestep.
+
+    Revised Task: X (N f O d)
+    Behavior: In the next timestep, either {f} should not be true or {d} should be true.
+
+    Revised Task: X N (f A X d)
+    Behavior: In the next timestep, it should not be true that both {f} and {d} in the subsequent timestep are true.
+
+    Revised Task: X (f O X N d)
+    Behavior: In the next timestep, either {f} should be true or in the subsequent timestep {d} should not be true.
+
+    Revised Task: X (f A N X d)
+    Behavior: In the next timestep, {f} should be true and it should not be the case that {d} is true in the subsequent timestep.
+
+    Revised Task: N X (f O d)
+    Behavior: It should not be the case that in the next timestep, either {f} or {d} is true.
+
+    Revised Task: X (N f O N d)
+    Behavior: In the next timestep, either {f} should not be true or {d} should not be true.
+
+    Revised Task: X N f A (X d)
+    Behavior: In the next timestep, {f} should not be true and {d} should be true in the subsequent timestep.
+
+    Revised Task: X (f U X d)
+    Behavior: In the next timestep, {f} should be true until {d} becomes true in the subsequent timestep.
+
+    Revised Task: G (X N f O d)
+    Behavior: It should always be the case that in the next timestep, {f} should not be true or {d} should be true.
   },
   "N ( f A E X e )": {
     "expected behavior is {f} should eventually be true, but {e} should never be true. Such specification omits {e}.": "N ( f A E X (f U e))",

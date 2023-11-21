@@ -8410,6 +8410,35 @@ Revised Task: E (N e U G e)
     "expected behavior is {f} should eventually be true, and {e} should be true at least once.": "N (f A E (e O X e))",
     "expected behavior is {e} should always be true, or {f} and {e} be true, but subsequently {e} should be true.": "G (f A E (e U X e))",
     "expected behavior is {f} and {e} should be true simultanously, and then {e} should always be true.": "N (f A G (e A X e))"
+    Revised Task: N (f A E(e))
+    Behavior: {f} should not be true, or {e} should eventually be true without the next timestep constraint.
+
+    Revised Task: N (f O E X e)
+    Behavior: {f} should not be true, or eventually, {e} should be true in the next timestep.
+
+    Revised Task: G (f A E X e)
+    Behavior: Always, {f} should be true and eventually, {e} should be true in the next timestep.
+
+    Revised Task: N (E X f A e)
+    Behavior: It is not the case that eventually, in the next timestep {f} should be true and {e} should be true simultaneously.
+
+    Revised Task: N (f A G X e)
+    Behavior: {f} should not be true, or {e} should always be true in the next timestep.
+
+    Revised Task: E N (f A X e)
+    Behavior: Eventually, it should not be the case that {f} is true and {e} is true in the next timestep.
+
+    Revised Task: N (f U E X e)
+    Behavior: {f} should not be true, or {e} should eventually be true in the next timestep after some condition is met.
+
+    Revised Task: N (f A X E e)
+    Behavior: {f} should not be true, or eventually, {e} should be true at some point after the next timestep.
+
+    Revised Task: N (f A X (e O g))
+    Behavior: {f} should not be true, or in the next timestep, either {e} or {g} should be true.
+
+    Revised Task: E (f A X N e)
+    Behavior: Eventually, {f} should be true and in the next timestep, {e} should not be true.
   },
   "( f A X E c )": {
     "expected behavior is {f} should be true first. Such specification omits {f}.": "f A X (E c)",
@@ -8417,6 +8446,35 @@ Revised Task: E (N e U G e)
     "expected behavior is {f} and {c} should be true sequentially and don't need to be adjacent.": "(f A F(E c))",
     "expected behavior is more than one atomic proposition in {{f}, {c}} should be true.": "(f O E c)",
     "expected behavior is {f} shoule be true, or {f} should not be true first, and then {f} or {c} should be true.": "(f U (E X c))"
+    Revised Task: (f A X c)
+    Behavior: {f} should be true and in the next timestep, {c} should be true.
+
+Revised Task: E(f A X (N c))
+    Behavior: Eventually, {f} should be true and in the next timestep, {c} should not be true.
+
+Revised Task: E(f O X E c)
+    Behavior: Eventually, either {f} or {c} in the next timestep should be true.
+
+Revised Task: (f A G E c)
+    Behavior: {f} should be true and {c} should eventually always be true.
+
+Revised Task: (f A X (c U f))
+    Behavior: {f} should be true and in the next timestep, {c} should be true until {f} becomes true again.
+
+Revised Task: G(f A X c)
+    Behavior: Always, {f} should be true and in the next timestep, {c} should be true.
+
+Revised Task: (f A E(c O f))
+    Behavior: {f} should be true and eventually, either {c} or {f} should be true.
+
+Revised Task: E(f A X (c A f))
+    Behavior: Eventually, {f} should be true and in the next timestep, both {c} and {f} should be true.
+
+Revised Task: E(N f A X c)
+    Behavior: Eventually, {f} should not be true and in the next timestep, {c} should be true.
+
+Revised Task: (f U X E c)
+    Behavior: {f} should be true until, in the next timestep, {c} eventually becomes true.
   },
   "N ( f O N X d )": {
     "expected behavior is {f} should be true first. Such specification omits {f}.": "F(f O N X d)",
@@ -8424,6 +8482,35 @@ Revised Task: E (N e U G e)
     "expected behavior is to make {f} and {d} be true simultanously.": "N(f A d)",
     "expected behavior is more than one atomic proposition in {{f}, {d}} should be true.": "N(f O d)",
     "expected behavior is {f} and {d} should be true simultanously, and then {d} should always be true.": "N(f A G(d))"
+    Revised Task: N (f O X d)
+    Behavior: Negate the situation where either {f} becomes true or {d} becomes true in the next timestep.
+
+Revised Task: N (f O N d)
+    Behavior: Negate the situation where either {f} becomes true or {d} is always false.
+
+Revised Task: N (f A N X d)
+    Behavior: Negate the situation where {f} and in the next timestep {d} are not true.
+
+Revised Task: N (f O G d)
+    Behavior: Negate the situation where either {f} becomes true or {d} is always true.
+
+Revised Task: N (f U N X d)
+    Behavior: Negate the situation where {f} is true until it's not true and in the next timestep {d} is not true.
+
+Revised Task: G (f O N X d)
+    Behavior: Always, either {f} becomes true or in the next timestep {d} is not true.
+
+Revised Task: N (E f O N X d)
+    Behavior: Negate the situation where eventually {f} becomes true or in the next timestep {d} is not true.
+
+Revised Task: N (f O X N d)
+    Behavior: Negate the situation where either {f} becomes true or in the next timestep {d} is false.
+
+Revised Task: N (N f O N X d)
+    Behavior: Negate the situation where {f} is not true or in the next timestep {d} is not true.
+
+Revised Task: N (f O N E d)
+    Behavior: Negate the situation where either {f} becomes true or eventually {d} is not true.
   },
   "G a O N a O ( b )": {
     "expected behavior is {b} should not be true and then {a} should be true. Such specification omits {a}.": "G(a O N a O b)",
@@ -8431,6 +8518,35 @@ Revised Task: E (N e U G e)
     "expected behavior is to make {a} and {b} be true simultanously.": "G(a A b)",
     "expected behavior is to make {a} and {b} be true sequentially and don't need to be adjacent.": "G(a A F(b))",
     "expected behavior is more than one atomic proposition in {{a}, {b}} should be true.": "G(a O b)"
+    Revised Task: G a A N a O (b)
+Behavior: {a} should always be true and not {a} or {b} should be true at some point.
+
+Revised Task: G a O N (a A b)
+Behavior: {a} should always be true or not ({a} and {b}) should be true at some point.
+
+Revised Task: G a O N b
+Behavior: {a} should always be true or not {b} should be true at some point.
+
+Revised Task: G (a O N a) U b
+Behavior: {a} or not {a} should always be true until {b} becomes true.
+
+Revised Task: G (a O b) U N a
+Behavior: {a} or {b} should always be true until not {a} becomes true.
+
+Revised Task: G a U (N a O b)
+Behavior: {a} should always be true until not {a} or {b} becomes true.
+
+Revised Task: G a O (N a A b)
+Behavior: {a} should always be true or not {a} and {b} should be true at some point.
+
+Revised Task: G (a U b) O N a
+Behavior: {a} should always be true until {b} becomes true or not {a} should be true at some point.
+
+Revised Task: G (a O N b) U a
+Behavior: {a} or not {b} should always be true until {a} becomes true again.
+
+Revised Task: G a O (N a U b)
+Behavior: {a} should always be true or not {a} should be true until {b} becomes true.
   },
   "G a U N a A ( a )": {
     "expected behavior is {a} should always be true. Such specification omits {a}.": "G a U (a A (a))",
@@ -8438,6 +8554,35 @@ Revised Task: E (N e U G e)
     "expected behavior is {a} should be true eventually, but not now.": "F (N a) U (a A (a))",
     "expected behavior is {a} should be true in the future, and always be true.": "G (N a) U (a A G(a))",
     "expected behavior is {a} should be true eventually, and always be true.": "F (N a) U (a A G(a))"
+    Revised Task: G a U (a)
+    Behavior: {a} should always be true until {a} is true, essentially meaning {a} should always be true.
+
+Revised Task: G a U (N a)
+    Behavior: {a} should always be true until {a} is not true, meaning {a} starts true but eventually becomes false.
+
+Revised Task: G a U (a A a)
+    Behavior: {a} should always be true until a condition where {a} and {a} are true, which is simply {a} being true.
+
+Revised Task: G a U (a O N a)
+    Behavior: {a} should always be true until either {a} is true or {a} is not true, essentially always true since one of the conditions is always met.
+
+Revised Task: G (a U a)
+    Behavior: It's always the case that {a} should be true until {a} is true again, meaning {a} should always be true.
+
+Revised Task: G a U X(a)
+    Behavior: {a} should always be true until the next timestep where {a} is true, indicating a continuous truth value for {a}.
+
+Revised Task: G a U E(a)
+    Behavior: {a} should always be true until {a} is eventually true, which does not change the overall behavior of {a} being always true.
+
+Revised Task: G a U (N a O a)
+    Behavior: {a} should always be true until either {a} is not true or {a} is true, which means {a} remains true as one condition is always satisfied.
+
+Revised Task: G (a U N a) A a
+    Behavior: It's always the case that {a} should be true until it's not true, and then {a} must be true again, implying a temporary switch in the truth value of {a}.
+
+Revised Task: N G a U (a)
+    Behavior: It's not the case that {a} should always be true until {a} is true, implying that {a} may not always hold true.
   },
   "N X ( e ) A ( c )": {
     "expected behavior is {e} should be true first. Such specification omits {e}.": "N X (e) A (c)",
@@ -8449,6 +8594,35 @@ Revised Task: E (N e U G e)
     "expected behavior is {e} and {c} should be true simultanously, and then {c} should always be true.": "N X (e) A G(c)",
     "expected behavior is finally {c} should be true, no matter what the value of {e} is.": "N X (e) U (c)",
     "expected behavior is {c} should always be true, or {e} should be true, but subsequently {c} should be true.": "G(N X (e) U (c))"
+    Revised Task: N X (e O c)
+    Behavior: In the next timestep, either {e} or {c} should be true.
+
+Revised Task: N X (e) A N X (c)
+    Behavior: In the next timestep, both {e} and {c} should be true.
+
+Revised Task: N X (G(e) A c)
+    Behavior: In the next timestep, {c} should be true and {e} should always be true thereafter.
+
+Revised Task: G(N X (e) A (c))
+    Behavior: It should always be the case that in the next timestep, {e} is true and {c} is also true.
+
+Revised Task: N X (U(e, c))
+    Behavior: In the next timestep, {e} should be true until {c} becomes true.
+
+Revised Task: N X (e A E(c))
+    Behavior: In the next timestep, {e} should be true and {c} should eventually be true.
+
+Revised Task: N X (e) O (c)
+    Behavior: In the next timestep, either {e} should be true or {c} should be true.
+
+Revised Task: E(N X (e) A (c))
+    Behavior: Eventually, it should be the case that in the next timestep, {e} is true and {c} is also true.
+
+Revised Task: N X (e A G(c))
+    Behavior: In the next timestep, {e} should be true and {c} should always be true thereafter.
+
+Revised Task: N X (e) U (c)
+    Behavior: In the next timestep, {e} should be true until {c} becomes true.
   },
   "a A E E ( b ) U b": {
     "expected behavior is {b} should be true first. Such specification omits {b}.": "b A (a U b)",
@@ -8456,6 +8630,37 @@ Revised Task: E (N e U G e)
     "expected behavior is {a} and {b} should be true sequentially and don't need to be adjacent.": "F(a A E(E(b) U b))",
     "expected behavior is {a} and {b} should be true simultanously, and then {b} should always be true.": "F(a A G(b U b))",
     "expected behavior is finally {b} should be true, no matter what the value of {a} is.": "F(a U b)"
+    Revised Task: a A E (b U b)
+    Behavior: {a} should be true eventually, and {b} should be true eventually.
+
+Revised Task: a A G E (b U b)
+    Behavior: {a} should be always true, and {b} should eventually be true.
+
+Revised Task: a A E E (b) A b
+    Behavior: {a} and {b} should be true eventually.
+
+Revised Task: a A E E (X b) U b
+    Behavior: {a} should be true eventually, and {b} should be true in the next timestep, or eventually {b} should be true.
+
+Revised Task: a A N E (b) U b
+    Behavior: {a} should be true eventually, and {b} should not be true until {b} is true.
+
+Revised Task: a A E (b O b)
+    Behavior: {a} should be true eventually, and either of {b} should be true eventually.
+
+Revised Task: a U E E (b) U b
+    Behavior: {a} should be true until it is eventually true that {b} is eventually true.
+
+Revised Task: a A E (b U X b)
+    Behavior: {a} should be true eventually, and {b} should be true until {b} is true in the next timestep.
+
+Revised Task: a O E E (b) U b
+    Behavior: Either {a} or the condition that {b} is eventually true should be true until {b} is true.
+
+Revised Task: a A E (b U G b)
+    Behavior: {a} should be true eventually, and {b} should be true until {b} is always true.
+
+
   },
   "( d A X b U N d )": {
     "expected behavior is {d} should be true first. Such specification omits {d}.": "d A X (b U N(d))",
@@ -8463,6 +8668,37 @@ Revised Task: E (N e U G e)
     "expected behavior is {b} should be true, then make {d} always true.": "(d A X G(b)) U N(d)",
     "expected behavior is {d} should be true first, then make {b} true infinite times.": "F(d A X b) U N(d)",
     "expected behavior is {d} should be true, and then {b} should not be true infinitely.": "(d A X F(b)) U N(d)"
+    Revised Task: (d A X (b U d))
+    Behavior: {d} must be true and then {b} or {d} must become true in the next timestep.
+
+    Revised Task: (d A G(b U N d))
+    Behavior: {d} should always be true, and {b} should be true until not {d} is true.
+
+    Revised Task: E(d A X (b U d))
+    Behavior: Eventually, {d} will be true and in the next timestep, either {b} or {d} must be true.
+
+    Revised Task: (d O X (b U N d))
+    Behavior: Either {d} is true, or in the next timestep, {b} should be true until not {d} is true.
+
+    Revised Task: (d A X (E b U d))
+    Behavior: {d} must be true and then eventually {b} or {d} must be true in the next timestep.
+
+    Revised Task: G(d A X b U N d)
+    Behavior: It should always be the case that {d} is true and then {b} should be true until not {d} is true.
+
+    Revised Task: (d A X (b U N (E d)))
+    Behavior: {d} must be true and then {b} should be true until it is not the case that {d} will eventually be true.
+
+    Revised Task: (d A X (N b U d))
+    Behavior: {d} must be true and then it should not be {b} until {d} is true in the next timestep.
+
+    Revised Task: (N d A X (b U d))
+    Behavior: It should not be {d}, and in the next timestep, either {b} or {d} must be true.
+
+    Revised Task: (d U X (b A N d))
+    Behavior: Either {d} should be true, or in the next timestep, {b} should be true and not {d}.
+
+
   },
   "( d A E b U N d )": {
     "expected behavior is {d} should be true first. Such specification omits {d}.": "d A (E (b U N d))",
@@ -8470,6 +8706,35 @@ Revised Task: E (N e U G e)
     "expected behavior is {b} and {d} should be true simultanously, and then {d} should always be true.": "(d A (E b A G d))",
     "expected behavior is more than one atomic proposition in {{b}, {d}} should be true.": "(d A (E b O d))",
     "expected behavior is finally {d} should be true, no matter what the values of {b} are.": "(d A (E b U d))"
+    Revised Task: (d A E(b U d))
+    Behavior: The value of {d} should always be true and eventually {b} should be true, after which {d} should be true again.
+
+Revised Task: (d A E b A N d)
+    Behavior: {d} should always be true and eventually {b} should be true. In the next timestep, {d} should also be true.
+
+Revised Task: (E d A E b U d)
+    Behavior: Eventually, both {d} and {b} should be true, with {d} being true until {b} is true.
+
+Revised Task: (d O E b U N d)
+    Behavior: Either {d} or eventually {b} should be true, with {d} being true in the next timestep.
+
+Revised Task: (d A G b U N d)
+    Behavior: {d} should always be true and {b} should always be true, followed by {d} being true in the next timestep.
+
+Revised Task: (E d A b U N d)
+    Behavior: Eventually {d} and {b} should be true, with {d} being true in the next timestep.
+
+Revised Task: (d A E b A G d)
+    Behavior: {d} should always be true, eventually {b} should be true, and {d} should always be true thereafter.
+
+Revised Task: (d A E(b U G d))
+    Behavior: {d} should always be true, and eventually {b} should be true until {d} is always true.
+
+Revised Task: (d U E b U N d)
+    Behavior: {d} should be true until eventually {b} is true, followed by {d} being true in the next timestep.
+
+Revised Task: (d A E(b O N d))
+    Behavior: {d} should always be true, and eventually either {b} or {d} in the next timestep should be true.
   },
   "G ( N f ) A X N f": {
     "expected behavior is {f} should always be true. Such specification omits {f}.": "G(f A X N f)",
@@ -8477,6 +8742,35 @@ Revised Task: E (N e U G e)
     "expected behavior is {f} should eventually be true, and then it should always be true.": "F(f A G(X N f))",
     "expected behavior is {f} should eventually be true, and then it should eventually be true again.": "F(f A X F(N f))",
     "expected behavior is {f} should eventually be true, and then it should be true for one more time.": "F(f A X (N f U f))"
+    Revised Task: G ( N f ) A N f
+    Behavior: {f} should not be true initially and subsequently, {f} should not be true at the next timestep.
+
+Revised Task: G ( N f ) O X N f
+    Behavior: Either initially {f} should not be true, or in the next timestep, {f} should not be true.
+
+Revised Task: G ( N f ) A X f
+    Behavior: {f} should not be true initially, and in the next timestep, {f} should be true.
+
+Revised Task: G ( N f ) A G N f
+    Behavior: {f} should not be true initially and should never be true subsequently.
+
+Revised Task: G ( N f ) A E N f
+    Behavior: {f} should not be true initially and at some point in the future, {f} should not be true again.
+
+Revised Task: G ( N f ) A U N f
+    Behavior: {f} should not be true initially until at some point, {f} is not true again.
+
+Revised Task: G ( N f ) U X N f
+    Behavior: {f} should not be true initially until the next timestep, where {f} should not be true again.
+
+Revised Task: G ( N f ) A X ( N f A N f )
+    Behavior: {f} should not be true initially, and in the next timestep, {f} should not be true and remain not true.
+
+Revised Task: G ( f ) A X N f
+    Behavior: {f} should be true initially, and in the next timestep, {f} should not be true.
+
+Revised Task: E ( N f ) A X N f
+    Behavior: Eventually, {f} should not be true, and in the next timestep after that event, {f} should not be true.
   },
   "N N ( e U b ) U d": {
     "expected behavior is {d} should be true eventually, and {e} should be true first. Such specification omits {e}.": "N N ( e U (b U d) )",
@@ -8484,6 +8778,37 @@ Revised Task: E (N e U G e)
     "expected behavior is {b} and {d} should be true sequentially and don't need to be adjacent.": "N N ( e U b ) A F(d)",
     "expected behavior is to make {e}, {b} and {d} be true sequentially and don't need to be adjacent.": "N N ( e A F(b A F(d)))",
     "expected behavior is {e}, {b} and {d} finally be true simultanously.": "N N ( e A b A d)"
+    Revised Task: N (e U b) U d
+    Behavior: {e} should be true until {b} becomes true, followed by {d} becoming true in the next timestep.
+
+    Revised Task: N N (e A b) U d
+    Behavior: {e} and {b} should be true at the same time, followed by {d} becoming true in the next timestep.
+
+    Revised Task: N N (e U X b) U d
+    Behavior: {e} should be true until {b} becomes true in the next timestep, followed by {d} becoming true.
+
+    Revised Task: N N (G e U b) U d
+    Behavior: {e} should always be true until {b} becomes true, followed by {d} becoming true in the next timestep.
+
+    Revised Task: N N (e U b) A d
+    Behavior: {e} should be true until {b} becomes true, and {d} should also be true in the next timestep.
+
+    Revised Task: N N (e O b) U d
+    Behavior: Either {e} or {b} should be true, followed by {d} becoming true in the next timestep.
+
+    Revised Task: N N (e U b) O d
+    Behavior: {e} should be true until {b} becomes true, or {d} becomes true in the next timestep.
+
+    Revised Task: E N (e U b) U d
+    Behavior: Eventually, {e} should be true until {b} becomes true, followed by {d} becoming true in the next timestep.
+
+    Revised Task: N N (e U b) U G d
+    Behavior: {e} should be true until {b} becomes true, followed by {d} always being true.
+
+    Revised Task: N N (e U b) U E d
+    Behavior: {e} should be true until {b} becomes true, followed by {d} eventually becoming true.
+
+
   },
   "( X a ) A N a U a": {
     "expected behavior is {a} should always be true. Such specification omits {a}.": "G(a) A N a U a",

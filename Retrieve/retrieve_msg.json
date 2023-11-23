@@ -1,91 +1,49 @@
 {
   "a": {
-    "{a} should always be true.": "G(a)",
-    "{a} should eventually be true.": "E(a)",
-    "{a} should be true in the next timestep.": "X(a)",
-    "{a} should not be true.": "N(a)",
-    "Eventually, {a} should always be true.": "E(G(a))",
+    "{a} should always be true": "G(a)",
+    "{a} should eventually be true": "E(a)",
+    "{a} should be true in the next timestep": "X(a)",
+    "{a} should not be true": "N(a)",
+    "Eventually, {a} should always be true": "E(G(a))",
     "{a} should be true frequently": "G(E(a))",
-    "In the next timestep, {a} should start being always true.": "X(G(a))",
-    "{a} should never be true.": "G(N(a))",
-    "Eventually, {a} should not be true.": "E(N(a))",
-    "In the next timestep, {a} should eventually become true.":"X(E(a))"
+    "In the next timestep, {a} should start being always true": "X(G(a))",
+    "{a} should never be true": "G(N(a))",
+    "Eventually, {a} should not be true": "E(N(a))",
+    "In the next timestep, {a} should eventually become true":"X(E(a))"
   },
-  "G(b)": {
-    "Eventually, {b} should always be true.": "E(G(b))",
-    "In the next timestep, {b} should start being always true.": "X(G(b))",
-    "{b} should never be true.": "G(N(b))",
-    "{b} should not always be true.": "N(G(b))",
-    "always, {b} should be true, or when {b} is not true, in the next timestep {b} should start being always true.": "G(b O X(b))",
-    "{b} should be true frequently.": "G(E(b))",
-    "{b} should eventually be true.": "F(b)"
+  "G(a)": {
+    "Eventually, {a} should always be true": "E(G(a))",
+    "In the next timestep, {a} should start being always true": "X(G(a))",
+    "{a} should never be true": "G(N(a))",
+    "{a} should not always be true": "N(G(a))",
+    "always, {a} should be true, or when {a} is not true, in the next timestep {a} should start being always true": "G(a O X(a))",
+    "{a} should be true frequently": "G(E(a))",
+    "{a} should eventually be true": "F(a)"
   },
-  "G(b A b)": {
-    "{b} should always be true.": "G(b)"
+  "G(a A a)": {
+    "{a} should always be true": "G(a)"
   },
-  "E d": {
-    "{d} should not be true in the next timestep.": "N(X(d))",
-    "{d} should not eventually become true.": "N(E(d))",
-Revised Task: N(G(d))
-Behavior: It should not be the case that {d} is always true.
-
-Revised Task: G(N(d))
-Behavior: It should always be the case that {d} is not true.
-
-Revised Task: E(N(d))
-Behavior: Eventually, it should be the case that {d} is not true.
-
-Revised Task: N(d A d)
-Behavior: It should not be the case that {d} and another instance of {d} are true simultaneously.
-
-Revised Task: N(d O d)
-Behavior: It should not be the case that either one of the instances of {d} is true.
-
-Revised Task: N(d U d)
-Behavior: It should not be the case that {d} should be true until another instance of {d} becomes true.
-
-Revised Task: N(d) A d
-Behavior: {d} should not be true, and simultaneously {d} should be true.
-
-Revised Task: X(N(d))
-Behavior: In the next timestep, it should be the case that {d} is not true.
+  "E a": {
+    "{a} should not be true in the next timestep": "N(X(a))",
+    "{a} should not eventually become true": "N(E(a))",
+    "{a} should not always be true": "N(G(a))",
+    "{a} should always be false": "G(N(a))",
+    "Eventually {a} should be false": "E(N(a))",
+    "In the next timestep, {a} should not be true": "X(N(d))" 
   },
-  "X e": {
-    Revised Task: X(X e)
-Behavior: In the next timestep, and then in the following timestep, {e} should be true.
-
-Revised Task: X(N e)
-Behavior: In the next timestep, it should be the case that {e} is not true.
-
-Revised Task: X(E e)
-Behavior: In the next timestep, it should eventually be the case that {e} becomes true.
-
-Revised Task: X(G e)
-Behavior: In the next timestep, it should always be the case that {e} is true.
-
-Revised Task: G(X e)
-Behavior: It should always be the case that in the next timestep, {e} is true.
-
-Revised Task: E(X e)
-Behavior: Eventually, it should be the case that in the next timestep, {e} is true.
-
-Revised Task: X(e A e)
-Behavior: In the next timestep, {e} and another instance of {e} should be true simultaneously.
-
-Revised Task: X(e O e)
-Behavior: In the next timestep, either one of the instances of {e} should be true.
-
-Revised Task: X(e U e)
-Behavior: In the next timestep, {e} should be true until another instance of {e} becomes true.
-
-Revised Task: N(X e)
-Behavior: It should not be the case that in the next timestep, {e} is true.
+  "X a": {
+    "In the next timestep, {a} should be true in the next timestep": "X(X a)",
+    "{a} should not be true in the next timestep" : "X(N a)",
+    "Beginning from the next timestep, {a} should eventually be true": "X(E a)",
+    "Beginning from the next timestep, {a} should always be true": "X(G a)",
+    "Eventually, {a} should be true": "E(X a)",
+    "In the next timestep, {a} and {b} should be true simultaneously": "X(a A b)", 
+    "In the next timestep, {a} or {b} should be true": "X(a O b)",
+    "In the next timestep, {a} should hold true until {b} becomes true": "X(a U b)"
   },
-  "N e": {
-    Revised Task: N(N e)
-Behavior: It should not be the case that {e} is not true. (Double negation, effectively meaning {e} should be true.)
-
-Revised Task: N(X e)
+  "N a": {
+    "{a} should be true": "N(N a)",
+    "{a} should not be true in the next timpstep": "N(X e)",
 Behavior: It should not be the case that {e} is true in the next timestep.
 
 Revised Task: N(E e)

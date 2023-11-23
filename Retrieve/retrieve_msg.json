@@ -42,33 +42,18 @@
     "In the next timestep, {a} should hold true until {b} becomes true": "X(a U b)"
   },
   "N a": {
-    "{a} should be true": "N(N a)",
-    "{a} should not be true in the next timpstep": "N(X e)",
-Behavior: It should not be the case that {e} is true in the next timestep.
+    "{a} should be true": "N(N(a))",
+    "{a} should not be true in the next timpstep": "N(X(a))",
+    "{a} should not be true": "N(F(a))",
+    "{a} should not be always true": "N(G(e))",
+    "{a} should always be false": "G(N e)",
+    "{a} should eventually be false": "E(N e)",
+    "{a} and {b} should not be true simultaneously": "N(a A b)",
+    "Either {a} or {b} should be true": "N(a O b)",
+    "{a} should hold true until {b} becomes true": "N(a U b)",
 
-Revised Task: N(E e)
-Behavior: It should not be the case that {e} eventually becomes true.
-
-Revised Task: N(G e)
-Behavior: It should not be the case that {e} is always true.
-
-Revised Task: G(N e)
-Behavior: It should always be the case that {e} is not true.
-
-Revised Task: E(N e)
-Behavior: Eventually, it should be the case that {e} is not true.
-
-Revised Task: N(e A e)
-Behavior: It should not be the case that {e} and another instance of {e} are true simultaneously.
-
-Revised Task: N(e O e)
-Behavior: It should not be the case that either one of the instances of {e} is true.
-
-Revised Task: N(e U e)
-Behavior: It should not be the case that {e} should be true until another instance of {e} becomes true.
-
-Revised Task: X(N e)
 Behavior: In the next timestep, it should be the case that {e} is not true.
+Revised Task: X(N e)
     "expected behavior is {e} should never be true. Such specification omits {e}.": "N F(e)",
     "expected behavior is {e} should always be true.": "G(e)",
     "expected behavior is {e} should first be true, and then false.": "F(e U N(e))",
@@ -81,32 +66,32 @@ Behavior: In the next timestep, it should be the case that {e} is not true.
     "expected behavior is {a} should be true first, and then {d} should be true.": "F(a A X(d))",
     "expected behavior is {d} should be true, no matter what the values of {a} are.": "F(a U d)",
     "expected behavior is {a} or {d} should be true.": "G(a A d)"
+    Behavior: {a} should be true simultaneously with {d} being true in the next timestep.
     Revised Task: a A X(d)
-Behavior: {a} should be true simultaneously with {d} being true in the next timestep.
 
+    Behavior: {a} should be true while it should not be the case that {d} is true.
 Revised Task: a A N(d)
-Behavior: {a} should be true while it should not be the case that {d} is true.
 
-Revised Task: a A E(d)
 Behavior: {a} should be true and eventually, {d} should become true.
+Revised Task: a A E(d)
 
-Revised Task: a A G(d)
 Behavior: {a} should be true and {d} should always be true.
+Revised Task: a A G(d)
 
-Revised Task: G(a A d)
 Behavior: It should always be the case that {a} and {d} are true simultaneously.
+Revised Task: G(a A d)
 
-Revised Task: E(a A d)
 Behavior: Eventually, it should be the case that {a} and {d} are true simultaneously.
+Revised Task: E(a A d)
 
-Revised Task: a A (d A d)
 Behavior: {a} should be true simultaneously with {d} and another instance of {d} being true.
+Revised Task: a A (d A d)
 
-Revised Task: a A (d O d)
 Behavior: {a} should be true simultaneously with either one of the instances of {d} being true.
+Revised Task: a A (d O d)
 
-Revised Task: a A (d U d)
 Behavior: {a} should be true while {d} should be true until another instance of {d} becomes true.
+Revised Task: a A (d U d)
 
 Revised Task: X(a A d)
 Behavior: In the next timestep, it should be the case that {a} and {d} are true simultaneously.

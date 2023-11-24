@@ -56,35 +56,16 @@
     "{a} and {b} should be true sequentially": "E(a A E(b))",
     "At some point in the future, {a} and {b} should be true simultaneously, and from that point onwards, 'b' should always be true. When {b} is not true, {a} and {b} should be true simultaneously again, and then {b} should always be true": "E(a A G(b))",
     "Finally, {a} and {b} should be true simultaneously to lead {b} always being true. Once {b} is not true, this procedure is repeated": "E(a A G(b))",
-    
-    "expected behavior is {f} should always be true, or {a} be true, but subsequently {f} should be true.": "G(a U f)",
-    a should be true Either {f} should be true or {a} should be true in the next timestep.
-    Revised Task: f O X(a)
-
-Revised Task: f O N(a)
-Behavior: Either {f} should be true or it should not be the case that {a} is true.
-
-Revised Task: f O E(a)
-Behavior: Either {f} should be true or eventually, {a} should become true.
-
-Revised Task: f O G(a)
-Behavior: Either {f} should be true or {a} should always be true.
-
-Revised Task: G(f O a)
-Behavior: It should always be the case that either {f} or {a} is true.
-
-Revised Task: E(f O a)
-Behavior: Eventually, it should be the case that either {f} or {a} is true.
-
-Revised Task: f O (a A a)
-Behavior: Either {f} should be true or {a} and another instance of {a} should be true simultaneously.
-
-Revised Task: f O (a O a)
-Behavior: Either {f} should be true or either one of the instances of {a} should be true.
-
-Revised Task: f O (a U a)
-Behavior: Either {f} should be true or {a} should be true until another instance of {a} becomes true.
-
+    "{b} should always be true. Once {b} becomes false, {a} should be true at the next timestep, and holding true until {b} becomes always true": "G(a U b)",
+    "{a} should be true or {b} should be true in the next timestep": "a O X(b)",
+    "At the beginning, {a} should be true, or {b} is false": "a O N(b)", 
+    "{a} should be true, or eventually b is true": "a O E(b)",
+    "{a} is true, or {b} is always true": "a O G(b)",
+    "Either {a} or {b} should always be true": "G(a O b)",
+    "Eventually either {a} or {b} is true": "E(a O b)",
+    "Either {a} should be true, or {b} and {c} should be true simultaneously": "a O (b A c)",
+    "{a} or {b} or {c} should be true": "a O b O c",
+    "Eiter {a} should be true, or {b} should be true until {c} becomes true": "a O (b U c)",
 Revised Task: X(f O a)
 Behavior: In the next timestep, it should be the case that either {f} or {a} is true.
   },

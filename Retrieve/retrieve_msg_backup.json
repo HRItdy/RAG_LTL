@@ -1,5 +1,5 @@
 {
-    "{a} should be true at the beginning": "a",
+  "a": {
     "{a} should always be true": "G(a)",
     "{a} should eventually be true": "E(a)",
     "{a} should be true in the next timestep": "X(a)",
@@ -9,24 +9,42 @@
     "In the next timestep, {a} should start being always true": "X(G(a))",
     "{a} should never be true": "G(N(a))",
     "Eventually, {a} should not be true": "E(N(a))",
-    "In the next timestep, {a} should eventually become true":"X(E(a))",
+    "In the next timestep, {a} should eventually become true":"X(E(a))"
+  },
+  "G(a)": {
+    "Eventually, {a} should always be true": "E(G(a))",
+    "In the next timestep, {a} should start being always true": "X(G(a))",
+    "{a} should never be true": "G(N(a))",
     "{a} should not always be true": "N(G(a))",
     "always, {a} should be true, or when {a} is not true, in the next timestep {a} should start being always true": "G(a O X(a))",
+    "{a} should be true frequently": "G(E(a))",
+    "{a} should eventually be true": "F(a)"
+  },
+  "G(a A a)": {
+    "{a} should always be true": "G(a)"
+  },
+  "E a": {
     "{a} should not be true in the next timestep": "N(X(a))",
     "{a} should not eventually become true": "N(E(a))",
+    "{a} should not always be true": "N(G(a))",
+    "{a} should always be false": "G(N(a))",
     "Eventually {a} should be false": "E(N(a))",
-    "In the next timestep, {a} should not be true": "X(N(a))",
+    "In the next timestep, {a} should not be true": "X(N(a))" 
+  },
+  "X a": {
     "In the next timestep, {a} should be true in the next timestep": "X(X a)",
-    "{a} should be false in the next timestep" : "X(N a)",
+    "{a} should not be true in the next timestep" : "X(N a)",
     "Beginning from the next timestep, {a} should eventually be true": "X(E a)",
     "Beginning from the next timestep, {a} should always be true": "X(G a)",
-    "Eventually, {a} should be true": "E(X(a))",
+    "Eventually, {a} should be true": "E(X a)",
     "In the next timestep, {a} and {b} should be true simultaneously": "X(a A b)", 
     "In the next timestep, {a} or {b} should be true": "X(a O b)",
-    "In the next timestep, {a} should hold true until {b} becomes true": "X(a U b)",
-    "At the beginning, {a} should be true": "N(N(a))",
+    "In the next timestep, {a} should hold true until {b} becomes true": "X(a U b)"
+  },
+  "N a": {
+    "{a} should be true": "N(N(a))",
     "{a} should not be true in the next timpstep": "N(X(a))",
-    "Always, {a} should not be true": "N(F(a))",
+    "{a} should not be true": "N(F(a))",
     "{a} should not be always true": "N(G(a))",
     "{a} should always be false": "G(N a)",
     "{a} should eventually be false": "E(N a)",
@@ -35,8 +53,15 @@
     "{a} should hold true until {b} becomes true": "N(a U b)",
     "In the next timestep, {a} should be false": "X(N a)",
     "{a} should always be true.": "G(a)",
-    "Finally {b} should be true, no matter what the value of {a} is": "E(a U b)",
-    "{a} and {b} should be true simultaneously": "a A b" ,
+    "{a} should eventually be true": "E(a)"
+  },
+  "F(a U b)": {
+    "Finally {b} should be true": "E(b)"
+  },
+  "a A (b A b)":{
+    "{a} and {b} should be true simultaneously": "a A b" 
+  },
+  "a A b": {
     "Eventually {a} and {b} should be true simultanously": "E(a A b)",
     "Eventually {a} or {b} should be true": "E(a O b)",
     "Finally {a} should be true, and then {b} should be true following closely": "E(a A X(b))",
@@ -51,13 +76,14 @@
     "At the beginning, {a} should be true simultaneously with {b} and {c} being true": "a A (b A c)",
     "At the beginning, {a} should be true simultaneously with either {b} or {c} being true": "a A (b O c)",
     "{a} and {c} should be true at the beginning, or {a} and {b} should be true at the beginning, and then {b} should hold true until {c} becomes true": "a A (b U c)",
-    "At the beginning, {a} or {b} should be true": "a O b",
+    "In the next timestep, {a} and {b} should be true simultaneously": "X(a A b)"
+  },
+  "a O b": {
+    "Eventually {a} or {b} should be true": "E(a O b)",
     "At some future point, {a} will be true, and at some point after {a} is true, {b} will also become true": "E(a A E(b))",
-    "{a} and {b} should be true sequentially": "E(a A E(b))",
     "At some point in the future, {a} and {b} should be true simultaneously, and from that point onwards, 'b' should always be true. When {b} is not true, {a} and {b} should be true simultaneously again, and then {b} should always be true": "E(a A G(b))",
-    "Finally, {a} and {b} should be true simultaneously to lead {b} always being true. Once {b} is not true, this procedure is repeated": "E(a A G(b))",
-    
-    "expected behavior is {f} should always be true, or {a} be true, but subsequently {f} should be true.": "G(a U f)",
+    "expected behavior is finally {f} should be true, no matter what the values of {a} are.": "F(a U f)",
+    "expected behavior is {f} should always be true, or {a} be true, but subsequently {f} should be true.": "G(a U f)"
     a should be true Either {f} should be true or {a} should be true in the next timestep.
     Revised Task: f O X(a)
 

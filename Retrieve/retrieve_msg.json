@@ -94,6 +94,6 @@
     "Beginning from the next timestep, {b} should be true at the beginning, otherwise {a} and {b} should be true simultaneously and then {a} should be true frequently, or {b} should be true first, and after {b} being false, {a} should be true frequently": "(G(E(a)) U X(b))",
     "From the next timestep, {a} should not be true": "G(N(X(a)))",
     "{a} should be false frequently": "E(G(N(a)))",
-    "Eventually {a} should be true or {b} should be true after the first timestep": "E(a O X(b))"
+    "Eventually {a} should be true or {b} should be true after the first timestep": "E(a O X(b))",
 }
 

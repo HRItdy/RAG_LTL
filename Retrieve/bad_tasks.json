@@ -232,7 +232,7 @@ Behavior: {b} should always be true in the next-next timestep.
 Revised Task: F X X b
 
 Behavior: Eventually, {b} should be true in the next-next timestep.
-
+   
 Behavior: Always, in the next timestep, {b} should be true.
 Revised Task: E X N b
 

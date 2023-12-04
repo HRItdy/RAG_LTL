@@ -108,7 +108,10 @@ class LTL():
     
     def translate(self):
         #convert the symbolic automaton to python code, prepare for the next examination
-        code = "def process_dfa(state, action):\n"
+        accepting = set()
+        trap = set()
+        visited = set()
+        code = "accepting_node = {}, trap_node = {}:\n"
         for (current_state, symbol), next_state in transitions.items():
             code += f"    if state == '{current_state}' and action == '{symbol}':\n"
             code += f"        return '{next_state}'\n"

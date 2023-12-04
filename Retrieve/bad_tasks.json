@@ -12,7 +12,7 @@ Behavior: Eventually, it should be the case that it is not the case that {d} eve
 
 Revised Task: G N E(d)
 Behavior: It should always be the case that it is not the case that {d} eventually becomes true.
-
+G (b -> (a & b) U (G a) | (b U (! b & G a))
 Revised Task: N E (d A d)
 Behavior: It should not be the case that eventually both instances of {d} are true simultaneously.
 
@@ -218,7 +218,7 @@ Revised Task: X X F b
 
 Behavior: Starting from the next-next timestep, {b} should be true at least once.
 Revised Task: X X X b
-
+ 
 Behavior: {b} should be true in the next-next-next timestep.
 Revised Task: X X (b U a)
 

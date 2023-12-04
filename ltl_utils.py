@@ -1,22 +1,30 @@
 import networkx as nx
 from flloat.parser.ltlf import LTLfParser
+from ltlf2dfa.parser.ltlf import LTLfParser as LTLf_dot
+
 import sympy
 
 class LTL():
     def __init__(self, task) -> None:
         parser = LTLfParser()
-        self.task = parser(self.replace(task))
+        dot_parser = LTLf_dot()
+        self.task_str = self.replace(task)
+        self.task = parser(self.task_str)
+        self.dot_task = dot_parser(self.task_str)
 
     def replace(self, task):
         # Replace other symbols with the standard symbols for flloat  ['A', 'O', 'N', 'G', 'U', 'X', 'E'] -> ['&', '|', '!', 'G', 'U', 'X', 'F']
-        task.replace('A','&')
-        task.replace('O','|')
-        task.replace('N','!')
-        task.replace('E','F')
+        task = task.replace('A','&')
+        task = task.replace('O','|')
+        task = task.replace('N','!')
+        task = task.replace('E','F')
         return task
 
     def to_dfa(self):
         return self.task.to_automaton()
+    
+    def get_dot(self):
+        return self.dot_task.to_dfa()
     
     def to_graphviz(self):
         return self.to_dfa.to_graphviz()
@@ -97,6 +105,16 @@ class LTL():
             return parsed_policy
         parsed_policy = parse_policy(policy_sketch, mini_length)
         return parsed_policy, self.task.truth(parsed_policy, timestep)
+    
+    def translate(self):
+        #convert the symbolic automaton to python code, prepare for the next examination
+        code = "def process_dfa(state, action):\n"
+        for (current_state, symbol), next_state in transitions.items():
+            code += f"    if state == '{current_state}' and action == '{symbol}':\n"
+            code += f"        return '{next_state}'\n"
+            code += "    # Handle invalid state or action\n"
+            code += "    raise ValueError('Invalid state or action')\n"
+        return code
 
 # # evaluate over finite traces
 # t1 = [

@@ -9,7 +9,7 @@ from gym import spaces
 # rough hack
 import sys
 # sys.path.insert(0, '../')
-from resolver import progress, is_accomplished
+from .resolver import progress, is_accomplished
 from . import ltl_sampler as ls
 from . import ltl2tree as lt
 

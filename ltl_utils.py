@@ -107,16 +107,38 @@ class LTL():
         return parsed_policy, self.task.truth(parsed_policy, timestep)
     
     def translate(self):
-        #convert the symbolic automaton to python code, prepare for the next examination
-        accepting = set()
-        trap = set()
-        visited = set()
-        code = "accepting_node = {}, trap_node = {}:\n"
-        for (current_state, symbol), next_state in transitions.items():
-            code += f"    if state == '{current_state}' and action == '{symbol}':\n"
-            code += f"        return '{next_state}'\n"
-            code += "    # Handle invalid state or action\n"
-            code += "    raise ValueError('Invalid state or action')\n"
+        task_graph = self.to_networkx()
+        accepts = nx.get_node_attributes(task_graph, "accept")      
+        guards = nx.get_edge_attributes(task_graph, "guard")
+        #record the accepting nodes and all the trap nodes
+        accept_nodes = []
+        trap_nodes = []
+        for node in accepts.keys():
+            if accepts[node]:
+                accept_nodes.append(node)
+                continue
+            successors = nx.dfs_successors(task_graph, source=node)[node]
+            if len(successors) == 1 and successors[0] == node:
+                trap_nodes.append(node)
+        #convert the automaton to python code, prepare for the examination
+        edges = list(nx.dfs_edges(task_graph, source = self.start_node))
+        def unfold(code, count, task_graph, node):
+            indent = "    "
+            successors = list(task_graph.successors(node))
+            if len(successors) == 1 and successors[0] == node:
+                code += indent * count 
+                if node in accept_nodes:
+                    return code + "return true\n"
+                elif node in trap_nodes:
+                    return code + "return false\n"
+            else:
+                for succ in successors:
+                    code += f"if state == {node} and action == {guards[(node, succ)]}:\n"
+                    code += f"    state = {succ}'\n"
+                    code += unfold(code, count+1, task_graph, succ)
+                
+        code = "accepting_node = {}, trap_node = {}:\n".format(accept_nodes, trap_nodes)
+        unfold(code, 0, task_graph, self.start_node)
         return code
 
 # # evaluate over finite traces
@@ -136,8 +158,8 @@ class LTL():
 # assert not parsed_formula.truth(t2, 0)
 
 if __name__ == '__main__':
-    a = LTL('G(kitchen & living_room)')
-    a.random_walk()
+    a = LTL('F(a & F(b))')
+    a.translate()
 
     
 

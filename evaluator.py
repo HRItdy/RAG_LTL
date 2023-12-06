@@ -11,14 +11,6 @@ import numpy as np
 from utils import *
 import networkx as nx
 
-ltl = LTL(task='X(N(a U b))')
-dfa = ltl.to_networkx()
-k = list(nx.bfs_edges(dfa, source = 0))
-t = dfa[k[0][0]][k[0][1]]
-p = dfa.edges()
-dfs_edges = list(nx.dfs_edges(dfa, source=1))
-dfs_edges_with_attrs = [(u, v, dfa[u][v]) for u, v in dfs_edges]
-print(dfa)
 DEVICE = "cuda" if th.cuda.is_available() else "cpu"
 ## Initialize. load the retrieve dataset and get the embedding
 env = LTLBootcamp()

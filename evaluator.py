@@ -23,7 +23,7 @@ with open('./Retrieve/retrieve_msg.json') as retrieve_data:
 task_spec = random.choice(list(retrieve_dict.keys()))
 GEN_PROMPT = generate_prompt(task_spec)
 ## Get the result
-task = get_response(GEN_PROMPT)[0]
+task, output = get_response(GEN_PROMPT)[0]
 
 ltl = LTL(task)
 dfa = ltl.to_networkx()

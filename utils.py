@@ -69,7 +69,7 @@ def check_violation(task_spec, random_walks, ltl_model):
     return satisfy, error_msg
 
 def generate_prompt(nl_task):
-    prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task in () and without extra explanation".replace('TASK-TO-BE-REPLACED', nl_task)
+    prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task in {} and without extra explanation".replace('TASK-TO-BE-REPLACED', nl_task)
     return prompt
 
 def evaluate_prompt(task_spec, policy_sketch):
@@ -107,7 +107,6 @@ def get_response(prompt):
         presence_penalty=0
         )
     output = response['choices'][0]['text']
-    results = re.findall(r'\(.*?\)', output)  
-    results = [result.lstrip('(').rstrip(')') for result in results]
-    return results
+    result = re.findall(r'\{.*?})', output)  
+    return result, output
 

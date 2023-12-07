@@ -11,20 +11,24 @@ import numpy as np
 import random
 from utils import *
 import networkx as nx
+import openai
 
 DEVICE = "cuda" if th.cuda.is_available() else "cpu"
+openai.api_key = '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'
 
 import json
 with open('./Retrieve/retrieve_msg.json') as retrieve_data:
     retrieve_dict = json.load(retrieve_data)
 
-task_spec = random.choice(retrieve_dict.keys())
+task_spec = random.choice(list(retrieve_dict.keys()))
 GEN_PROMPT = generate_prompt(task_spec)
 ## Get the result
-task = get_response(task_spec, GEN_PROMPT)[0]
+task = get_response(GEN_PROMPT)[0]
+
+ltl = LTL(task)
+dfa = ltl.to_networkx()
 
 # Evaluate the generated task 
-# ltl2ba, generate the policy sketch
 violation = True
 times = 0
 ltl_model = LTL(task)

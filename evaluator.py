@@ -29,10 +29,7 @@ ltl = LTL(response)
 dfa = ltl.to_networkx()
 
 # Evaluate the generated task 
-violation = True
 times = 0
-ltl_model = LTL(task)
-random_walks = ltl_model.random_walk()
 violation, error_msg = check_violation(nl_task, random_walks, ltl_model)
 top_k = 3 # top_k
 

@@ -69,7 +69,7 @@ def check_violation(task_spec, random_walks, ltl_model):
     return satisfy, error_msg
 
 def generate_prompt(nl_task):
-    prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task in \{\} without extra explanation".replace('TASK-TO-BE-REPLACED', nl_task)
+    prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task without extra explanation. You should use '&', '|', '!', 'G', 'U', 'X', 'F' for 'and', 'or', 'not', 'always', 'until', 'next', 'Eventually'.".replace('TASK-TO-BE-REPLACED', nl_task)
     return prompt
 
 def evaluate_prompt(task_spec, policy_sketch):
@@ -97,7 +97,7 @@ def get_response(prompt):
     #assert prompt_response in ['generate', 'evaluate', 'revise'], "Unknown prompt type!"
     import re
     response = openai.Completion.create(
-        model="text-davinci-003",
+        model="gpt-3.5-turbo-instruct",
         prompt=prompt,
         temperature=0.7,
         max_tokens=512,
@@ -107,6 +107,7 @@ def get_response(prompt):
         presence_penalty=0
         )
     output = response['choices'][0]['text']
-    result = re.findall(r'\{.*?})', output)  
-    return result, output
+    output = output.lstrip('\n')
+    # result = re.findall(r'\{.*?})', output)  
+    return output
 

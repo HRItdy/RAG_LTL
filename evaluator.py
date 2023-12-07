@@ -14,7 +14,7 @@ import networkx as nx
 import openai
 
 DEVICE = "cuda" if th.cuda.is_available() else "cpu"
-openai.api_key = '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'
+openai.api_key = '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'
 
 import json
 with open('./Retrieve/retrieve_msg.json') as retrieve_data:
@@ -23,9 +23,9 @@ with open('./Retrieve/retrieve_msg.json') as retrieve_data:
 task_spec = random.choice(list(retrieve_dict.keys()))
 GEN_PROMPT = generate_prompt(task_spec)
 ## Get the result
-task, output = get_response(GEN_PROMPT)[0]
+response = get_response(GEN_PROMPT)
 
-ltl = LTL(task)
+ltl = LTL(response)
 dfa = ltl.to_networkx()
 
 # Evaluate the generated task 

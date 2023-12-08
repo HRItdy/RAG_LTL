@@ -1,6 +1,7 @@
 import networkx as nx
 from flloat.parser.ltlf import LTLfParser
 from ltlf2dfa.parser.ltlf import LTLfParser as LTLf_dot
+from itertools import product
 
 import sympy
 
@@ -22,9 +23,6 @@ class LTL():
 
     def to_dfa(self):
         return self.task.to_automaton()
-    
-    def get_dot(self):
-        return self.dot_task.to_dfa()
     
     def to_graphviz(self):
         return self.to_dfa.to_graphviz()
@@ -111,27 +109,42 @@ class LTL():
         dot = nx.drawing.nx_pydot.to_pydot(task_graph)
         dot = dot.to_string()
         return dot
+    
+    def get_guards(self, G):
+        guards = nx.get_edge_attributes(G, "guard")
+        return guards
 
-
-# # evaluate over finite traces
-# t1 = [
-#     {"a": False, "b": False},
-#     {"a": True, "b": False},
-#     {"a": True, "b": False},
-#     {"a": True, "b": True},
-#     {"a": False, "b": False},
-# ]
-# assert parsed_formula.truth(t1, 0)
-# t2 = [
-#     {"a": False, "b": False},
-#     {"a": True, "b": True},
-#     {"a": False, "b": True},
-# ]
-# assert not parsed_formula.truth(t2, 0)
+    def get_alphabet(self, task):
+        alphabet = set()
+        for char in task:
+            if char not in ['A', 'O', 'N', 'G', 'U', 'X', 'E', '&', '|', '!', 'F', ' ', '\\']:
+                alphabet.add(char)
+        return alphabet
+    
+    def get_events(self, guard):
+        #decompose the guards into composition of atomic propositions
+        events = []
+        alphabet = self.get_alphabet(guard)
+        guard_parser = LTLfParser()
+        parsed_guard = guard_parser(guard)
+        def combo(alphabet):
+            # Generate all possible combinations of True/False for the selected letters
+            combinations = list(product([True, False], repeat=len(alphabet)))
+            # Format the output as a list of dictionaries
+            output = []
+            for combo in combinations:
+                output.append({letter: value for letter, value in zip(alphabet, combo)})
+            return output
+        combos = combo(alphabet)
+        for combo in combos:
+            if parsed_guard.truth([combo], 0):
+                events.append(combo)
+        return events
 
 if __name__ == '__main__':
     a = LTL('X(!(a U b))')
-    a.get_dot()
+    l = a.get_events('a | !b')
+    print('a')
 
     
 

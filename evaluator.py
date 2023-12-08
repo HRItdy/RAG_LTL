@@ -27,10 +27,13 @@ response = get_response(GEN_PROMPT)
 
 ltl = LTL(response)
 dfa = ltl.to_networkx()
+# get all the guards
+guards = LTL.get_guards(dfa)
+# for each guard, generate the corresponding 
+
 
 # Evaluate the generated task 
 times = 0
-violation, error_msg = check_violation(nl_task, random_walks, ltl_model)
 top_k = 3 # top_k
 
 while violation and times <= 5:

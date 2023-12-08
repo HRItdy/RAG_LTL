@@ -72,6 +72,13 @@ def generate_prompt(nl_task):
     prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task without extra explanation. You should use '&', '|', '!', 'G', 'U', 'X', 'F' for 'and', 'or', 'not', 'always', 'until', 'next', 'Eventually'.".replace('TASK-TO-BE-REPLACED', nl_task)
     return prompt
 
+def process_prompt(nl_task, truth):
+    prompt = "The original task specification is: TASK-TO-BE-REPLACED. Now".replace('TASK-TO-BE-REPLACED', nl_task)
+    for ap, value in truth.items():
+        assignment = f" {ap} is true," if value else f" {ap} is false,"
+        prompt += assignment
+    prompt += " then reason the new task specification after these and output without extra explaination."
+
 def evaluate_prompt(task_spec, policy_sketch):
     #preprocess the policy_sketch first?
     policy_sketch = ",".join(step for step in policy_sketch)

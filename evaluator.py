@@ -23,14 +23,24 @@ with open('./Retrieve/retrieve_msg.json') as retrieve_data:
 task_spec = random.choice(list(retrieve_dict.keys()))
 GEN_PROMPT = generate_prompt(task_spec)
 ## Get the result
-response = get_response(GEN_PROMPT)
+#response = get_response(GEN_PROMPT)
 
+response = 'F(a & F(! b))'
 ltl = LTL(response)
 dfa = ltl.to_networkx()
-# get all the guards
-guards = LTL.get_guards(dfa)
-# for each guard, generate the corresponding 
+## Get all the guards
+guards = ltl.get_guards(dfa)
+## For each guard, generate the corresponding event combination
+truth_assignment = {}
+for guard in guards.values():
+    truth_assignment[guard] = []
+    p = ltl.get_events(guard)
+    truth_assignment[guard].extend(p)
 
+for 
+## Progress the natural language task specification
+
+## Progress the linear temporal logic task
 
 # Evaluate the generated task 
 times = 0

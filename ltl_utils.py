@@ -18,6 +18,7 @@ class LTL():
         task = task.replace('A','&')
         task = task.replace('O','|')
         task = task.replace('N','!')
+        task = task.replace('~','!')
         task = task.replace('E','F')
         return task
 
@@ -117,12 +118,15 @@ class LTL():
     def get_alphabet(self, task):
         alphabet = set()
         for char in task:
-            if char not in ['A', 'O', 'N', 'G', 'U', 'X', 'E', '&', '|', '!', 'F', ' ', '\\']:
+            if char not in ['A', 'O', 'N', 'G', 'U', 'X', 'E', '&', '|', '!', 'F', ' ', '\\', '~']:
                 alphabet.add(char)
         return alphabet
     
     def get_events(self, guard):
         #decompose the guards into composition of atomic propositions
+        if guard in ['True', 'False']:
+            return []
+        guard = self.replace(guard)
         events = []
         alphabet = self.get_alphabet(guard)
         guard_parser = LTLfParser()

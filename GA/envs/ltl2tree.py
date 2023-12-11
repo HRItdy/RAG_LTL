@@ -201,13 +201,7 @@ def unroll_tree(ltltree):
     for child in ltltree.children:
         leaf_lists.append(unroll_tree(child))
     ltl_list.extend(leaf_lists)
-    return ltl_list
-    
-
-    for i in range(len(ltl_tree.children)):
-        join([ltl_tree_str(ltl_tree.children[i]) for i in range(len(ltl_tree.children))])
-    pass
-
+    return ltl_list    
 
 if __name__ == '__main__':
     ltl_formula = '((G a) A (E N b))'

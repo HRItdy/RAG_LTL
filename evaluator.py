@@ -7,7 +7,7 @@ from stable_baselines3 import PPO
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.evaluation import evaluate_policy
 from ltl_utils import LTL
-from GA.ltl_progression import *
+from GA.envs.resolver import progress
 from GA.envs import ltl2tree as lt
 import numpy as np
 import random
@@ -49,8 +49,7 @@ for guard, truth in truth_assignment.items():
         ltl_str = lt.ltl_tree_str(ltl_tree)
         ltl_list = lt.unroll_tree(ltl_tree)
         processed_task = progress(ltl_list, events)
-        processed_task = lt.ltl_tree_str(processed_task)
-
+        processed_ltl_str = lt.ltl_tree_str(processed_task)
     ## Progress the natural language task specification
     prompt = process_prompt(task_spec, truth)
     processed_spec = get_response(prompt)

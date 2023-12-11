@@ -21,7 +21,15 @@ class LTL():
         task = task.replace('~','!')
         task = task.replace('E','F')
         return task
-
+    
+    def re_replace(self, task):
+        task = task.replace('&','A')
+        task = task.replace('|','O')
+        task = task.replace('!','N')
+        task = task.replace('~','N')
+        task = task.replace('F','E')
+        return task
+    
     def to_dfa(self):
         return self.task.to_automaton()
     

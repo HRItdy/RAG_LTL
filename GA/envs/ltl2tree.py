@@ -38,7 +38,7 @@ def get_ltl_grammar(symbols):
 
 
 def parse_ltl(formula, symbols):
-    tokens = formula.replace('(', '( ').replace(')', ' )').replace('N', 'N ').split()
+    tokens = formula.replace('(', ' ( ').replace(')', ' ) ').replace('N', 'N ').split()
     grammar = get_ltl_grammar(symbols)
     parser = BottomUpLeftCornerChartParser(grammar)
     trees = [tree for tree in parser.parse(tokens)]

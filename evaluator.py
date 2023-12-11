@@ -35,16 +35,29 @@ truth_assignment = {}
 for guard in guards.values():
     truth_assignment[guard] = []
     truth_assignment[guard].extend(ltl.get_events(guard))
-## Initialize multiple LLMs to evaluate the 
-records = {}
+## Initialize multiple LLMs to evaluate
+records = {} # ltl_task:{guard: true or false}
 for guard, truth in truth_assignment.items():
     ## Progress the natural language task specification
     prompt = process_prompt(task_spec, truth)
+    processed_spec = get_response(prompt)
     ## Progress the linear temporal logic task
     events = []
     for ap, value in truth.items():
         if value: 
             events.append(ap)
-    processed_task = progress(response, events)
-# Evaluate the generated task 
+    from . import ltl2tree as lt
+    ltl_tree = lt.ltl2tree(response, ltl.get_alphabet())
+    ltl_str = lt.ltl_tree_str(ltl_tree)
+    ltl_list = lt.unroll_tree(ltl_tree)
+    processed_task = progress(ltl_list, events)
+    processed_task = lt.ltl_tree_str(processed_task)
+    # Evaluate the generated task 
+    ltl = LTL(processed_task)
+    dot = ltl.get_dot()
+    judge_prompt = generate_evaluation(processed_spec, dot)
+    result = get_response(judge_prompt)
+    records[processed_task][guard] = result
 times = 0
+
+# how to randomly select tasks, exam whether they are included in records, if not, progress them and exam.

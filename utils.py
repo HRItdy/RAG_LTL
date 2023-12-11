@@ -118,3 +118,6 @@ def get_response(prompt):
     # result = re.findall(r'\{.*?})', output)  
     return output
 
+
+def generate_evaluation(nl_task, dot):
+    pass

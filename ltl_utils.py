@@ -152,6 +152,17 @@ class LTL():
             if parsed_guard.truth([combo], 0):
                 events.append(combo)
         return events
+    
+    def reconstruct(self, task):
+        ''' recursively reconstruct the task '''
+        if type(task) == str:
+            return task
+        if len(task) == 2:
+            return task[0] + task[1]
+        if len(task) == 3:
+            aux(mat, prev_idx, idx, rel)
+            offset = tagger(formula[1], mat, idx, idx+1, 'l')
+            return tagger(formula[2], mat, idx, offset+1, 'r')
 
 if __name__ == '__main__':
     a = LTL('X(!(a U b))')

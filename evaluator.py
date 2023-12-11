@@ -37,7 +37,7 @@ truth_assignment = {}
 for guard in guards.values():
     truth_assignment[guard] = []
     truth_assignment[guard].extend(ltl.get_events(guard))
-## Initialize multiple LLMs to evaluate
+
 records = {} # {ltl_task:{guard:{events: {progressed_ltl:   progressed_spec:  evaluate: true or false}}}}
 for guard, truth in truth_assignment.items():
     for assignment in truth:
@@ -49,15 +49,9 @@ for guard, truth in truth_assignment.items():
         ltl_str = lt.ltl_tree_str(ltl_tree)
         ltl_list = lt.unroll_tree(ltl_tree)
         processed_task = progress(ltl_list, events)
-        processed_ltl_str = lt.ltl_tree_str(processed_task)
     ## Progress the natural language task specification
     prompt = process_prompt(task_spec, truth)
     processed_spec = get_response(prompt)
-    ## Progress the linear temporal logic task
-    events = []
-    for ap, value in truth.items():
-        if value: 
-            events.append(ap)
     # Evaluate the generated task 
     ltl = LTL(processed_task)
     dot = ltl.get_dot()

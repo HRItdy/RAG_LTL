@@ -118,6 +118,10 @@ def get_response(prompt):
     # result = re.findall(r'\{.*?})', output)  
     return output
 
+def regular(task):
+    if task in ['true', 'True', 'false', 'False']:
+        return task
+    return ''.join(c + (' ' if i < len(task) - 1 and c != ' ' and task[i+1] != ' ' else '') for i, c in enumerate(task)) 
 
 def generate_evaluation(nl_task, dot):
     pass

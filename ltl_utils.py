@@ -152,19 +152,7 @@ class LTL():
             if parsed_guard.truth([combo], 0):
                 events.append(combo)
         return events
-    
-
-    def reconstruct(self, task):
-        OP_1 = ['N', 'G', 'E', 'X']
-        OP_2 = ['A', 'O', 'U']
-        if isinstance(task, str):
-            return task
-        elif isinstance(task, list):
-            if len(task) == 3 and task[0] in OP_2:
-                return '('+self.reconstruct(task[1]) +' '+ task[0] +' '+ self.reconstruct(task[2])+')'
-            elif len(task) == 2 and task[0] in OP_1:
-                return '('+task[0] +' '+ task[1]+')'
-        
+       
 
 if __name__ == '__main__':
     a = LTL('X(!(a U b))')

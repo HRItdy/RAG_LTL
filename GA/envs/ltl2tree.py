@@ -203,6 +203,18 @@ def unroll_tree(ltltree):
     ltl_list.extend(leaf_lists)
     return ltl_list    
 
+
+def reconstruct(task):
+    if isinstance(task, str):
+        return task
+    elif isinstance(task, list):
+        if len(task) == 3 and task[0] in OP_2:
+            return '('+ reconstruct(task[1]) +' '+ task[0] +' '+ reconstruct(task[2]) + ')'
+        elif len(task) == 2 and task[0] in OP_1 and isinstance(task[1], list):
+            return '('+ task[0] +' '+ reconstruct(task[1]) + ')'
+        elif len(task) == 2 and task[0] in OP_1 and isinstance(task[1], str):
+            return '('+ task[0] +' '+ reconstruct(task[1]) + ')'
+
 if __name__ == '__main__':
     ltl_formula = '((G a) A (E N b))'
     # parse ltl formula to cfg tree and then convert to an expression tree

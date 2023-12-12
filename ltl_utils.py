@@ -168,7 +168,9 @@ class LTL():
 
 if __name__ == '__main__':
     a = LTL('X(!(a U b))')
+    b = LTL('F(a & F(b))')
     l = a.get_events('a | !b')
+    k = b.random_walk()
     print('a')
 
     

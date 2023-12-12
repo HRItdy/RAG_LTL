@@ -16,7 +16,7 @@ import networkx as nx
 import openai
 
 DEVICE = "cuda" if th.cuda.is_available() else "cpu"
-openai.api_key = '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'
+openai.api_key = 'TO-BE-SET'
 
 import json
 with open('./Retrieve/retrieve_msg.json') as retrieve_data:
@@ -37,11 +37,12 @@ truth_assignment = {}
 for guard in guards.values():
     truth_assignment[guard] = []
     truth_assignment[guard].extend(ltl.get_events(guard))
-
+walks = ltl.random_walk(walk_num=15, walk_length=10)
 records = {} # {ltl_task:{guard:{events: {progressed_ltl:   progressed_spec:  evaluate: true or false}}}}
-for guard, truth in truth_assignment.items():
-    for assignment in truth:
-        events = [atomic for atomic, value in assignment.items() if value is True]
+for walk in walks:
+    for guard in walk:
+        truth = truth_assignment[guard]
+        events = [atomic for atomic, value in truth.items() if value is True]
         events.sort()
         event_str = "".join(events) if isinstance(events,list) else ""
         #progress the ltl task and store them into the records
@@ -49,6 +50,9 @@ for guard, truth in truth_assignment.items():
         ltl_str = lt.ltl_tree_str(ltl_tree)
         ltl_list = lt.unroll_tree(ltl_tree)
         processed_task = progress(ltl_list, events)
+        
+for guard, truth in truth_assignment.items():
+    for assignment in truth:
     ## Progress the natural language task specification
     prompt = process_prompt(task_spec, truth)
     processed_spec = get_response(prompt)

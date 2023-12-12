@@ -153,16 +153,18 @@ class LTL():
                 events.append(combo)
         return events
     
+
     def reconstruct(self, task):
-        ''' recursively reconstruct the task '''
-        if type(task) == str:
+        OP_1 = ['N', 'G', 'E', 'X']
+        OP_2 = ['A', 'O', 'U']
+        if isinstance(task, str):
             return task
-        if len(task) == 2:
-            return task[0] + task[1]
-        if len(task) == 3:
-            aux(mat, prev_idx, idx, rel)
-            offset = tagger(formula[1], mat, idx, idx+1, 'l')
-            return tagger(formula[2], mat, idx, offset+1, 'r')
+        elif isinstance(task, list):
+            if len(task) == 3 and task[0] in OP_2:
+                return '('+self.reconstruct(task[1]) +' '+ task[0] +' '+ self.reconstruct(task[2])+')'
+            elif len(task) == 2 and task[0] in OP_1:
+                return '('+task[0] +' '+ task[1]+')'
+        
 
 if __name__ == '__main__':
     a = LTL('X(!(a U b))')

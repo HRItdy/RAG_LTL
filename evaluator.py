@@ -41,29 +41,37 @@ for guard in guards.values():
     truth_assignment[guard] = []
     truth_assignment[guard].extend(ltl.get_events(guard))
 walks = ltl.random_walk(walk_num=15, walk_length=10)
-for walk in walks:
-    exam_task = response
-    for guard in walk:
-        truths = truth_assignment[guard]
-        for truth in truths:
-            events = [atomic for atomic, value in truth.items() if value is True]
-            events.sort()
-            event_str = ",".join(events) if isinstance(events,list) else "no action"
-            #progress the ltl task and store them into the records
-            ltl_tree = lt.ltl2tree(exam_task, ltl.get_alphabet(exam_task))
-            ltl_str = lt.ltl_tree_str(ltl_tree)
-            ltl_list = lt.unroll_tree(ltl_tree)
-            progress_task = progress(ltl_list, events)
-            progress_str = lt.reconstruct(progress_task)
-            progress_str = regular(progress_str)
+
+def get_progress(exam_task, guard, truth_assignment):
+    truths = truth_assignment[guard]
+    for truth in truths:
+        events = [atomic for atomic, value in truth.items() if value is True]
+        events.sort()
+        event_str = ",".join(events) if isinstance(events,list) else "no action"
+        #progress the ltl task and store them into the records
+        ltl_tree = lt.ltl2tree(exam_task, ltl.get_alphabet(exam_task))
+        ltl_str = lt.ltl_tree_str(ltl_tree)
+        ltl_list = lt.unroll_tree(ltl_tree)
+        progress_task = progress(ltl_list, events)
+        progress_str = lt.reconstruct(progress_task)
+        progress_str = regular(progress_str)
+    return progress_str
+    
+max_iter = 10
+iter_count = 0
+exam_task = response
+while iter_count < max_iter:
+    iter_count += 1
+    for walk in walks:
+        for guard in walk:
             if event_str not in records[exam_task][guard].keys():
-                records[exam_task][guard]= {event_str:[progress_str]}
-            exam_task = progress_str
-            if exam_task not in records.keys():
-                records[exam_task] = {guard:{}} 
-            if exam_task == 'true':
-                break
-print('a')
+                    records[exam_task][guard]= {event_str:[progress_str]}
+                exam_task = progress_str
+                if exam_task not in records.keys():
+                    records[exam_task] = {guard:{}} 
+                if exam_task == 'true':
+                    break
+    print('a')
         
 # for guard, truth in truth_assignment.items():
 #     for assignment in truth:

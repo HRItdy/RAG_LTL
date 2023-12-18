@@ -69,7 +69,7 @@ def check_violation(task_spec, random_walks, ltl_model):
     return satisfy, error_msg
 
 def generate_prompt(nl_task):
-    prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task without extra explanation. You should use '&', '|', '!', 'G', 'U', 'X', 'F' for 'and', 'or', 'not', 'always', 'until', 'next', 'Eventually'.".replace('TASK-TO-BE-REPLACED', nl_task)
+    prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task without extra explanation. You should use '&', '|', '!', 'G', 'U', 'X', 'F' for 'and', 'or', 'not', 'always', 'until', 'next', 'Eventually', and avoid using '->' for 'implicate'.".replace('TASK-TO-BE-REPLACED', nl_task)
     return prompt
 
 def process_prompt(nl_task, event):
@@ -94,7 +94,7 @@ def process_prompt(nl_task, event):
 def evaluate_prompt(task_spec, dot):
     prompt = f"""the task specification is {task_spec}, the corresponding deterministic finite automaton can be represented in DOT format like: 
                 {dot}
-                'accept=true' means that the task is satisfied when this node is arrived. The guard is the trigger of the corresponding edge. Directly give out a score indicating the satisfaction degree. The score should arrange from 0 to 100 **without extra explanation**."""
+                'accept=true' means that the task is satisfied when this node is arrived. The guard is the trigger of the corresponding edge. Directly give out a score indicating the satisfaction degree **without extra explanation**. The score should arrange from 0 to 100."""
     return prompt
 
 def revise_prompt(org, error, k, **kwargs):
@@ -109,17 +109,32 @@ def revise_prompt(org, error, k, **kwargs):
 def get_response(prompt):
     #assert prompt_response in ['generate', 'evaluate', 'revise'], "Unknown prompt type!"
     import re
-    response = openai.Completion.create(
-        model="gpt-3.5-turbo-instruct",
-        prompt=prompt,
+    response = openai.ChatCompletion.create(
+        model= "gpt-4-1106-preview",   #gpt-3.5-turbo-instruct
+        messages = [{"role": "user", "content": prompt}],
         temperature=0.7,
         max_tokens=512,
-        top_p=1,
-        best_of=1,
         frequency_penalty=0.1,
         presence_penalty=0
         )
-    output = response['choices'][0]['text']
+    output = response.choices[0].message['content']
+    output = output.replace("\n", "").replace("`", "").replace(" ", "")
+    # output = output.lstrip('\n')
+    # result = re.findall(r'\{.*?})', output)  
+    return output
+
+def get_response_gpt3(prompt):
+    #assert prompt_response in ['generate', 'evaluate', 'revise'], "Unknown prompt type!"
+    import re
+    response = openai.ChatCompletion.create(
+        model= "gpt-3.5-turbo-instruct",
+        prompt = prompt,
+        temperature=0.7,
+        max_tokens=512,
+        frequency_penalty=0.1,
+        presence_penalty=0
+        )
+    output = response.choices[0].text.strip()
     output = output.lstrip('\n')
     # result = re.findall(r'\{.*?})', output)  
     return output

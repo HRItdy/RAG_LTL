@@ -16,7 +16,7 @@ import networkx as nx
 import openai
 
 DEVICE = "cuda" if th.cuda.is_available() else "cpu"
-openai.api_key = 'TO-BE-SET'
+openai.api_key = 'TO_BE_SET'
 
 import json
 with open('./Retrieve/retrieve_msg.json') as retrieve_data:
@@ -25,8 +25,8 @@ with open('./Retrieve/retrieve_msg.json') as retrieve_data:
 task_spec = random.choice(list(retrieve_dict.keys()))
 GEN_PROMPT = generate_prompt(task_spec)
 ## Get the result
-#response = get_response(GEN_PROMPT)
-response = 'F(a & F(! b))'
+response = get_response(GEN_PROMPT)
+# response = 'F(a & F(! b))'
 response = regular(response)
 # get the eval result of the root task
 ltl = LTL(response)
@@ -51,7 +51,7 @@ def get_progress(exam_task, guard, truth_assignment):
     for truth in truths:
         events = [atomic for atomic, value in truth.items() if value is True]
         events.sort()
-        event_str = ",".join(events) if isinstance(events,list) else "no action"
+        event_str = ",".join(events) if len(events) != 0 else "no action"
         #progress the ltl task and store them into the records
         ltl_tree = lt.ltl2tree(exam_task, ltl.get_alphabet(exam_task))
         # ltl_str = lt.ltl_tree_str(ltl_tree)

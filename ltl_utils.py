@@ -20,6 +20,7 @@ class LTL():
         task = task.replace('N','!')
         task = task.replace('~','!')
         task = task.replace('E','F')
+        task = task.replace('- >', 'I')
         return task
     
     def re_replace(self, task):

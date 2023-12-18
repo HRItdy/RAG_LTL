@@ -35,9 +35,11 @@ dfa = ltl.to_networkx()
 dot, num = ltl.get_dot_and_number()
 ## Get all the guards
 guards = ltl.get_guards(dfa)
-eval = evaluate_prompt(task_spec, dot)
+eval_pro = evaluate_prompt(task_spec, dot)
+eval = get_response(eval_pro)
+eval = int(eval)
 ## For each guard, generate the corresponding event combination
-records = {response:{'spec':task_spec, 'dot':dot, 'eval': eval, 'num': num}} # {ltl_task:{specification: , DOT: , evaluate: true or false}}}}
+records = {response:{'spec':[task_spec], 'dot':dot, 'eval': eval, 'num': num}} # {ltl_task:{specification:[], DOT:..., evaluate:0-100}}}}
 truth_assignment = {}
 for guard in guards.values():
     truth_assignment[guard] = []
@@ -80,20 +82,24 @@ for walk in walks:
     exam_task = regular(response)
     tem_spec = task_spec
     for guard in walk:
-        # if guard not in records[exam_task].keys():
-        #     records[exam_task]['guard'][guard]= {}
+        # progress ltl task and natural language task specification
         event_str, progress_str = get_progress(exam_task, guard, truth_assignment)
-        exam_task = regular(progress_str)
-        if exam_task in records.keys():
-            continue 
-        dot, num = get_dot_num(exam_task)
         proc = process_prompt(tem_spec, event_str)
         tem_spec = get_response(proc)
-        # if event_str not in records[exam_task]['guard'][guard].keys():
-        #     records[exam_task]['guard'][guard][event_str]['progress_ltl'] = progress_str
+        # tem_spec = tem_spec + 'a'
+        exam_task = regular(progress_str)
         if exam_task == 'True':
             break
-        eval = evaluate_prompt(tem_spec, dot)
-        records[exam_task] = {'spec': tem_spec, 'dot': dot, 'eval': eval, 'num': num}
+        # if the progressed task has been in records, add the new natural language task specification to augment
+        if exam_task in records.keys():
+            records[exam_task]['spec'].append(tem_spec)
+            continue 
+        # if the progressed task not in records, add them
+        else: 
+            dot, num = get_dot_num(exam_task)
+            eval_pro = evaluate_prompt(tem_spec, dot)
+            eval = get_response(eval_pro)
+            eval = int(eval)
+            records[exam_task] = {'spec': [tem_spec], 'dot': dot, 'eval': eval, 'num': num}
 
 eval_score = get_eval_score(records)

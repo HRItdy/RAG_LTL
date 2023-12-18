@@ -77,6 +77,7 @@ def process_prompt(nl_task, event):
     assignment = f" {event} is true,"
     prompt += assignment
     prompt += " then reason the new task specification after these and output without additional explaination."
+    return prompt
 
 # def evaluate_prompt(task_spec, policy_sketch):
 #     #preprocess the policy_sketch first?

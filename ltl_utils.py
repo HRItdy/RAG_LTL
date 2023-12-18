@@ -119,6 +119,13 @@ class LTL():
         dot = dot.to_string()
         return dot
     
+    def get_dot_and_number(self):
+        task_graph = self.to_networkx()
+        num = task_graph.number_of_nodes()
+        dot = nx.drawing.nx_pydot.to_pydot(task_graph)
+        dot = dot.to_string()
+        return dot, num
+    
     def get_guards(self, G):
         guards = nx.get_edge_attributes(G, "guard")
         return guards

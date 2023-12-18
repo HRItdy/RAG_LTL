@@ -72,23 +72,28 @@ def generate_prompt(nl_task):
     prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task without extra explanation. You should use '&', '|', '!', 'G', 'U', 'X', 'F' for 'and', 'or', 'not', 'always', 'until', 'next', 'Eventually'.".replace('TASK-TO-BE-REPLACED', nl_task)
     return prompt
 
-def process_prompt(nl_task, truth):
+def process_prompt(nl_task, event):
     prompt = "The original task specification is: TASK-TO-BE-REPLACED. Now".replace('TASK-TO-BE-REPLACED', nl_task)
-    for ap, value in truth.items():
-        assignment = f" {ap} is true," if value else f" {ap} is false,"
-        prompt += assignment
-    prompt += " then reason the new task specification after these and output without extra explaination."
+    assignment = f" {event} is true,"
+    prompt += assignment
+    prompt += " then reason the new task specification after these and output without additional explaination."
 
-def evaluate_prompt(task_spec, policy_sketch):
-    #preprocess the policy_sketch first?
-    policy_sketch = ",".join(step for step in policy_sketch)
-    prompt = """Analyze whether the policy sketch satisfies the task. If not, give out the output. 
-                Example:
-                task specification: \{c\} should always be true, or \{a\} and \{b\} be true, but subsequently \{c\} should be true.
-                policy sketch: 'a & b', 'a & b & c', 'a & b'
-                output: satisfy: (No), error message:('a & b' after 'a & b & c'. According to the LTL task, once c becomes true, it should always remain true. However, the policy returns to a state where c's truth is not guaranteed. This violates the requirement that "subsequently c should be true" after its initial truth.)
-                Now the task specification is:""" + task_spec + "\n" + """policy sketch :""" + policy_sketch + """. Give the output following the format in the example without extra explanation.
-                output:"""
+# def evaluate_prompt(task_spec, policy_sketch):
+#     #preprocess the policy_sketch first?
+#     policy_sketch = ",".join(step for step in policy_sketch)
+#     prompt = """Analyze whether the policy sketch satisfies the task. If not, give out the output. 
+#                 Example:
+#                 task specification: \{c\} should always be true, or \{a\} and \{b\} be true, but subsequently \{c\} should be true.
+#                 policy sketch: 'a & b', 'a & b & c', 'a & b'
+#                 output: satisfy: (No), error message:('a & b' after 'a & b & c'. According to the LTL task, once c becomes true, it should always remain true. However, the policy returns to a state where c's truth is not guaranteed. This violates the requirement that "subsequently c should be true" after its initial truth.)
+#                 Now the task specification is:""" + task_spec + "\n" + """policy sketch :""" + policy_sketch + """. Give the output following the format in the example without extra explanation.
+#                 output:"""
+#     return prompt
+
+def evaluate_prompt(task_spec, dot):
+    prompt = f"""the task specification is {task_spec}, the corresponding deterministic finite automaton can be represented in DOT format like: 
+                {dot}
+                'accept=true' means that the task is satisfied when this node is arrived. The guard is the trigger of the corresponding edge. Directly give out a score indicating the satisfaction degree. The score should arrange from 0 to 100 **without extra explanation**."""
     return prompt
 
 def revise_prompt(org, error, k, **kwargs):
@@ -123,5 +128,7 @@ def regular(task):
         return task
     return ''.join(c + (' ' if i < len(task) - 1 and c != ' ' and task[i+1] != ' ' else '') for i, c in enumerate(task)) 
 
+
 def generate_evaluation(nl_task, dot):
-    pass
+    prompt = "Generate the linear temporal logic task of: TASK-TO-BE-REPLACED. The output should be the task without extra explanation. You should use '&', '|', '!', 'G', 'U', 'X', 'F' for 'and', 'or', 'not', 'always', 'until', 'next', 'Eventually'.".replace('TASK-TO-BE-REPLACED', nl_task)
+    return prompt

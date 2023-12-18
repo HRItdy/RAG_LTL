@@ -28,16 +28,18 @@ GEN_PROMPT = generate_prompt(task_spec)
 #response = get_response(GEN_PROMPT)
 response = 'F(a & F(! b))'
 response = regular(response)
+# get the eval result of the root task
 ltl = LTL(response)
 response = ltl.re_replace(response)
 dfa = ltl.to_networkx()
+dot, num = ltl.get_dot_and_number()
 ## Get all the guards
 guards = ltl.get_guards(dfa)
+eval = evaluate_prompt(task_spec, dot)
 ## For each guard, generate the corresponding event combination
-records = {response:{}} # {ltl_task:{guard:{events: {progressed_ltl:   progressed_spec:  evaluate: true or false}}}}
+records = {response:{'spec':task_spec, 'dot':dot, 'eval': eval, 'num': num}} # {ltl_task:{specification: , DOT: , evaluate: true or false}}}}
 truth_assignment = {}
 for guard in guards.values():
-    records[response][guard] = {}
     truth_assignment[guard] = []
     truth_assignment[guard].extend(ltl.get_events(guard))
 walks = ltl.random_walk(walk_num=15, walk_length=10)
@@ -56,33 +58,42 @@ def get_progress(exam_task, guard, truth_assignment):
         progress_str = lt.reconstruct(progress_task)
         progress_str = regular(progress_str)
     return event_str, progress_str
+
+def get_dot_num(task):
+    ltl = LTL(task)
+    task = ltl.re_replace(task)
+    dot, num = ltl.get_dot_and_number()
+    return dot, num
+
+def get_eval_score(records):
+    max_num = 0
+    eval_score = 0
+    counter = 0
+    for _, info in records:
+        max_num = max(max_num, info['num'])
+        counter += 1
+    for _, info in records:
+        eval_score += (max_num - info['num'])/max_num * info['eval']
+    eval_score /= counter
     
 for walk in walks:
     exam_task = regular(response)
+    tem_spec = task_spec
     for guard in walk:
-        if guard not in records[exam_task].keys():
-            records[exam_task][guard]= {}
+        # if guard not in records[exam_task].keys():
+        #     records[exam_task]['guard'][guard]= {}
         event_str, progress_str = get_progress(exam_task, guard, truth_assignment)
-        if event_str not in records[exam_task][guard].keys():
-            records[exam_task][guard]= {event_str:[progress_str]}
         exam_task = regular(progress_str)
+        if exam_task in records.keys():
+            continue 
+        dot, num = get_dot_num(exam_task)
+        proc = process_prompt(tem_spec, event_str)
+        tem_spec = get_response(proc)
+        # if event_str not in records[exam_task]['guard'][guard].keys():
+        #     records[exam_task]['guard'][guard][event_str]['progress_ltl'] = progress_str
         if exam_task == 'True':
             break
-        if exam_task not in records.keys():
-            records[exam_task] = {} 
-print('a')
-        
-# for guard, truth in truth_assignment.items():
-#     for assignment in truth:
-#     ## Progress the natural language task specification
-#     prompt = process_prompt(task_spec, truth)
-#     processed_spec = get_response(prompt)
-#     # Evaluate the generated task 
-#     ltl = LTL(processed_task)
-#     dot = ltl.get_dot()
-#     judge_prompt = generate_evaluation(processed_spec, dot)
-#     result = get_response(judge_prompt)
-#     records[processed_task][guard] = result
-# times = 0
+        eval = evaluate_prompt(tem_spec, dot)
+        records[exam_task] = {'spec': tem_spec, 'dot': dot, 'eval': eval, 'num': num}
 
-# how to randomly select tasks, exam whether they are included in records, if not, progress them and exam.
+eval_score = get_eval_score(records)

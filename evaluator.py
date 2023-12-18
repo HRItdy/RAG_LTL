@@ -14,6 +14,7 @@ import random
 from utils import *
 import networkx as nx
 import openai
+import wandb
 
 DEVICE = "cuda" if th.cuda.is_available() else "cpu"
 openai.api_key = 'TO_BE_SET'

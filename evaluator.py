@@ -22,7 +22,8 @@ openai.api_key = 'TO_BE_SET'
 import json
 with open('./Retrieve/retrieve_msg.json') as retrieve_data:
     retrieve_dict = json.load(retrieve_data)
-
+wandb.init()
+prediction_table = wandb.Table(columns=["task", "natural_task", "dot_format", "eval_score", "state_number"])
 task_spec = random.choice(list(retrieve_dict.keys()))
 GEN_PROMPT = generate_prompt(task_spec)
 ## Get the result
@@ -41,6 +42,8 @@ eval = get_response(eval_pro)
 eval = int(eval)
 ## For each guard, generate the corresponding event combination
 records = {response:{'spec':[task_spec], 'dot':dot, 'eval': eval, 'num': num}} # {ltl_task:{specification:[], DOT:..., evaluate:0-100}}}}
+prediction_table.add_data(response, task_spec, dot, eval, num)
+
 truth_assignment = {}
 for guard in guards.values():
     truth_assignment[guard] = []
@@ -102,5 +105,7 @@ for walk in walks:
             eval = get_response(eval_pro)
             eval = int(eval)
             records[exam_task] = {'spec': [tem_spec], 'dot': dot, 'eval': eval, 'num': num}
-
+        prediction_table.add_data(exam_task, tem_spec, dot, eval, num)
+wandb.log({'predictions': prediction_table})
+wandb.finish()
 eval_score = get_eval_score(records)

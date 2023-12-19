@@ -51,7 +51,8 @@ for guard in guards.values():
 walks = ltl.random_walk(walk_num=15, walk_length=10)
 
 def get_progress(exam_task, guard, truth_assignment):
-    truths = truth_assignment[guard]
+    truths = truth_assignment[guard]  
+    event_str = ''
     for truth in truths:
         events = [atomic for atomic, value in truth.items() if value is True]
         events.sort()
@@ -75,10 +76,10 @@ def get_eval_score(records):
     max_num = 0
     eval_score = 0
     counter = 0
-    for _, info in records:
+    for _, info in records.items():
         max_num = max(max_num, info['num'])
         counter += 1
-    for _, info in records:
+    for _, info in records.items():
         eval_score += (max_num - info['num'])/max_num * info['eval']
     eval_score /= counter
     

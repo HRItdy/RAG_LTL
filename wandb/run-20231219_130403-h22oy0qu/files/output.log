@@ -1,0 +1,24 @@
+
+Backend TkAgg is interactive backend. Turning interactive mode on.
+Traceback (most recent call last):
+  File "/home/tiandy/anaconda3/envs/LTLgen/lib/python3.7/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/home/tiandy/anaconda3/envs/LTLgen/lib/python3.7/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/tiandy/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher/../../debugpy/__main__.py", line 39, in <module>
+    cli.main()
+  File "/home/tiandy/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 430, in main
+    run()
+  File "/home/tiandy/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 284, in run_file
+    runpy.run_path(target, run_name="__main__")
+  File "/home/tiandy/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/lib/python/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 322, in run_path
+    pkg_name=pkg_name, script_name=fname)
+  File "/home/tiandy/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/lib/python/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 136, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File "/home/tiandy/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/lib/python/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 124, in _run_code
+    exec(code, run_globals)
+  File "/home/tiandy/code/RAG_LTL/evaluator.py", line 90, in <module>
+    event_str, progress_str = get_progress(exam_task, guard, truth_assignment)
+  File "/home/tiandy/code/RAG_LTL/evaluator.py", line 66, in get_progress
+    return event_str, progress_str
+UnboundLocalError: local variable 'event_str' referenced before assignment

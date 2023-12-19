@@ -65,7 +65,7 @@
     "Eventually either {a} or {b} is true": "E(a O b)",
     "Either {a} should be true, or {b} and {c} should be true simultaneously": "a O (b A c)",
     "{a} or {b} or {c} should be true": "a O b O c",
-    "Eiter {a} should be true, or {b} should be true until {c} becomes true": "a O (b U c)", 
+    "Either {a} should be true, or {b} should be true until {c} becomes true": "a O (b U c)", 
     "Eventually {a} and {b} should be true simultanously.": "E(a A b)",
     "Eventually {a}, {b} and {c} should be true simultaneously": "E(a A b A c)",
     "In the next timestep {b} should be true, or {a} should be true at the beginning, and {b} should be true in a row or in the next timestep": "a U X(b)",

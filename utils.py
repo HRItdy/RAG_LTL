@@ -73,10 +73,9 @@ def generate_prompt(nl_task):
     return prompt
 
 def process_prompt(nl_task, event):
-    prompt = "The original task specification is: TASK-TO-BE-REPLACED. Now".replace('TASK-TO-BE-REPLACED', nl_task)
-    assignment = f" {event} is true,"
-    prompt += assignment
-    prompt += " then reason the new task specification after these and output without additional explaination."
+    #prompt = f"Update the task specification of: '{nl_task}' after {event} is true. You should construct the DOT of this task, update the DOT according to the event: '{event} is true', then reconstruct the task specification from the updated DOT representation. Note that the output should be only the updated task specification without additional explaination."
+    #prompt = f"Update the task specification of: '{nl_task}' after {event} is true. **Note that the output should be only the updated task specification without additional explaination**. You should construct the DOT of this task, update the DOT according to the event: '{event} is true', then reconstruct the task specification from the updated DOT representation. "
+    prompt = f"Update the task specification of: '{nl_task}' after {event} is true. **Note that the output should be only the updated task specification without additional explaination, and the updated task should be in a pair of ()**. You should construct the DOT of this task, update the DOT according to the event: '{event} is true', then reconstruct the task specification from the updated DOT representation. "
     return prompt
 
 # def evaluate_prompt(task_spec, policy_sketch):

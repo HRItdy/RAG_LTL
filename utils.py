@@ -105,7 +105,7 @@ def revise_prompt(org, error, k, **kwargs):
              +"Output:\n"
     return prompt    
 
-def get_response(prompt):
+def get_response(prompt, format=False):
     #assert prompt_response in ['generate', 'evaluate', 'revise'], "Unknown prompt type!"
     import re
     response = openai.ChatCompletion.create(
@@ -118,6 +118,9 @@ def get_response(prompt):
         )
     output = response.choices[0].message['content']
     output = output.replace("\n", "").replace("`", "").replace(" ", "")
+    if format:
+        output = re.findall(r'\((.*?)\)', output)
+        output = output[0]
     # output = output.lstrip('\n')
     # result = re.findall(r'\{.*?})', output)  
     return output

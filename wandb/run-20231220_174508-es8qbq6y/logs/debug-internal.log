@@ -1,0 +1,72 @@
+2023-12-20 17:45:08,981 INFO    StreamThr :2151391 [internal.py:wandb_internal():89] W&B internal server running at pid: 2151391, started at: 2023-12-20 17:45:08.980114
+2023-12-20 17:45:08,998 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status
+2023-12-20 17:45:09,003 INFO    WriterThread:2151391 [datastore.py:open_for_write():85] open: /home/tiandy/code/RAG_LTL/wandb/run-20231220_174508-es8qbq6y/run-es8qbq6y.wandb
+2023-12-20 17:45:09,005 DEBUG   SenderThread:2151391 [sender.py:send():382] send: header
+2023-12-20 17:45:09,030 DEBUG   SenderThread:2151391 [sender.py:send():382] send: run
+2023-12-20 17:45:09,707 INFO    SenderThread:2151391 [dir_watcher.py:__init__():211] watching files in: /home/tiandy/code/RAG_LTL/wandb/run-20231220_174508-es8qbq6y/files
+2023-12-20 17:45:09,708 INFO    SenderThread:2151391 [sender.py:_start_run_threads():1139] run started: es8qbq6y with start time 1703065508.975425
+2023-12-20 17:45:09,754 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: check_version
+2023-12-20 17:45:09,755 DEBUG   SenderThread:2151391 [sender.py:send_request():409] send_request: check_version
+2023-12-20 17:45:09,835 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: run_start
+2023-12-20 17:45:09,850 DEBUG   HandlerThread:2151391 [system_info.py:__init__():32] System info init
+2023-12-20 17:45:09,850 DEBUG   HandlerThread:2151391 [system_info.py:__init__():47] System info init done
+2023-12-20 17:45:09,850 INFO    HandlerThread:2151391 [system_monitor.py:start():194] Starting system monitor
+2023-12-20 17:45:09,852 INFO    HandlerThread:2151391 [system_monitor.py:probe():214] Collecting system info
+2023-12-20 17:45:09,852 INFO    SystemMonitor:2151391 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2023-12-20 17:45:09,855 INFO    SystemMonitor:2151391 [interfaces.py:start():190] Started cpu monitoring
+2023-12-20 17:45:09,858 INFO    SystemMonitor:2151391 [interfaces.py:start():190] Started disk monitoring
+2023-12-20 17:45:09,863 INFO    SystemMonitor:2151391 [interfaces.py:start():190] Started gpu monitoring
+2023-12-20 17:45:09,871 INFO    SystemMonitor:2151391 [interfaces.py:start():190] Started memory monitoring
+2023-12-20 17:45:09,876 INFO    SystemMonitor:2151391 [interfaces.py:start():190] Started network monitoring
+2023-12-20 17:45:09,917 DEBUG   HandlerThread:2151391 [system_info.py:probe():196] Probing system
+2023-12-20 17:45:09,919 DEBUG   HandlerThread:2151391 [system_info.py:_probe_git():181] Probing git
+2023-12-20 17:45:09,954 DEBUG   HandlerThread:2151391 [system_info.py:_probe_git():189] Probing git done
+2023-12-20 17:45:09,956 DEBUG   HandlerThread:2151391 [system_info.py:probe():244] Probing system done
+2023-12-20 17:45:09,956 DEBUG   HandlerThread:2151391 [system_monitor.py:probe():223] {'os': 'Linux-6.2.0-34-generic-x86_64-with-debian-bookworm-sid', 'python': '3.7.16', 'heartbeatAt': '2023-12-20T09:45:09.917835', 'startedAt': '2023-12-20T09:45:08.961125', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/home/tiandy/code/RAG_LTL/evaluator.py', 'codePathLocal': 'evaluator.py', 'codePath': 'evaluator.py', 'git': {'remote': 'https://github.com/HRItdy/RAG_LTL.git', 'commit': '7db4bf2eebb93b3f465259901749be655b0af435'}, 'email': 'bittdy@gmail.com', 'root': '/home/tiandy/code/RAG_LTL', 'host': 'IHP-SPD-5000018', 'username': 'tiandy', 'executable': '/home/tiandy/anaconda3/envs/LTLgen/bin/python', 'cpu_count': 18, 'cpu_count_logical': 36, 'cpu_freq': {'current': 2017.122638888889, 'min': 1200.0, 'max': 4633.333333333333}, 'cpu_freq_per_core': [{'current': 1200.086, 'min': 1200.0, 'max': 4700.0}, {'current': 1200.289, 'min': 1200.0, 'max': 4800.0}, {'current': 1200.069, 'min': 1200.0, 'max': 4600.0}, {'current': 1200.459, 'min': 1200.0, 'max': 4600.0}, {'current': 1200.021, 'min': 1200.0, 'max': 4600.0}, {'current': 1200.087, 'min': 1200.0, 'max': 4600.0}, {'current': 1200.045, 'min': 1200.0, 'max': 4600.0}, {'current': 1200.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 1600.184, 'min': 1200.0, 'max': 4600.0}, {'current': 1200.171, 'min': 1200.0, 'max': 4600.0}, {'current': 1600.0, 'min': 1200.0, 'max': 4800.0}, {'current': 1200.285, 'min': 1200.0, 'max': 4600.0}, {'current': 1200.13, 'min': 1200.0, 'max': 4600.0}, {'current': 1200.082, 'min': 1200.0, 'max': 4600.0}, {'current': 1200.383, 'min': 1200.0, 'max': 4600.0}, {'current': 1200.067, 'min': 1200.0, 'max': 4600.0}, {'current': 1200.012, 'min': 1200.0, 'max': 4700.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4700.0}, {'current': 1200.02, 'min': 1200.0, 'max': 4800.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4800.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4600.0}, {'current': 3000.0, 'min': 1200.0, 'max': 4700.0}], 'disk': {'/': {'total': 1876.217758178711, 'used': 125.25300598144531}}, 'gpu': 'NVIDIA GeForce RTX 3090', 'gpu_count': 2, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3090', 'memory_total': 25769803776}, {'name': 'NVIDIA GeForce RTX 3090', 'memory_total': 25769803776}], 'memory': {'total': 125.4691276550293}}
+2023-12-20 17:45:09,957 INFO    HandlerThread:2151391 [system_monitor.py:probe():224] Finished collecting system info
+2023-12-20 17:45:09,957 INFO    HandlerThread:2151391 [system_monitor.py:probe():227] Publishing system info
+2023-12-20 17:45:09,957 DEBUG   HandlerThread:2151391 [system_info.py:_save_pip():53] Saving list of pip packages installed into the current environment
+2023-12-20 17:45:09,962 DEBUG   HandlerThread:2151391 [system_info.py:_save_pip():68] Saving pip packages done
+2023-12-20 17:45:09,962 DEBUG   HandlerThread:2151391 [system_info.py:_save_conda():76] Saving list of conda packages installed into the current environment
+2023-12-20 17:45:10,719 INFO    Thread-17 :2151391 [dir_watcher.py:_on_file_created():271] file/dir created: /home/tiandy/code/RAG_LTL/wandb/run-20231220_174508-es8qbq6y/files/requirements.txt
+2023-12-20 17:45:10,720 INFO    Thread-17 :2151391 [dir_watcher.py:_on_file_created():271] file/dir created: /home/tiandy/code/RAG_LTL/wandb/run-20231220_174508-es8qbq6y/files/conda-environment.yaml
+2023-12-20 17:45:13,190 DEBUG   HandlerThread:2151391 [system_info.py:_save_conda():87] Saving conda packages done
+2023-12-20 17:45:13,200 INFO    HandlerThread:2151391 [system_monitor.py:probe():229] Finished publishing system info
+2023-12-20 17:45:13,208 DEBUG   SenderThread:2151391 [sender.py:send():382] send: files
+2023-12-20 17:45:13,208 INFO    SenderThread:2151391 [sender.py:_save_file():1392] saving file wandb-metadata.json with policy now
+2023-12-20 17:45:13,234 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: stop_status
+2023-12-20 17:45:13,236 DEBUG   SenderThread:2151391 [sender.py:send_request():409] send_request: stop_status
+2023-12-20 17:45:13,249 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: internal_messages
+2023-12-20 17:45:13,612 DEBUG   SenderThread:2151391 [sender.py:send():382] send: telemetry
+2023-12-20 17:45:13,711 INFO    Thread-17 :2151391 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tiandy/code/RAG_LTL/wandb/run-20231220_174508-es8qbq6y/files/conda-environment.yaml
+2023-12-20 17:45:13,712 INFO    Thread-17 :2151391 [dir_watcher.py:_on_file_created():271] file/dir created: /home/tiandy/code/RAG_LTL/wandb/run-20231220_174508-es8qbq6y/files/wandb-metadata.json
+2023-12-20 17:45:14,075 INFO    wandb-upload_0:2151391 [upload_job.py:push():131] Uploaded file /tmp/tmpr_ino3ruwandb/wbgz0clz-wandb-metadata.json
+2023-12-20 17:45:14,614 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:45:18,715 INFO    Thread-17 :2151391 [dir_watcher.py:_on_file_created():271] file/dir created: /home/tiandy/code/RAG_LTL/wandb/run-20231220_174508-es8qbq6y/files/output.log
+2023-12-20 17:45:19,802 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:45:20,717 INFO    Thread-17 :2151391 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tiandy/code/RAG_LTL/wandb/run-20231220_174508-es8qbq6y/files/output.log
+2023-12-20 17:45:24,804 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:45:28,231 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: stop_status
+2023-12-20 17:45:28,232 DEBUG   SenderThread:2151391 [sender.py:send_request():409] send_request: stop_status
+2023-12-20 17:45:28,249 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: internal_messages
+2023-12-20 17:45:30,589 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:45:35,591 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:45:40,608 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:45:41,735 INFO    Thread-17 :2151391 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tiandy/code/RAG_LTL/wandb/run-20231220_174508-es8qbq6y/files/config.yaml
+2023-12-20 17:45:43,232 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: stop_status
+2023-12-20 17:45:43,233 DEBUG   SenderThread:2151391 [sender.py:send_request():409] send_request: stop_status
+2023-12-20 17:45:43,275 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: internal_messages
+2023-12-20 17:45:46,594 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:45:51,595 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:45:56,597 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:45:58,232 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: stop_status
+2023-12-20 17:45:58,233 DEBUG   SenderThread:2151391 [sender.py:send_request():409] send_request: stop_status
+2023-12-20 17:45:58,275 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: internal_messages
+2023-12-20 17:46:02,551 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:46:07,552 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:46:09,877 DEBUG   SystemMonitor:2151391 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2023-12-20 17:46:09,884 DEBUG   SenderThread:2151391 [sender.py:send():382] send: stats
+2023-12-20 17:46:12,887 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: status_report
+2023-12-20 17:46:13,233 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: stop_status
+2023-12-20 17:46:13,235 DEBUG   SenderThread:2151391 [sender.py:send_request():409] send_request: stop_status
+2023-12-20 17:46:13,275 DEBUG   HandlerThread:2151391 [handler.py:handle_request():146] handle_request: internal_messages

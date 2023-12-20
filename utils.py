@@ -91,9 +91,20 @@ def process_prompt(nl_task, event):
 #     return prompt
 
 def evaluate_prompt(task_spec, dot):
-    prompt = f"""the task specification is {task_spec}, the corresponding deterministic finite automaton can be represented in DOT format like: 
+    prompt = f"""The task specification is {task_spec}, the corresponding deterministic finite automaton can be represented in DOT format like: 
                 {dot}
                 'accept=true' means that the task is satisfied when this node is arrived. The guard is the trigger of the corresponding edge. Directly give out a score indicating the satisfaction degree **without extra explanation**. The score should arrange from 0 to 100."""
+    return prompt
+
+def evaluate_raw_spec(task_spec, event_str, dot):
+    prompt = f"""The task specification is '{task_spec}', after '{event_str}', the DOT representation is updated as:
+                {dot}
+                Directly give out a score indicating the satisfaction degree of this DOT representation towards the updated task after '{event_str}'. Think this step by step but only output the score **without additional paraphrase**. The score should arrange from 0 to 100.""" 
+    return prompt
+
+def evaluate_transit(task_spec, event_str, result):
+    prompt = f"""The task specification is '{task_spec}', after '{event_str}', the task is {'satisfied' if result is 'True' else 'violated'}. 
+                Evaluate whether this behaviour is expected by this task. Directly give out a score indicating the satisfaction degree. Think this step by step but only output the score **without additional paraphrase**. The score should arrange from 0 to 100."""
     return prompt
 
 def revise_prompt(org, error, k, **kwargs):

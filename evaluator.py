@@ -85,15 +85,12 @@ def get_dot_num(task):
     return dot, num
 
 def get_eval_score(records): #TODO
-    max_num = 0
+    assert len(records['task']) == len(records['spec']) == len(records['dot']) == len(records['eval']) == len(records['num']), 'entry numbers are not equal!'
+    max_num = max(records['num'])
     eval_score = 0
-    counter = 0
-    for _, info in records.items():
-        max_num = max(max_num, info['num'])
-        counter += 1
-    for _, info in records.items():
-        eval_score += (max_num - info['num'])/max_num * info['eval']
-    eval_score /= counter
+    for i, value in enumerate(records['eval']):
+        eval_score += (max_num - records['num'][i])/max_num * value
+    eval_score /= len(records['task'])
 
 def add_record(records, task, eval_pro, dot, eval, num):
     records['task'].append(task)

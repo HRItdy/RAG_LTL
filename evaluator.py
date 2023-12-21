@@ -133,3 +133,4 @@ for walk in walks:
 wandb.log({'predictions': prediction_table})
 wandb.finish()
 eval_score = get_eval_score(records)
+print(eval_score)

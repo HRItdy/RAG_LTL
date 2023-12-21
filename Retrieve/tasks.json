@@ -958,7 +958,6 @@
     "( e ) U E N a": {
       "expected behavior is {a} should be true. Such specification omits {a}.": "(e) U (E N a)",
       "expected behavior is to make {e} and {a} be true simultanously.": "(e A a) U E N a",
-      "expected behavior is to make {e} and {a} be true sequentially and don't need to be adjacent.": "(e U F(a)) U E N a",
       "expected behavior is {e}, {a} and {E N a} finally be true simultanously.": "(e A a A E N a) U E N a",
       "expected behavior is more than one atomic proposition in {{e}, {a}, {E N a}} should be true.": "(e O a O E N a) U E N a"
     },

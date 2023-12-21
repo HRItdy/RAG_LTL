@@ -1,0 +1,232 @@
+{
+    "os": "Linux-6.2.0-34-generic-x86_64-with-debian-bookworm-sid",
+    "python": "3.7.16",
+    "heartbeatAt": "2023-12-21T05:15:17.877632",
+    "startedAt": "2023-12-21T05:15:16.936813",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/tiandy/code/RAG_LTL/evaluator.py",
+    "codePathLocal": "evaluator.py",
+    "codePath": "evaluator.py",
+    "git": {
+        "remote": "https://github.com/HRItdy/RAG_LTL.git",
+        "commit": "4965926682121633c7758d9a703acc5818c9bb83"
+    },
+    "email": "bittdy@gmail.com",
+    "root": "/home/tiandy/code/RAG_LTL",
+    "host": "IHP-SPD-5000018",
+    "username": "tiandy",
+    "executable": "/home/tiandy/anaconda3/envs/LTLgen/bin/python",
+    "cpu_count": 18,
+    "cpu_count_logical": 36,
+    "cpu_freq": {
+        "current": 2000.0605555555553,
+        "min": 1200.0,
+        "max": 4633.333333333333
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1198.905,
+            "min": 1200.0,
+            "max": 4700.0
+        },
+        {
+            "current": 1201.021,
+            "min": 1200.0,
+            "max": 4800.0
+        },
+        {
+            "current": 1200.229,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.046,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.041,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.106,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.051,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.228,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.058,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.296,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.0,
+            "min": 1200.0,
+            "max": 4800.0
+        },
+        {
+            "current": 1200.039,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.291,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.383,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.3,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1222.748,
+            "min": 1200.0,
+            "max": 4700.0
+        },
+        {
+            "current": 1309.382,
+            "min": 1200.0,
+            "max": 4700.0
+        },
+        {
+            "current": 1200.353,
+            "min": 1200.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1200.93,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3000.0,
+            "min": 1200.0,
+            "max": 4700.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 1876.217758178711,
+            "used": 125.33454895019531
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 2,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 125.4691276550293
+    }
+}

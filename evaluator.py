@@ -15,9 +15,10 @@ from utils import *
 import networkx as nx
 import openai
 import wandb
+import re
 
 DEVICE = "cuda" if th.cuda.is_available() else "cpu"
-openai.api_key = 'sk-TO_BE_SET'
+openai.api_key = ''
 
 import json
 with open('./Retrieve/retrieve_msg.json') as retrieve_data:
@@ -25,9 +26,11 @@ with open('./Retrieve/retrieve_msg.json') as retrieve_data:
 wandb.init()
 prediction_table = wandb.Table(columns=["task", "natural_task", "dot_format", "eval_score", "state_number"])
 task_spec = random.choice(list(retrieve_dict.keys()))
+task_spec = "Finally {a} should be true, and finally {b} should be true and {c} is always true. But when {c} is not true, {b} and {c} should be true simultaneously and then {c} is always true"
 GEN_PROMPT = generate_prompt(task_spec)
 ## Get the result
-response = get_response(GEN_PROMPT)
+#response = get_response(GEN_PROMPT)
+response = '(F(a) & F((b & G(c))))'
 # response = 'F(a & F(! b))'
 response = regular(response)
 # get the eval result of the root task
@@ -40,7 +43,7 @@ alpha = ltl.get_alphabet(response)
 ## Get all the guards
 guards = ltl.get_guards(dfa)
 eval_pro = evaluate_prompt(task_spec, dot)
-eval = get_response(eval_pro)
+eval = get_response(eval_pro, e_number=True)
 eval = int(eval)
 ## For each guard, generate the corresponding event combination
 records = {'task': ['( '+response+' )'], 'spec': [eval_pro], 'dot': [dot], 'eval': [eval], 'num': [num]} # {ltl_task: ,specification:, DOT:..., evaluate:0-100}}}}
@@ -50,7 +53,7 @@ truth_assignment = {}
 for guard in guards.values():
     truth_assignment[guard] = []
     truth_assignment[guard].extend(ltl.get_events(guard))
-walks = ltl.random_walk(walk_num=15, walk_length=10)
+walks = ltl.random_walk(walk_num=8, walk_length=4)
 
 def get_progress(exam_task, guard, truth_assignment, alphaset):
     truths = truth_assignment[guard]  
@@ -91,6 +94,7 @@ def get_eval_score(records): #TODO
     for i, value in enumerate(records['eval']):
         eval_score += (max_num - records['num'][i])/max_num * value
     eval_score /= len(records['task'])
+    return eval_score
 
 def add_record(records, task, eval_pro, dot, eval, num):
     records['task'].append(task)
@@ -109,7 +113,7 @@ for walk in walks:
         event = event+','+event_str if event_str is not '' else event+ ','+ 'no action'
         if progress_str == 'True' or progress_str == 'False':
             eval_pro = evaluate_transit(task_spec, event, progress_str)
-            eval = get_response(eval_pro)
+            eval = get_response(eval_pro, e_number=True)
             eval = int(eval)
             add_record(records, exam_task, eval_pro, None, eval, None)
             prediction_table.add_data(exam_task, eval_pro, None, eval, None)
@@ -126,7 +130,7 @@ for walk in walks:
         exam_task = regular(progress_str)
         dot, num = get_dot_num(exam_task)
         eval_pro = evaluate_raw_spec(task_spec, event, dot)
-        eval = get_response(eval_pro)
+        eval = get_response(eval_pro, e_number=True)
         eval = int(eval)
         add_record(records, exam_task, eval_pro, dot, eval, num)
         prediction_table.add_data(exam_task, eval_pro, dot, eval, num)

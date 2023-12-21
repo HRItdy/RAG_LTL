@@ -99,12 +99,12 @@ def evaluate_prompt(task_spec, dot):
 def evaluate_raw_spec(task_spec, event_str, dot):
     prompt = f"""The task specification is '{task_spec}', after '{event_str}', the DOT representation is updated as:
                 {dot}
-                Directly give out a score indicating the satisfaction degree of this DOT representation towards the updated task after '{event_str}'. Think this step by step but only output the score **without additional paraphrase**. The score should arrange from 0 to 100.""" 
+                Directly give out a score indicating the satisfaction degree of this DOT representation towards the updated task after '{event_str}'. Only output the score **without any additional explaination**. The score should arrange from 0 to 100. Evaluate the satisfication of the whole task after the event occurs instead of evaluate every individual task. A score under 50 is given if any obvious inconsistent exists.""" 
     return prompt
 
 def evaluate_transit(task_spec, event_str, result):
-    prompt = f"""The task specification is '{task_spec}', after '{event_str}', the task is {'satisfied' if result is 'True' else 'violated'}. 
-                Evaluate whether this behaviour is expected by this task. Directly give out a score indicating the satisfaction degree. Think this step by step but only output the score **without additional paraphrase**. The score should arrange from 0 to 100."""
+    prompt = f"""The task specification is '{task_spec}', after event '{event_str}' occurs, the task is {'satisfied' if result is 'True' else 'violated'}. 
+                Evaluate whether this behaviour is expected by this task. Directly give out a score indicating the satisfaction degree. Only output the score **without any additional explaination**. The score should arrange from 0 to 100. Evaluate the satisfication of the whole task after the event occurs instead of evaluate every individual task. A score under 50 is given if any obvious inconsistent exists."""
     return prompt
 
 def revise_prompt(org, error, k, **kwargs):
@@ -116,7 +116,7 @@ def revise_prompt(org, error, k, **kwargs):
              +"Output:\n"
     return prompt    
 
-def get_response(prompt, format=False):
+def get_response(prompt, format=False, e_number=False):
     #assert prompt_response in ['generate', 'evaluate', 'revise'], "Unknown prompt type!"
     import re
     response = openai.ChatCompletion.create(
@@ -132,6 +132,11 @@ def get_response(prompt, format=False):
     if format:
         output = re.findall(r'\((.*?)\)', output)
         output = output[0]
+        return output
+    if e_number:
+        output = re.findall(r"\d+\.?\d*", output)
+        output = output[0]
+        return output
     # output = output.lstrip('\n')
     # result = re.findall(r'\{.*?})', output)  
     return output

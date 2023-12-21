@@ -1,0 +1,3 @@
+{
+    "Finally {a} should be true, and finally {b} should be true and {c} is always true. But when {c} is not true, {b} and {c} should be true simultaneously and then {c} is always true":{"(F(a) & F((b & G(c))))":true, "(F(a) & F(b) & G(c) & (!(c) U (b & c)))":false},
+}

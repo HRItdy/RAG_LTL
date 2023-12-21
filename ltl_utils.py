@@ -134,7 +134,7 @@ class LTL():
     def get_alphabet(self, task):
         alphabet = set()
         for char in task:
-            if char not in ['A', 'O', 'N', 'G', 'U', 'X', 'E', '&', '|', '!', 'F', ' ', '\\', '~']:
+            if char not in ['A', 'O', 'N', 'G', 'U', 'X', 'E', '&', '|', '!', 'F', ' ', '\\', '~', '(', ')', '{', '}']:
                 alphabet.add(char)
         return alphabet
     
